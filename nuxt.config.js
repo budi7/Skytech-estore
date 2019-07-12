@@ -54,6 +54,11 @@ export default {
     clientConfigs: {
       default: {
         httpEndpoint: 'http://enginev1.skytech.id/graphql'
+        // httpLinkOptions: {
+        //   headers: {
+        //     'authorization': process.browser ? JSON.parse(window.localStorage.user).token : null
+        //   }
+        // }
       }
       // me: {
       //   httpEndpoint: 'http://localhost:8000/graphql/me'
