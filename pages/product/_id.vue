@@ -132,8 +132,6 @@ export default {
         // errorHandler(this, err)
 
         // check if not logged in
-        
-
         console.log(err)
       })
     },
