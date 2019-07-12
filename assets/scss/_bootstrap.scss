@@ -1,0 +1,108 @@
+body {
+  color: $color_secondary;
+}
+
+// nav
+.navbar-nav {
+  display:inline-table;
+}
+.nav-item {
+  display: inline-block;
+  margin-left: 1rem;
+  color: $color_black;
+  font-size: .9rem;
+
+  .fa{
+    font-size: 1.25rem;
+  }
+
+  .separator {
+    background-color: lighten($color_gray, 25);
+    width: 1px;
+    height: 100%;
+  }
+}
+
+// buttons
+.btn-primary {
+  background-color: $color_primary;
+  border-color: $color_primary;
+
+  &:hover {
+    background-color: darken($color_primary, 10);
+    border-color: $color_primary;
+  }
+  &:focus,
+  &:not(:disabled):not(.disabled):active:focus, 
+  &:not(:disabled):not(.disabled).active:focus, 
+  .show > &.dropdown-toggle:focus {
+    background-color: darken($color_primary, 10);
+    box-shadow:none;
+    border-color: $color_primary;
+  } 
+}
+.btn-outline-primary {
+  border-color: $color_primary;
+  color: $color_primary;
+
+  &:hover {
+    background-color: darken($color_primary, 10);
+    border-color: $color_primary;
+  }
+  &:focus,
+  &:not(:disabled):not(.disabled):active:focus, 
+  &:not(:disabled):not(.disabled).active:focus, 
+  .show > &.dropdown-toggle:focus {
+    background-color: $color_primary;
+    box-shadow:none;
+    border-color: $color_primary;
+    color: white;
+  }
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
+  .show > &.dropdown-toggle  {
+    background-color: $color_primary;
+    box-shadow:none;
+    border-color: $color_primary;
+    color: white;
+  }
+}
+
+// forms
+.form-control {
+
+  &:focus {
+    border-color: lighten($color_primary, 10);
+    box-shadow: none;
+  }
+}
+
+// color
+.text-primary {
+  color: $color_primary !important;
+}
+a.text-primary {
+  color: $color_primary;
+
+  &:hover {
+    color: darken($color_primary, 10) !important;
+    text-decoration: none;
+  }
+  &:focus {
+    color: darken($color_primary, 10) !important;
+    text-decoration: none;
+  }    
+}
+
+// container
+@include breakpoint('md') { 
+  .container{
+    max-width: 960px;
+  }
+}
+@include breakpoint('sm') { 
+  .container{
+    max-width: 720px;
+  }
+}

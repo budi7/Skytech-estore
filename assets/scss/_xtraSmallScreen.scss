@@ -1,0 +1,30 @@
+// require mixin: breakpoint
+
+// .hidden-xxs {
+//   display: inherit;
+// }
+// .show-only-xxs {
+//   display: none;
+// }
+
+@include breakpoint('xxs') { 
+  .hidden-xxs {
+    display: none;
+  }
+}
+@include breakpoint('xxs') { 
+  .show-only-xxs {
+    display: block;
+  }
+}
+
+@include breakpoint('xxxs') { 
+  .hidden-xxxs {
+    display: none;
+  }
+}
+@include breakpoint('xxxs') { 
+  .show-only-xxxs {
+    display: block;
+  }
+}
