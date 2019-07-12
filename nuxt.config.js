@@ -33,7 +33,6 @@ export default {
   plugins: [
     { src: '~/plugins/carousel', ssr: false },
     { src: '~/plugins/numberFormat', ssr: true }
-    // { src: '~/plugins/vuex-persist', ssr: false }
   ],
   /*
   ** Nuxt.js modules
