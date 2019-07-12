@@ -140,7 +140,6 @@ export default {
         categories: store.state.modules.product.categories
       }
     }
-    console.log(store.getters['modules/uac/isAuthed'])
 
     return store.dispatch('modules/product/fetchCategories', {
       apolloClient: app.apolloProvider.defaultClient,

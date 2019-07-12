@@ -1,0 +1,74 @@
+Task Lists
+
+handle fetch error
+  - err msg
+  - retry
+  
+
+product detail
+- video [P]
+- wishlist -> login
+- add to cart -> login
+- share
+- compare [P]
+- description [P]
+
+
+
+Checkout
+-> Create SO -> 
+  -> transfer payment
+ 
+
+// store product 
+ init product
+ -> check previous -> Y -> return old
+                   -> N -> fetch new data
+* watch filters & sort
+* pagination
+
+next page product
+
+DEFINITION
+-> init product : initial state
+-> next page : continue prev state
+
+Caution : watch for prev state
+
+FILTERS AND SORTING
+*filter*
+price start
+price end
+brand
+
+*sort*
+order by price : asc & desc
+order by name : asc & desc
+order by created at : asc & desc
+
+
+..
+ADD TO CART
+1. cek logged user
+2. fetch add to cart 
+3. save vuex
+4. update display cart
+
+
+set timeout to cache
+
+-----------------
+APPS Skytech
+-> device testing -> ervan
+
+
+Hidden
+about us,
+term of service,
+layanan bantuan,
+
+
+
+TWEAK
+lazy loader -> image product
+footerbar on mobile

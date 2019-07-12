@@ -31,12 +31,12 @@
           </div>
           <div class="row pt-3 mb-1">
             <div class="col-12 col-sm-4 col-md-6 pr-1 mb-3">
-              <a href="javascript:void(0);" class="btn btn-sm btn-block btn-primary">
+              <a href="javascript:void(0);" class="btn btn-sm btn-block btn-primary" @click="addToCart(true)">
                 Beli Sekarang
               </a>
             </div>
             <div class="col-12 col-sm-8 col-md-6 pl-1 mb-3">
-              <a href="javascript:void(0);" class="btn btn-sm btn-block btn-outline-primary">
+              <a href="javascript:void(0);" class="btn btn-sm btn-block btn-outline-primary" @click="addToCart()">
                 <i class="fa fa-cart-plus fa-lg" /> Tambahkan ke Keranjang
               </a>
             </div>
@@ -86,7 +86,9 @@ export default {
   },
   data() {
     return {
-      product: []
+      product: [],
+      qty: 1,
+      isPurchasing: false
     }
   },
   asyncData({ app, store, params }) {
@@ -105,10 +107,35 @@ export default {
     })
   },
   methods: {
-    addToCart() {
+    addToCart(goToCart) {
+      // can i?
+      if (this.isPurchasing) return
+
       // check looged in ?
 
       // dispatch add cart
+      this.$store.dispatch('modules/cart/cartItemAdd', {
+        apolloClient: this.$apollo,
+        data: {
+          upc: this.product.upc,
+          kuantitas: this.qty
+        }
+      }).then((res) => {
+        this.isPurchasing = false
+        // success msg
+        console.log(res)
+
+        // go to cart
+        if (goToCart) this.$router.push({ path: '/cart' })
+      }).catch((err) => {
+        this.isPurchasing = false
+        // errorHandler(this, err)
+
+        // check if not logged in
+        
+
+        console.log(err)
+      })
     },
     buyNow() {
       // check looged in ?

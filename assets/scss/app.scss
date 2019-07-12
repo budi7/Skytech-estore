@@ -318,19 +318,16 @@ a {
   }
 
   .sitemap {
-    list-style-type: none;
-    padding-left: 1px;
+    // list-style-type: none;
+    // padding-left: 1px;
+    padding-bottom: .5rem;
 
-    li {
-      padding-bottom: .5rem;
+    a {
+      color: $color_darkGray;
 
-      a {
-        color: $color_darkGray;
-
-        &:hover, &:focus {
-          color: rgba(0, 0, 0, 0.7) !important;
-          text-decoration: none;
-        }
+      &:hover, &:focus {
+        color: rgba(0, 0, 0, 0.7) !important;
+        text-decoration: none;
       }
     }
   }

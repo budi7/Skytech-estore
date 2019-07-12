@@ -9,7 +9,8 @@ const uac = {
   state() {
     return {
       token: null,
-      username: null
+      username: null,
+      name: null
     }
   },
   getters: {
@@ -28,10 +29,12 @@ const uac = {
       // init value
       state.token = process.browser ? (prevData ? prevData.token : null) : null
       state.username = process.browser ? (prevData ? prevData.username : null) : null
+      state.name = process.browser ? (prevData ? prevData.name : null) : null
     },
     login: (state, payload) => {
       state.token = payload.token
-      state.username = payload.user.name
+      state.username = payload.user.username
+      state.name = payload.user.name
 
       localStorage.setItem('user', JSON.stringify(state))
     },

@@ -37,7 +37,7 @@
               Jawa Timur
             </p>
           </div> -->
-          <div class="col-3 pb-3">
+          <!-- <div class="col-3 pb-3">
             <h5 class="mb-3">
               Skytech
             </h5>
@@ -63,42 +63,21 @@
                 </a>
               </li>
             </ul>
-          </div>
-          <div class="col-8 col-md-6 pb-3">
+          </div> -->
+          <div class="col-12 col-sm-12 col-md-8 col-lg-8 pb-3">
             <h5 class="mb-3">
               Kategori
             </h5>
             <div class="row">
-              <div class="col-4">
-                <ul class="sitemap">
-                  <li v-for="(i, key) in 10" :key="key">
-                    <a href="#">
-                      kategori {{ i }}
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-4">
-                <ul class="sitemap">
-                  <li v-for="(i, key) in 10" :key="key">
-                    <a href="#">
-                      kategori {{ i }}
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-4">
-                <ul class="sitemap">
-                  <li v-for="(i, key) in 10" :key="key">
-                    <a href="#">
-                      kategori {{ i }}
-                    </a>
-                  </li>
-                </ul>
+              <div v-for="(dt,i) in $store.state.modules.product.categories" :key="i" class="col-4 col-sm-3 col-md-3 sitemap">
+                <a href="javascript:void(0)">{{ dt.category }}</a>
               </div>
             </div>
           </div>
-          <div class="col-3 d-none d-md-block pb-3">
+          <div class="col-12 col-md-1">
+            <div class="clearfix py-3" />
+          </div>
+          <div class="col-12 col-md-3 pb-3">
             <h5 class="mb-3">
               Download
             </h5>
@@ -106,12 +85,12 @@
               Lebih mudah belanja pakai aplikasi Skytech. Download dan install aplikasi Skytech sekarang juga!
             </p>
             <div class="row pt-1">
-              <div class="col-6 pr-1">
+              <div class="col-6 col-sm-3 col-md-6 pr-1">
                 <a href="#" target="_blank" class="mr-1" title="Playstore">
                   <img src="~assets/images/google_play.png" class="d-inline-block download img-fluid" alt="PlayStore">
                 </a>
               </div>
-              <div class="col-6 pl-1">
+              <div class="col-6 col-sm-3 col-md-6 pl-1">
                 <a href="javascript:void(0);" target="_blank" class="mr-1" title="Appstore">
                   <img src="~assets/images/app_store.png" class="d-inline-block download img-fluid img-disabled" alt="AppStore">
                 </a>
@@ -121,7 +100,7 @@
         </div>
       </div>
     </footer>
-    <footer class="bg-primary mt-2">
+    <footer class="bg-primary mt-4">
       <div class="footer-copyright text-center py-2">
         <a href="javascript:void(0);" class="text-white" @click="$router.push({ path: '/' })">
           © 2019 COPYRIGHT SKYTECH

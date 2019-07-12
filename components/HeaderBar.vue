@@ -17,15 +17,15 @@
 
       <div class="right-menu d-md-none d-lg-none d-xl-none">
         <ul class="navbar-nav">
-          <li v-if="!$store.state.modules.uac.isAuthed" class="nav-item hidden-xxs">
+          <li v-show="!this.$store.getters['modules/uac/isAuthed']" class="nav-item hidden-xxs">
             <a href="javascript:void(0);" class="nav-link" @click="$router.push({ path: '/uac/register' })">Daftar</a>
           </li>
-          <li v-if="!$store.state.modules.uac.isAuthed" class="nav-item">
+          <li v-show="!this.$store.getters['modules/uac/isAuthed']" class="nav-item">
             <a href="javascript:void(0);" class="nav-link" @click="$router.push({ path: '/uac/login' })">Login</a>
           </li>
-          <li v-if="$store.state.modules.uac.isAuthed" class="nav-item">
+          <li v-show="this.$store.getters['modules/uac/isAuthed']" class="nav-item">
             <a href="javascript:void(0);" class="nav-link">
-              Alexander <i class="fa fa-user fa-adjustment" />
+              {{ user }} <i class="fa fa-user fa-adjustment" />
             </a>
           </li>
           <li class="nav-item">
@@ -53,15 +53,15 @@
 
       <div class="right-menu d-none d-md-block">
         <ul class="navbar-nav">
-          <li v-if="!$store.state.modules.uac.isAuthed" class="nav-item">
+          <li v-show="!this.$store.getters['modules/uac/isAuthed']" class="nav-item">
             <a href="javascript:void(0);" class="nav-link" @click="$router.push({ path: '/uac/register' })">Daftar</a>
           </li>
-          <li v-if="!$store.state.modules.uac.isAuthed" class="nav-item">
+          <li v-show="!this.$store.getters['modules/uac/isAuthed']" class="nav-item">
             <a href="javascript:void(0);" class="nav-link" @click="$router.push({ path: '/uac/login' })">Login</a>
           </li>
-          <li v-if="$store.state.modules.uac.isAuthed" class="nav-item">
+          <li v-show="this.$store.getters['modules/uac/isAuthed']" class="nav-item">
             <a href="javascript:void(0);" class="nav-link">
-              Alexander <i class="fa fa-user fa-adjustment" />
+              {{ user }} <i class="fa fa-user fa-adjustment" />
             </a>
           </li>
           <li class="nav-item">
@@ -86,6 +86,7 @@ export default {
     }
   },
   mounted() {
+    this.user = this.$store.state.modules.uac.name
     // console.log('auth ' + this.$store.getters['modules/uac/isAuthed'])
     // console.log(this.$store.state.modules.uac.)
   },

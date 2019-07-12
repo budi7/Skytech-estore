@@ -1,0 +1,14 @@
+SSR Guides
+https://forum.vuejs.org/t/how-does-vuex-work-with-server-side-rendering-or-nuxt-node/23033/10
+https://ssr.vuejs.org/guide/data.html#logic-collocation-with-components
+
+vuex ssr
+https://www.mikestreety.co.uk/blog/vue-js-using-localstorage-with-the-vuex-store
+
+
+vue lifecycle
+https://vuex.vuejs.org/
+
+
+server deployment: 
+https://medium.com/@vipercodegames/nuxt-deploy-809eda0168fc
