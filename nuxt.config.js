@@ -52,7 +52,7 @@ export default {
     // required
     clientConfigs: {
       default: {
-        httpEndpoint: 'http://enginev1.skytech.id/graphql'
+        httpEndpoint: 'http://enginev1.skytech.id/graphql',
         tokenName: 'apollo-token', // optional
         loadingKey: 'loading',
         persisting: false, // Optional
