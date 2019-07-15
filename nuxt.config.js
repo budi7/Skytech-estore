@@ -50,10 +50,13 @@ export default {
   */
   apollo: {
     // required
-    includeNodeModules: true,
     clientConfigs: {
       default: {
         httpEndpoint: 'http://enginev1.skytech.id/graphql'
+        tokenName: 'apollo-token', // optional
+        loadingKey: 'loading',
+        persisting: false, // Optional
+        websocketsOnly: false // Optional
         // httpLinkOptions: {
         //   headers: {
         //     'authorization': process.browser ? JSON.parse(window.localStorage.user).token : null
