@@ -63,12 +63,12 @@ body {
 }
 .slideshow li:nth-child(5) span { 
     background-image: url("/cover5.jpg"); 
-    animation-delay: 24s; 
+    animation-delay: 30s; 
 }
-.slideshow li:nth-child(6) span { 
-  background-image: url("/cover6.jpg"); 
-  animation-delay: 30s; 
-}
+// .slideshow li:nth-child(6) span { 
+//   background-image: url("/cover6.jpg"); 
+//   animation-delay: 30s; 
+// }
 // .slideshow li:nth-child(7) span { 
 //   background-image: url("/cover7.jpg"); 
 //   animation-delay: 36s; 
@@ -98,7 +98,7 @@ body {
     0% { opacity: 0; animation-timing-function: ease-in; }
     8% { opacity: 1; animation-timing-function: ease-out; }
     17% { opacity: 1 }
-    25% { opacity: 0 }
+    50% { opacity: 0 }
     100% { opacity: 0 }
 }
 
@@ -175,4 +175,14 @@ h6 {
 
 .text-gray {
   color: $color_gray;
+}
+
+.bg-primary {
+  background-color: $color_primary !important;
+}
+
+.footer-title {
+  display: inline-flexbox;
+  display: -webkit-inline-box;
+  flex-direction: row-reverse;
 }
