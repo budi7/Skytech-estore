@@ -1,3 +1,15 @@
+// variables
+@import "./var";
+
+// mixins
+@import "./mixins/breakpoint";
+
+// base
+@import "./bootstrap";
+@import "./xtraSmallScreen";
+@import "./line-awesome-font-awesome";
+
+
 .slideshow {
   list-style-type: none;
 }
@@ -102,4 +114,65 @@ body {
 
 .no-cssanimations .cb-slideshow li span {
 	opacity: 1;
+}
+
+
+// typography
+@font-face {
+  font-family: "Biko";
+  src: url("~assets/fonts/Biko_Regular.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Biko";
+  src: url("~assets/fonts/Biko_Bold.otf");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "LightBiko";
+  src: url("~assets/fonts/Biko_Light-Restricted.otf");
+  font-weight: thin;
+  font-style: normal;
+}
+h1{
+  font-family: 'Biko';
+  font-size: 2rem;
+  letter-spacing: .3rem;
+  color:lighten($color_secondary, 10);
+  // color:$color_gray;
+  @include breakpoint('xs') { 
+    font-size: 1.3rem;
+  }
+}
+h2{
+  font-size: 1.6rem;
+  color:lighten($color_secondary, 10);
+}
+h3{
+  font-family: 'Biko';
+  font-size: 2rem;
+  letter-spacing: .3rem;
+  color:lighten($color_secondary, 10);
+  // color:$color_gray;
+}
+h4{
+  font-family: 'Biko';
+  font-size: 1.5rem;
+  letter-spacing: .2rem;
+  color:lighten($color_secondary, 10);
+}
+h6 {
+  font-family: 'Biko';
+  font-size: 1.2rem;
+  letter-spacing: .2rem;
+
+  @include breakpoint('xxs') { 
+    font-size: 1rem;
+  }
+}
+
+.text-gray {
+  color: $color_gray;
 }
