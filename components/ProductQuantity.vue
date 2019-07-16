@@ -17,7 +17,7 @@
 <script>
 export default {
   props: {
-    qty: {
+    value: {
       default: 0,
       type: Number
     }
@@ -31,18 +31,20 @@ export default {
     ctr(newval, oldval) {
       const tmp = parseInt(newval)
       if (isNaN(tmp)) {
-        this.ctr = 0
+        this.ctr = 1
         return
       }
-      if (tmp < 0) {
-        this.ctr = 0
+      if (tmp < 1) {
+        this.ctr = 1
         return
       }
       this.ctr = tmp
+
+      this.$emit('input', this.ctr)
     }
   },
   mounted() {
-    this.ctr = this.qty
+    this.ctr = this.value
   },
   methods: {
     add() {

@@ -59,7 +59,8 @@ export default {
         websocketsOnly: false // Optional
         // httpLinkOptions: {
         //   headers: {
-        //     'authorization': process.browser ? JSON.parse(window.localStorage.user).token : null
+        //     // 'authorization': process.browser ? JSON.parse(window.localStorage.user).token : null
+        //     'authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOm51bGwsImF1ZCI6bnVsbCwiaWF0IjoxNTYyOTEyMjE4LCJleHAiOjE1NjU1MDQyMTgsIm5hbWUiOiJCdWRpIFB1cm5vbW8iLCJ1c2VybmFtZSI6IjA4MTIzNDU2Nzg5MCJ9.cF88BUwNzY8eqzcnuQ-Ej-pGmFYCPp6Q6AkZFkjy60Q'
         //   }
         // }
       }

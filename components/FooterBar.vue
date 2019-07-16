@@ -69,7 +69,7 @@
               Kategori
             </h5>
             <div class="row">
-              <div v-for="(dt,i) in $store.state.modules.product.categories" :key="i" class="col-4 col-sm-3 col-md-3 sitemap">
+              <div v-for="(dt,i) in $store.state.modules.category.categories" :key="i" class="col-4 col-sm-3 col-md-3 sitemap">
                 <a href="javascript:void(0)">{{ dt.category }}</a>
               </div>
             </div>
@@ -112,7 +112,13 @@
 
 <script>
 export default {
-
+  mounted() {
+    setTimeout(() => {
+      if (this.$store.getters['modules/category/isCategoryEmpty']) {
+        this.$store.commit('modules/category/initStore')
+      }
+    }, 1000)
+  }
 }
 </script>
 

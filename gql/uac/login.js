@@ -6,11 +6,7 @@ const mutation = gql`mutation login($username: String, $password: String){
     user {
       id,
       name,
-      username,
-      visa {
-        active_at,
-        scopes
-      }
+      username
   }}
 }`
 

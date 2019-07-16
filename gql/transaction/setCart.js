@@ -1,10 +1,10 @@
 import gql from 'graphql-tag'
 
-const addCart = gql`mutation addToMyCart (
+const addCart = gql`mutation setMyCart (
   $product_code: String,
   $qty: Float
 ) {
-  AddToMyCart (
+  SetMyCart (
     product_code: $product_code,
     qty: $qty
   ) {
