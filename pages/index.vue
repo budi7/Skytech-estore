@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="top-title px-1 pt-3">
+      <img src="~assets/images/logo-default.png" class="d-inline-block align-top img-fluid main-logo" style="filter: brightness(10);" alt="">
+    </div>
     <ul class="slideshow">
       <li><span></span></li>
       <li><span></span></li>

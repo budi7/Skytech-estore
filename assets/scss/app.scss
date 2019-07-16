@@ -41,6 +41,7 @@ body {
     background-repeat: no-repeat;
     opacity: 0;
     z-index: 0;
+    filter: saturate(0.55);
     animation: imageAnimation 30s linear infinite 0s; 
 }
 
@@ -185,4 +186,14 @@ h6 {
   display: inline-flexbox;
   display: -webkit-inline-box;
   flex-direction: row-reverse;
+}
+
+.top-title {
+  position: fixed;
+  top: 0px;
+  left: 3rem;
+  width: 5rem;
+  height: 5.75rem;
+  background-color: $color_primary;
+  z-index: 999999;
 }
