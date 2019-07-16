@@ -4,18 +4,18 @@
       <div class="card-body">
         <img
           class="img-fluid"
-          src="https://ecs7.tokopedia.net/img/cache/200-square/product-1/2018/7/21/1326122/1326122_a2463b7f-f0fe-4bb4-93b1-baf3eec797ba_800_800.jpg"
+          :src="product.medias[0].url"
         >
       </div>
       <div class="card-footer p-0 py-1 mb-3">
         <p class="product-title mt-2 mb-2">
           {{ product.name }}
         </p>
-        <p class="mb-0 product-discount">
-          {{ product.price.price | formatPrice }}
+        <p v-show="product.discount" class="mb-0 product-discount">
+          {{ product.price ? product.price.price : 0 | formatPrice }}
         </p>
         <p class="mb-0 product-price">
-          {{ (product.price.price - product.price.discount) | formatPrice }}
+          {{ product.price ? (product.price.price - product.price.discount) : 0 | formatPrice }}
         </p>
       </div>
     </div>
@@ -23,6 +23,8 @@
 </template>
 
 <script>
+//          :src="product.medias[0].url"
+
 export default {
   props: {
     product: {

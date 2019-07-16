@@ -23,20 +23,22 @@ const uac = {
       // look for prev data
       let prevData = null
       if (process.browser) {
-        prevData = window.localStorage.getItem('user') ? JSON.parse(window.localStorage.getItem('user')) : null
-      }
+        prevData = window.sessionStorage.getItem('user') ? JSON.parse(window.sessionStorage.getItem('user')) : null
 
-      // init value
-      state.token = process.browser ? (prevData ? prevData.token : null) : null
-      state.username = process.browser ? (prevData ? prevData.username : null) : null
-      state.name = process.browser ? (prevData ? prevData.name : null) : null
+        // init value
+        state.token = (prevData ? prevData.token : null)
+        state.username = (prevData ? prevData.username : null)
+        state.name = (prevData ? prevData.name : null)
+      }
     },
     login: (state, payload) => {
       state.token = payload.token
       state.username = payload.user.username
       state.name = payload.user.name
 
-      localStorage.setItem('user', JSON.stringify(state))
+      if (process.browser) {
+        sessionStorage.setItem('user', JSON.stringify(state))
+      }
     },
     register: (state, payload) => {
       state.username = payload.username
@@ -44,6 +46,10 @@ const uac = {
     logout: (state, payload) => {
       state.username = null
       state.token = null
+
+      if (process.browser) {
+        sessionStorage.setItem('user', JSON.stringify(state))
+      }
     }
   },
   actions: {
