@@ -38,23 +38,49 @@ body {
     background-image: url("/cover1.jpg"); 
 }
 .slideshow li:nth-child(2) span { 
-    background-image: url("https://uploads-ssl.webflow.com/5976a3655fcd654cb3d604ca/5c00c9ecd82b40364fc97f4b_bridge.jpg");
+    background-image: url("/cover2.jpg"); 
     animation-delay: 6s; 
 }
 .slideshow li:nth-child(3) span { 
-    background-image: url("https://uploads-ssl.webflow.com/5976a3655fcd654cb3d604ca/5c00c9963ea913260bb41b0e_powerlines.jpg");
+    background-image: url("/cover3.jpg"); 
     animation-delay: 12s; 
 }
 .slideshow li:nth-child(4) span { 
-    background-image: url("https://uploads-ssl.webflow.com/5976a3655fcd654cb3d604ca/5bfa14d04ae3429879830ee4_home-hero.jpg");   
+    background-image: url("/cover4.jpg"); 
     animation-delay: 18s; 
 }
 .slideshow li:nth-child(5) span { 
-    background-image: url("https://uploads-ssl.webflow.com/5976a3655fcd654cb3d604ca/5c00c9963ea913260bb41b0e_powerlines.jpg");
+    background-image: url("/cover5.jpg"); 
     animation-delay: 24s; 
 }
-
-
+.slideshow li:nth-child(6) span { 
+  background-image: url("/cover6.jpg"); 
+  animation-delay: 30s; 
+}
+// .slideshow li:nth-child(7) span { 
+//   background-image: url("/cover7.jpg"); 
+//   animation-delay: 36s; 
+// }
+// .slideshow li:nth-child(8) span { 
+//   background-image: url("/cover8.jpg"); 
+//   animation-delay: 42s; 
+// }
+// .slideshow li:nth-child(9) span { 
+//   background-image: url("/cover9.jpg"); 
+//   animation-delay: 48s; 
+// }
+// .slideshow li:nth-child(10) span { 
+//   background-image: url("/cover10.jpg"); 
+//   animation-delay: 54s; 
+// }
+// .slideshow li:nth-child(11) span { 
+//   background-image: url("/cover11.jpg"); 
+//   animation-delay: 60s; 
+// }
+// .slideshow li:nth-child(12) span { 
+//   background-image: url("/cover12.jpg"); 
+//   animation-delay: 66s; 
+// }
 
 @keyframes imageAnimation { 
     0% { opacity: 0; animation-timing-function: ease-in; }
