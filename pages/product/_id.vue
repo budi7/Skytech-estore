@@ -31,8 +31,8 @@
               <ProductQuantity v-model="qty" />
             </div>
             <div class="col-2 col-sm-2 col-md-2 col-xl-2">
-              <a href="javascript:void(0);" class="btn btn-sm btn-block btn-outline-secondary" @click="addWishlist">
-                <i class="fa fa-lg fa-heart-o" />
+              <a href="javascript:void(0);" class="btn btn-sm btn-block btn-outline-secondary" @click="toggleWishlist">
+                <i :class="$store.getters['modules/wishlist/isOn'](product.upc) === true ? 'fa fa-lg fa-heart text-danger' : 'fa fa-lg fa-heart-o'" />
               </a>
             </div>
           </div>
@@ -208,7 +208,7 @@ export default {
 
       // redirect checkout
     },
-    addWishlist() {
+    toggleWishlist() {
       // check looged in ?
       // dispatch add wishlist
       // can i?
@@ -229,40 +229,98 @@ export default {
         return
       }
 
+      if (this.$store.getters['modules/wishlist/isOn'](this.product.upc) === true) {
       // dispatch add fav items
-      this.$store.dispatch('modules/wishlist/itemAdd', {
-        apolloClient: this.$apollo,
-        data: {
-          upc: this.product.upc
-        }
-      }).then((res) => {
+        this.$store.dispatch('modules/wishlist/itemRemove', {
+          apolloClient: this.$apollo,
+          data: {
+            upc: this.product.upc
+          }
+        }).then((res) => {
         // success msg
-        alertHandler(this, {
-          msg: 'Barang telah ditambahkan kedalam wishlist',
-          type: 'success'
-        })
-        console.log(res)
-      }).catch((err) => {
-        console.log(err)
+          alertHandler(this, {
+            msg: 'Barang telah dihapus dari wishlist',
+            type: 'success'
+          })
+          console.log(res)
+        }).catch((err) => {
+          console.log(err)
 
-        // check if not logged in
-        if (err.graphQLErrors[0]) {
-          if (err.graphQLErrors[0].message === 'Unauthorized') {
+          // check if not logged in
+          if (err.graphQLErrors[0]) {
+            if (err.graphQLErrors[0].message === 'Unauthorized') {
             // unauthorized ?
+              this.errors = errorHandler(this, {
+                global: true,
+                msg: 'Maaf, Sesi Anda telah habis',
+                debug: 'Fetch Cart'
+              })
+
+              // logout
+              logout(this)
+
+              // save current page
+              window.sessionStorage.setItem('pageBeforeLogin', '/product/' + this.product.id)
+
+              // reedirect to login
+              this.$router.replace({ path: '/uac/login' })
+            } else {
+              this.errors = errorHandler(this, {
+                response: err,
+                global: true,
+                debug: 'Remove Wishlist'
+              })
+            }
+          } else {
             this.errors = errorHandler(this, {
+              response: err,
               global: true,
-              msg: 'Maaf, Sesi Anda telah habis',
-              debug: 'Fetch Cart'
+              debug: 'Remove Wishlist'
             })
+          }
+        })
+      } else {
+      // dispatch add fav items
+        this.$store.dispatch('modules/wishlist/itemAdd', {
+          apolloClient: this.$apollo,
+          data: {
+            upc: this.product.upc
+          }
+        }).then((res) => {
+        // success msg
+          alertHandler(this, {
+            msg: 'Barang telah ditambahkan kedalam wishlist',
+            type: 'success'
+          })
+          console.log(res)
+        }).catch((err) => {
+          console.log(err)
 
-            // logout
-            logout(this)
+          // check if not logged in
+          if (err.graphQLErrors[0]) {
+            if (err.graphQLErrors[0].message === 'Unauthorized') {
+            // unauthorized ?
+              this.errors = errorHandler(this, {
+                global: true,
+                msg: 'Maaf, Sesi Anda telah habis',
+                debug: 'Fetch Cart'
+              })
 
-            // save current page
-            window.sessionStorage.setItem('pageBeforeLogin', '/product/' + this.product.id)
+              // logout
+              logout(this)
 
-            // reedirect to login
-            this.$router.replace({ path: '/uac/login' })
+              // save current page
+              window.sessionStorage.setItem('pageBeforeLogin', '/product/' + this.product.id)
+
+              // reedirect to login
+              this.$router.replace({ path: '/uac/login' })
+            } else {
+              this.errors = errorHandler(this, {
+                response: err,
+                global: true,
+                debug: 'Add Wishlist'
+              })
+            }
           } else {
             this.errors = errorHandler(this, {
               response: err,
@@ -270,14 +328,8 @@ export default {
               debug: 'Add Wishlist'
             })
           }
-        } else {
-          this.errors = errorHandler(this, {
-            response: err,
-            global: true,
-            debug: 'Add Wishlist'
-          })
-        }
-      })
+        })
+      }
     }
   }
 }

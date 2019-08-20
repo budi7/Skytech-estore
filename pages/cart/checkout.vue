@@ -837,13 +837,9 @@ export default {
       inputSO.type = 'ONLINE'
       inputSO.customer_id = this.$store.state.modules.uac.customer_id
       inputSO.customer_name = cust.name
-      // inputSO.customer_address = cust.address
-      // inputSO.customer_phone = cust.phone
-      // inputSO.customer_email = cust.email
-      // debug
-      inputSO.customer_address = null
-      inputSO.customer_phone = null
-      inputSO.customer_email = null
+      inputSO.customer_address = cust.address
+      inputSO.customer_phone = cust.phone
+      inputSO.customer_email = cust.email
 
       const today = new Date()
       const dd = today.getDate()
@@ -922,9 +918,10 @@ export default {
       inputSO.shipping_terms = this.shipping_method === 'pickup_product' ? 'PICK_AT_STORE' : 'SEND_TO_RECEIVER'
       inputSO.payment_terms = 0
 
-      console.log(inputSO)
+      // console.log(inputSO)
 
       // post so
+      const vm = this
       this.$apollo.mutate({
         // Query
         mutation: apolloStoreSo,
@@ -932,9 +929,25 @@ export default {
         // Parameters
         variables: inputSO
       }).then((resp) => {
+        if (resp.errors) {
+          errorHandler(this, {
+            response: resp.errors,
+            global: true,
+            debug: null
+          })
+        }
         console.log(resp)
+        vm.is_loading = false
+
+        // redirect to invoice detail
+        this.$router.push({ path: '/me/invoices' })
       }).catch((err) => {
-        console.log(err)
+        errorHandler(this, {
+          response: err,
+          global: true,
+          debug: null
+        })
+        vm.is_loading = false
       })
     }
   }

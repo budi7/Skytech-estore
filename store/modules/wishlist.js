@@ -11,7 +11,13 @@ const wishlist = {
     }
   },
   getters: {
-
+    isOn: (state) => {
+      return (productCode) => {
+        const idx = state.wishlist_items.map(function (data) { return data.product_code }).indexOf(productCode)
+        // eslint-disable-next-line no-unneeded-ternary
+        return idx > 0
+      }
+    }
   },
   mutations: {
     initStore: (state) => {
