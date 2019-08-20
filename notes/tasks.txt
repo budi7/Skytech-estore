@@ -72,3 +72,7 @@ layanan bantuan,
 TWEAK
 lazy loader -> image product
 footerbar on mobile
+
+
+error handler 
+-> auth eror -> trigger logout

@@ -1,0 +1,13 @@
+query Propinsi (
+	$nama: String
+) {
+	Propinsi (
+		nama: $nama
+	)
+	{
+		nama,
+		kota {
+			nama
+		}
+	}
+}

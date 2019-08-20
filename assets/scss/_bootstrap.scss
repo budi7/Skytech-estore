@@ -33,13 +33,27 @@ body {
     border-color: $color_primary;
   }
   &:focus,
-  &:not(:disabled):not(.disabled):active:focus, 
-  &:not(:disabled):not(.disabled).active:focus, 
+  &:not(:disabled):not(.disabled):active:focus,
+  &:not(:disabled):not(.disabled).active:focus,
   .show > &.dropdown-toggle:focus {
     background-color: darken($color_primary, 10);
-    box-shadow:none;
+    box-shadow:none !important;
+    border-color: $color_primary !important;
+  }
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
+  .show > &.dropdown-toggle   {
+    background-color: darken($color_primary, 10);
+    box-shadow:none !important;
+    border-color: $color_primary !important;
+  }
+
+  .disabled, &:disabled {
+    background-color: lighten($color_primary, 10);
+    color: lighten($color_gray, 10);
     border-color: $color_primary;
-  } 
+  }
 }
 .btn-outline-primary {
   border-color: $color_primary;
@@ -50,8 +64,8 @@ body {
     border-color: $color_primary;
   }
   &:focus,
-  &:not(:disabled):not(.disabled):active:focus, 
-  &:not(:disabled):not(.disabled).active:focus, 
+  &:not(:disabled):not(.disabled):active:focus,
+  &:not(:disabled):not(.disabled).active:focus,
   .show > &.dropdown-toggle:focus {
     background-color: $color_primary;
     box-shadow:none;
@@ -66,6 +80,12 @@ body {
     box-shadow:none;
     border-color: $color_primary;
     color: white;
+  }
+
+  .disabled, &:disabled {
+    background-color: $color_white;
+    color:  $color_gray;
+    border-color: lighten($color_gray, 10);
   }
 }
 
@@ -92,17 +112,37 @@ a.text-primary {
   &:focus {
     color: darken($color_primary, 10) !important;
     text-decoration: none;
-  }    
+  }
+}
+a.disabled {
+  color: $color_secondary;
+  pointer-events: none;
+
+  &:hover {
+    color: $color_secondary !important;
+    text-decoration: none;
+  }
+  &:focus {
+    color: $color_secondary !important;
+    text-decoration: none;
+  }
 }
 
 // container
-@include breakpoint('md') { 
+@include breakpoint('md') {
   .container{
     max-width: 960px;
   }
 }
-@include breakpoint('sm') { 
+@include breakpoint('sm') {
   .container{
     max-width: 720px;
+  }
+}
+
+// modals
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 620px!important;
   }
 }

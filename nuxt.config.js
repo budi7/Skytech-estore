@@ -7,7 +7,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'SKYTECH',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -32,7 +32,9 @@ export default {
   */
   plugins: [
     { src: '~/plugins/carousel', ssr: false },
-    { src: '~/plugins/numberFormat', ssr: true }
+    { src: '~/plugins/numberFormat', ssr: true },
+    { src: '~/plugins/stringFormat', ssr: true },
+    { src: '~/plugins/indonesia', ssr: false }
   ],
   /*
   ** Nuxt.js modules
@@ -53,19 +55,21 @@ export default {
     includeNodeModules: true,
     clientConfigs: {
       default: {
-        httpEndpoint: 'http://enginev1.skytech.id/graphql'
+        // httpEndpoint: 'http://enginev1.skytech.id/graphql'
+        httpEndpoint: 'http://128.199.145.173:7888/graphql'
         // httpLinkOptions: {
         //   headers: {
-        //     'authorization': process.browser ? JSON.parse(window.localStorage.user).token : null
+        //     // 'authorization': process.browser ? JSON.parse(window.localStorage.user).token : null
+        //     'authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOm51bGwsImF1ZCI6bnVsbCwiaWF0IjoxNTYyOTEyMjE4LCJleHAiOjE1NjU1MDQyMTgsIm5hbWUiOiJCdWRpIFB1cm5vbW8iLCJ1c2VybmFtZSI6IjA4MTIzNDU2Nzg5MCJ9.cF88BUwNzY8eqzcnuQ-Ej-pGmFYCPp6Q6AkZFkjy60Q'
         //   }
         // }
-      }
+      },
       // me: {
       //   httpEndpoint: 'http://localhost:8000/graphql/me'
       // },
-      // indonesia: {
-      //   httpEndpoint: 'https://indonesia.thunderlab.id/graphql'
-      // }
+      indonesia: {
+        httpEndpoint: 'https://indonesia.thunderlab.id/graphql'
+      }
     }
   },
   /*

@@ -66,7 +66,7 @@
       </div> -->
       <div class="row py-3 pl-3">
         <div v-for="(data, i) in categories" :key="i" class="col-6 col-md-4 col-xl-3 mb-3 pl-0">
-          <div class="card-category align-items-center card-group">
+          <div class="card-category align-items-center card-group" @click="$router.push({ path: '/product' })">
             <h3 class="mb-0">
               {{ data.category }}
             </h3>
@@ -84,7 +84,7 @@
       <div class="row py-4 pl-4">
         <ProductCard v-for="(dt, i) in $store.state.modules.product.products" :key="i" :product="dt" @tapped="$router.push({ path: '/product/' + dt.id })" />
       </div>
-      <ProductLoader v-show="isLoading" :n="12" class="py-4 pl-4" />
+      <ProductLoader v-show="isLoading" :n="12" class="py-4 pl-4 mb-3" />
       <div v-if="$store.state.modules.product.product_hasMorePages" v-show="!isLoading" class="row py-4 justify-content-center">
         <div class="col-8 col-sm-6 col-md-4 col-lg-3 ">
           <a href="javascript:void(0);" class="btn btn-outline-primary btn-block mb-5" @click="nextPageProduct()">
@@ -135,16 +135,19 @@ export default {
     //   })
 
     // tweakable
-    if (store.state.modules.product.categories.length > 0) {
-      return {
-        categories: store.state.modules.product.categories
-      }
-    }
+    // if (store.state.modules.category.categories.length > 0) {
+    //   return {
+    //     categories: store.state.modules.category.categories
+    //   }
+    // }
 
-    return store.dispatch('modules/product/fetchCategories', {
+    // category not showing
+
+    return store.dispatch('modules/category/fetchCategories', {
       apolloClient: app.apolloProvider.defaultClient,
       data: null
     }).then((res) => {
+      console.log(res)
       return {
         categories: res
       }
@@ -160,9 +163,11 @@ export default {
       clearTimeout(tmr)
     }, 500)
 
-    console.log('auth0 ' + this.$store.getters['modules/uac/isAuthed'])
     setTimeout(() => {
-      console.log('auth1 ' + this.$store.getters['modules/uac/isAuthed'])
+      // init ctagery if needed
+      if (this.$store.state.modules.category.categories.length === 0) {
+        this.$store.commit('modules/category/initStore')
+      }
     }, 1000)
 
     // this.$store.commit('modules/product/resetProduct')
@@ -190,6 +195,8 @@ export default {
         }
       }).then((res) => {
         vm.isLoading = false
+        console.log('here')
+        console.log(res)
 
         // empty?
         if (res.data.length === 0) {

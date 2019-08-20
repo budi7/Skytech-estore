@@ -10,7 +10,20 @@ const addCart = gql`mutation addToMyCart (
   ) {
     user_id,
     product_code,
-    qty
+    qty,
+    product {
+      id,
+      upc,
+      name,
+      medias {
+        title,
+        url,
+      },
+      price {
+        price,
+        discount
+      }
+    }
   }
 }`
 

@@ -1,0 +1,178 @@
+<template>
+  <div>
+    <div class="row pt-4">
+      <div class="col-3 col-sm-2 col-lg-2 col-xl-2">
+        <img
+          class="img-fluid"
+          src="~assets/images/temp1a.png"
+        >
+      </div>
+      <div class="col pt-2">
+        <p class="product-title mb-3 mt-1">
+          {{ product.name }}
+        </p>
+        <p v-show="product.discount" class="mb-0 product-discount">
+          {{ product.price ? product.price.price : 0 | formatPrice }}
+        </p>
+        <p class="mb-0 product-price">
+          {{ product.price ? (product.price.price - product.price.discount) : 0 | formatPrice }}
+        </p>
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-4">
+            <div class="clearfix pt-3" />
+          </div>
+          <div class="col-12 col-sm-5 col-md-4 col-lg-4 col-xl-3">
+            <div class="row">
+              <div class="col-2">
+                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger" @click="modalShow = true">
+                  <i class="fa fa-trash" />
+                </a>
+              </div>
+              <div class="col-10">
+                <ProductQuantity v-model="qty" />
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-7 col-md-4 col-lg-4 col-xl-5 text-right">
+            <p class="mb-0 mt-2 total-price">
+              {{ product.price ? (product.price.price - product.price.discount) * product.qty : 0 | formatPrice }}
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <p class="mb-3 text-danger">
+              <small>
+                {{ errors ? '* ' + (errors['product_code'] ? errors['product_code'][0] : null) : null }}
+              </small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <hr>
+      </div>
+    </div>
+
+    <b-modal v-model="modalShow" centered hide-footer>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h4>Hapus Produk?</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 pt-4 text-center">
+            <p>{{ product.name }} <span class="text-gray"> akan dihapus dari keranjang belanja Anda</span></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 pt-4 pb-3 text-center">
+            <a href="javascript:void(0);" class="btn btn-block btn-primary mb-3" @click="removeCartAddWishlist">
+              Hapus & Tambah ke Wishlist
+            </a>
+            <a href="javascript:void(0);" class="btn btn-block btn-outline-primary" @click="removeCart">
+              Hapus
+            </a>
+          </div>
+        </div>
+      </div>
+    </b-modal>
+  </div>
+</template>
+
+<script>
+import ProductQuantity from '~/components/ProductQuantity'
+import errorHandler from '~/modules/errorHandler'
+import debounce from '~/modules/debouncer'
+
+export default {
+  components: {
+    ProductQuantity
+  },
+  props: {
+    product: {
+      default: function () { return {} },
+      type: Object
+    }
+  },
+  data() {
+    return {
+      isLoading: true,
+      upc: null,
+      qty: 1,
+      tempQty: 1,
+      errors: null,
+      modalShow: false
+    }
+  },
+  watch: {
+    qty(newval, oldval) {
+      // add debouncer
+      debounce(() => {
+        this.updateCart(newval)
+      }, 500)
+    }
+  },
+  created() {
+    this.qty = this.product.qty
+    this.tempQty = this.product.qty
+  },
+  mounted() {
+    const tmr = setTimeout(() => {
+      this.isLoading = false
+      clearTimeout(tmr)
+    }, 500)
+  },
+  methods: {
+    updateCart(newval) {
+      // can i?
+      if (this.isLoading) {
+        return
+      }
+
+      // set state
+      this.isLoading = true
+      const vm = this
+
+      // update api
+      this.$store.dispatch('modules/cart/cartUpdate', {
+        apolloClient: this.$apollo,
+        data: {
+          upc: this.product.upc,
+          qty: newval
+        }
+      }).then((res) => {
+        vm.isLoading = false
+        vm.errors = null
+        vm.tempQty = vm.qty
+      }).catch((err) => {
+        vm.errors = errorHandler(vm, {
+          response: err,
+          global: true,
+          debug: 'GQL set cart'
+        }).data
+
+        vm.qty = vm.tempQty
+        vm.$nextTick(() => {
+          vm.isLoading = false
+        })
+      })
+    },
+    removeCart() {
+      this.updateCart(0)
+      this.modalShow = false
+    },
+    removeCartAddWishlist() {
+      this.updateCart(0)
+      this.modalShow = false
+    }
+  }
+}
+</script>
+
+<style>
+
+</style>

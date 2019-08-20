@@ -48,7 +48,7 @@
       </b-form-group>
 
       <div class="form-group pb-1 pt-3">
-        <b-button class="btn btn-primary btn-block" type="submit" :disabled="is_loading">
+        <b-button variant="primary" block type="submit" :disabled="is_loading">
           <span v-show="!is_loading">Mendaftar</span><i v-show="is_loading" class="fa fa-circle-o-notch fa-lg fa-spin" />
         </b-button>
       </div>

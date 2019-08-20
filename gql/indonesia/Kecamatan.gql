@@ -1,0 +1,13 @@
+query Kecamatan (
+	$nama: String
+) {
+	Kecamatan (
+		nama: $nama
+	)
+	{
+		nama,
+		kelurahan {
+			nama
+		}
+	}
+}

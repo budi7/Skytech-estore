@@ -5,27 +5,34 @@
     <div class="container after-nav">
       <div class="row py-4">
         <div class="col-12 col-sm-4">
-          <img class="img-fluid" src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/7/21/1326122/1326122_a2463b7f-f0fe-4bb4-93b1-baf3eec797ba_800_800.jpg">
+          <!-- <img
+            class="img-fluid"
+            src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/7/21/1326122/1326122_a2463b7f-f0fe-4bb4-93b1-baf3eec797ba_800_800.jpg"
+          > -->
+          <img
+            class="img-fluid"
+            :src="product.medias ? product.medias[0].url : null"
+          >
         </div>
-        <div class="col-12 col-sm-8 col-md-7 col-xl-6 pt-4">
+        <div class="col-12 col-sm-8 col-md-7 col-xl-6 pt-4 ml-4">
           <h2 class="mb-3">
             {{ product.name }}
           </h2>
           <p class="text-line text-gray mb-1 small">
-            {{ product.price.price | formatPrice }}
+            {{ product.price ? product.price.price : 0 | formatPrice }}
           </p>
           <h6>
-            {{ (product.price.price - product.price.discount) | formatPrice }}
+            {{ product.price ? (product.price.price - product.price.discount) : 0 | formatPrice }}
           </h6>
           <div class="clearfix pt-4" />
           <!-- <a href="javascript:void(0):" class="fa fa-plus-circle fa-2x" /> -->
           <div class="row">
             <div class="col-10 col-sm-5 col-md-4 col-xl-4 pr-0">
-              <ProductQuantity />
+              <ProductQuantity v-model="qty" />
             </div>
             <div class="col-2 col-sm-2 col-md-2 col-xl-2">
-              <a href="javascript:void(0);" class="btn btn-sm btn-block btn-outline-secondary">
-                <i class="fa fa-heart-o" />
+              <a href="javascript:void(0);" class="btn btn-sm btn-block btn-outline-secondary" @click="addWishlist">
+                <i class="fa fa-lg fa-heart-o" />
               </a>
             </div>
           </div>
@@ -74,6 +81,9 @@
 
 <script>
 // page components
+import { logout } from '~/modules/logout'
+import alertHandler from '~/modules/alertHandler'
+import errorHandler from '~/modules/errorHandler'
 import HeaderBar from '~/components/HeaderBar'
 import FooterBar from '~/components/FooterBar'
 import ProductQuantity from '~/components/ProductQuantity'
@@ -88,7 +98,8 @@ export default {
     return {
       product: [],
       qty: 1,
-      isPurchasing: false
+      isPurchasing: false,
+      inCart: null
     }
   },
   asyncData({ app, store, params }) {
@@ -106,33 +117,88 @@ export default {
       console.log(err)
     })
   },
+  mounted() {
+    // get cart
+    // this.$store.commit('modules/cart/initStore')
+    // const timer = setTimeout(() => {
+    //   this.inCart = this.$store.getters['modules/cart/cartItem'](this.product.upc)
+    //   console.log(this.inCart)
+    //   clearTimeout(timer)
+    // }, 500)
+    // console.log(this.$store.state.modules.cart.cart_items)
+  },
   methods: {
     addToCart(goToCart) {
       // can i?
       if (this.isPurchasing) return
 
       // check looged in ?
+      if (!this.$store.getters['modules/uac/isAuthed']) {
+        // save current page
+        window.sessionStorage.setItem('pageBeforeLogin', '/product/' + this.product.id)
+
+        // display pop up login
+        this.errors = errorHandler(this, {
+          global: true,
+          msg: 'Untuk menambahkan barang, Anda harus login terlebih dahulu',
+          debug: 'Fetch Cart'
+        })
+        this.$router.push({ path: '/uac/login' })
+        return
+      }
 
       // dispatch add cart
       this.$store.dispatch('modules/cart/cartItemAdd', {
         apolloClient: this.$apollo,
         data: {
           upc: this.product.upc,
-          kuantitas: this.qty
+          qty: this.qty
         }
       }).then((res) => {
         this.isPurchasing = false
         // success msg
-        console.log(res)
+        alertHandler(this, {
+          msg: 'Barang telah ditambahkan kedalam keranjang',
+          type: 'success'
+        })
 
         // go to cart
         if (goToCart) this.$router.push({ path: '/cart' })
       }).catch((err) => {
         this.isPurchasing = false
-        // errorHandler(this, err)
 
         // check if not logged in
-        console.log(err)
+        if (err.graphQLErrors[0]) {
+          if (err.graphQLErrors[0].message === 'Unauthorized') {
+            // unauthorized ?
+            this.errors = errorHandler(this, {
+              global: true,
+              msg: 'Maaf, Sesi Anda telah habis',
+              debug: 'Fetch Cart'
+            })
+
+            // logout
+            logout(this)
+
+            // save current page
+            window.sessionStorage.setItem('pageBeforeLogin', '/product/' + this.product.id)
+
+            // reedirect to login
+            this.$router.replace({ path: '/uac/login' })
+          } else {
+            this.errors = errorHandler(this, {
+              response: err,
+              global: true,
+              debug: 'Add Cart'
+            })
+          }
+        } else {
+          this.errors = errorHandler(this, {
+            response: err,
+            global: true,
+            debug: 'Add Cart'
+          })
+        }
       })
     },
     buyNow() {
@@ -145,6 +211,73 @@ export default {
     addWishlist() {
       // check looged in ?
       // dispatch add wishlist
+      // can i?
+      if (this.isPurchasing) return
+
+      // check looged in ?
+      if (!this.$store.getters['modules/uac/isAuthed']) {
+        // save current page
+        window.sessionStorage.setItem('pageBeforeLogin', '/product/' + this.product.id)
+
+        // display pop up login
+        this.errors = errorHandler(this, {
+          global: true,
+          msg: 'Untuk menambahkan barang, Anda harus login terlebih dahulu',
+          debug: 'Fetch Cart'
+        })
+        this.$router.push({ path: '/uac/login' })
+        return
+      }
+
+      // dispatch add fav items
+      this.$store.dispatch('modules/wishlist/itemAdd', {
+        apolloClient: this.$apollo,
+        data: {
+          upc: this.product.upc
+        }
+      }).then((res) => {
+        // success msg
+        alertHandler(this, {
+          msg: 'Barang telah ditambahkan kedalam wishlist',
+          type: 'success'
+        })
+        console.log(res)
+      }).catch((err) => {
+        console.log(err)
+
+        // check if not logged in
+        if (err.graphQLErrors[0]) {
+          if (err.graphQLErrors[0].message === 'Unauthorized') {
+            // unauthorized ?
+            this.errors = errorHandler(this, {
+              global: true,
+              msg: 'Maaf, Sesi Anda telah habis',
+              debug: 'Fetch Cart'
+            })
+
+            // logout
+            logout(this)
+
+            // save current page
+            window.sessionStorage.setItem('pageBeforeLogin', '/product/' + this.product.id)
+
+            // reedirect to login
+            this.$router.replace({ path: '/uac/login' })
+          } else {
+            this.errors = errorHandler(this, {
+              response: err,
+              global: true,
+              debug: 'Add Wishlist'
+            })
+          }
+        } else {
+          this.errors = errorHandler(this, {
+            response: err,
+            global: true,
+            debug: 'Add Wishlist'
+          })
+        }
+      })
     }
   }
 }

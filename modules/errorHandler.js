@@ -36,7 +36,7 @@ const isDebug = true
 // error presets
 const errorPresets = {
   noNetwork: 'Tidak dapat terhubung dengan server.',
-  unknown: 'Maaf, terjadi kendala pada sistem kami saat ini. Hubungi CS kami unntuk bantuan.',
+  unknown: 'Maaf, terjadi kendala pada sistem kami saat ini. Hubungi CS kami untuk bantuan.',
   input: 'Input tidak valid.',
   data: 'Data tidak valid.',
   development: 'Maaf, saat ini permohonan anda tidak dapat diproses. Silahkan coba beberapa saat lagi, atau hubungi CS kami untuk bantuan.',
@@ -47,6 +47,10 @@ const errorPresets = {
 const readGQLError = (gqlResponse) => {
   // const inputRegex = /input\./gi
   const translator = (val) => {
+    const definition = {
+      'not_for_sell': 'Maaf barang untuk sementara tidak tersedia'
+    }
+
     const tmp = val.split(':')
     switch (tmp[0]) {
       case 'confirmed': return 'Isian tidak sama dengan ' + tmp[1]
@@ -56,7 +60,7 @@ const readGQLError = (gqlResponse) => {
       case 'alpha_num': return 'Isian hanya boleh mengandung huruf dan angka'
       case 'min': return 'Isian minimal ' + tmp[1]
       case 'exists': return 'Isian telah ada sebelumnya'
-      case 'invalid': return 'Isian salah/tidak valid'
+      case 'invalid': return definition[tmp[1]] ? definition[tmp[1]] : 'Isian salah/tidak valid'
       case 'in': return `Isian harus salah satu dari ${tmp[1]}`
       case 'date': return `Isian tanggal tidak benar`
       case 'lt': return `Isian harus kurang dari ${tmp[1]}`
@@ -94,7 +98,7 @@ const errorHandler = (vm, param) => {
     if (isGlobal) showGlobalError(vm, customMsg)
     return {
       msg: customMsg,
-      data: {}
+      data: null
     }
   }
   try {
@@ -104,6 +108,7 @@ const errorHandler = (vm, param) => {
         msg: errorPresets.noNetwork,
         data: { data: gqlResponse.networkError }
       }
+      // return x
     } else if (gqlResponse.graphQLErrors) {
       // validation error
       if (gqlResponse.graphQLErrors[0].validation) {
@@ -113,15 +118,13 @@ const errorHandler = (vm, param) => {
             if (isGlobal) showGlobalError(vm, customMsg || errorPresets.input)
             return {
               msg: customMsg || errorPresets.input,
-              // msg: 11,
-              data: {}
+              data: null
             }
           } else {
             if (isGlobal) showGlobalError(vm, customMsg || readGQLError(gqlResponse.graphQLErrors[0].validation))
             return {
               msg: customMsg || readGQLError(gqlResponse.graphQLErrors[0].validation),
-              // msg: 12,
-              data: {}
+              data: null
             }
           }
         } else {
@@ -140,17 +143,30 @@ const errorHandler = (vm, param) => {
         //   msg: errorPresets.development,
         //   data: {}
         // }
-        if (isGlobal) showGlobalError(vm, gqlResponse.graphQLErrors[0].message)
+
+        if (isGlobal) showGlobalError(vm, errorPresets.development)
         return {
-          msg: gqlResponse.graphQLErrors[0].message,
-          data: {}
+          msg: errorPresets.development,
+          data: null
         }
       }
     } else {
+      if (gqlResponse[0].message === 'validation') {
+        if (isGlobal) showGlobalError(vm, errorPresets.input)
+        return {
+          msg: errorPresets.input,
+          data: readGQLError({
+            graphQLErrors: [
+              gqlResponse[0]
+            ]
+          })
+        }
+      }
+
       if (isGlobal) showGlobalError(vm, errorPresets.unknown + ' (ex-0001)')
       return {
         msg: errorPresets.unknown + ' (ex-0001)',
-        data: {}
+        data: null
       }
     }
   } catch (error) {
@@ -158,7 +174,7 @@ const errorHandler = (vm, param) => {
     if (isGlobal) showGlobalError(vm, errorPresets.unknown + ' (ex-0002)')
     return {
       msg: errorPresets.unknown + ' (ex-0002)',
-      data: {}
+      data: null
     }
   }
 
