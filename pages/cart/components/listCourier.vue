@@ -52,8 +52,8 @@
 
 import apolloCheckShippingCost from '~/gql/shipping/shippingCost'
 
-import displayError from '~/components/DisplayError'
-import displayEmpty from '~/components/DisplayEmpty'
+import displayError from '~/components/displayError'
+import displayEmpty from '~/components/displayEmpty'
 import errorHandler from '~/modules/errorHandler'
 // import cardStoreStock from './cardStoreStock'
 

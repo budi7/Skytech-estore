@@ -158,7 +158,10 @@ export default {
         variables: {
           products: [this.product.upc],
           warehouse_id: [warehouseId]
-        }
+        },
+
+        // no cache,
+        fetchPolicy: 'no-cache'
       }).then((resp) => {
         // no stock
         if (!resp.data.Stock[0]) {

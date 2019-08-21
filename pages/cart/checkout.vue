@@ -838,7 +838,7 @@ export default {
       inputSO.customer_id = this.$store.state.modules.uac.customer_id
       inputSO.customer_name = cust.name
       inputSO.customer_address = cust.address
-      inputSO.customer_phone = cust.phone
+      inputSO.customer_phone = this.$store.state.modules.uac.username
       inputSO.customer_email = cust.email
 
       const today = new Date()

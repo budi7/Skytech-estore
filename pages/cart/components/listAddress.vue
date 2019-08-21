@@ -50,8 +50,8 @@
 </template>
 
 <script>
-import displayError from '~/components/DisplayError'
-import displayEmpty from '~/components/DisplayEmpty'
+import displayError from '~/components/displayError'
+import displayEmpty from '~/components/displayEmpty'
 import errorHandler from '~/modules/errorHandler'
 
 export default {

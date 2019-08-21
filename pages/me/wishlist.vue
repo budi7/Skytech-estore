@@ -49,8 +49,8 @@ import Layout from './components/layout'
 import HeaderBar from '~/components/HeaderBar'
 import errorHandler from '~/modules/errorHandler'
 import FooterBar from '~/components/FooterBar'
-import displayError from '~/components/DisplayError'
-import displayEmpty from '~/components/DisplayEmpty'
+import displayError from '~/components/displayError'
+import displayEmpty from '~/components/displayEmpty'
 import listWishlist from './components/listWishlist'
 
 export default {
