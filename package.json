@@ -21,7 +21,8 @@
     "graphql-tag": "^2.10.1",
     "nuxt": "^2.0.0",
     "vue-barcode": "^1.2.0",
-    "vue-carousel": "^0.18.0"
+    "vue-carousel": "^0.18.0",
+    "vue-load-image": "^0.1.8"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",

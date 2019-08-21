@@ -2,10 +2,11 @@
   <div>
     <div class="row pt-4">
       <div class="col-3 col-sm-2 col-lg-2 col-xl-2">
-        <img
-          class="img-fluid"
-          src="~assets/images/temp1a.png"
-        >
+        <vue-load-image>
+          <img slot="image" :data-src="product.medias[0] ? product.medias[0].url : null" class="img-fluid">
+          <img slot="preloader" class="img-fluid" src="~/assets/images/base.png">
+          <img slot="error" class="img-fluid" src="~/assets/images/base.png">
+        </vue-load-image>
       </div>
       <div class="col pt-2">
         <p class="product-title mb-3 mt-1">

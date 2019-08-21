@@ -2,14 +2,11 @@
   <div class="col-6 col-sm-4 col-md-4 col-lg-3 pl-0 pr-4" @click="$emit('tapped')">
     <div class="card card-product mb-4">
       <div class="card-body">
-        <img
-          class="img-fluid"
-          :src="product.medias[0] ? product.medias[0].url : null"
-        >
-        <!-- <img
-          class="img-fluid pr-2"
-          src="~assets/images/temp1a.png"
-        > -->
+        <vue-load-image>
+          <img slot="image" :data-src="product.medias[0] ? product.medias[0].url : null" class="img-fluid">
+          <img slot="preloader" class="img-fluid" src="~/assets/images/base.png">
+          <img slot="error" class="img-fluid" src="~/assets/images/base.png">
+        </vue-load-image>
       </div>
       <div class="card-footer p-0 py-1 mb-3">
         <p class="product-title mt-2 mb-2">

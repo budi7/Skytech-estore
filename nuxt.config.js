@@ -36,7 +36,8 @@ export default {
     { src: '~/plugins/numberFormat', ssr: true },
     { src: '~/plugins/dateFormat', ssr: true },
     { src: '~/plugins/stringFormat', ssr: true },
-    { src: '~/plugins/indonesia', ssr: false }
+    { src: '~/plugins/indonesia', ssr: false },
+    { src: '~/plugins/imageLoader', ssr: false }
   ],
   /*
   ** Nuxt.js modules

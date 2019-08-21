@@ -196,11 +196,11 @@ export default {
         vm.isLoading = false
 
         // empty?
-        if (res.data.length === 0) {
-          // set empty indicator
-          console.log('No data')
-          // return
-        }
+        // if (res.data.length === 0) {
+        // set empty indicator
+        // console.log('No data')
+        // return
+        // }
       }).catch((err) => {
         vm.isLoading = false
         console.log(err)
