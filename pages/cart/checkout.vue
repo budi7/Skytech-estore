@@ -388,6 +388,13 @@
                 <i class="fa fa-help" />
               </p>
               <div class="row px-2">
+                <div class="col-12 mb-1" role="alert">
+                  <div class="alert alert-warning">
+                    <p class="mb-0 small">
+                      Batas pembayaran adalah 30 menit, apabila lebih dari 30 menit pembayaran tidak dikonfirmasi maka pembelian akan dianggap batal.
+                    </p>
+                  </div>
+                </div>
                 <div class="col-6 pr-2">
                   <div :class="payment_method === 'offline' ? 'card hover px-3 py-4 active' : 'card hover px-3 py-4'" @click="selectPayment('offline')">
                     <p class="mb-0 small">
