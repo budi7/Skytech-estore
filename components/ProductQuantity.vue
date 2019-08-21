@@ -34,7 +34,10 @@ export default {
   watch: {
     ctr(newval, oldval) {
       const tmp = parseInt(newval)
-      if (newval === this.max) return
+      if (newval === this.max) {
+        this.ctr = newval
+        return
+      }
       if (isNaN(tmp)) {
         this.ctr = 1
         return

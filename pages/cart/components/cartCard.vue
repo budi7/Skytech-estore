@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="isLoading ? 'row' : (isAvailable ? 'row clickable cartCard' : 'row comp-disabled') "
+    :class="!isLoading ? (isAvailable ? 'row clickable cartCard' : 'row comp-disabled') : 'row'"
     @click="toggleSelection"
   >
     <div class="col-5 col-sm-4 col-md-3 pr-0 py-3">
@@ -122,6 +122,7 @@ export default {
     available(newval) {
       if (newval === 0) {
         this.isAvailable = false
+        this.product.is_selected = false
       // } else {
         // this.isAvailable = !(this.qty >= newval)
       }
