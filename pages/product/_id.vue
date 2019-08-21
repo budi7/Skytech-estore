@@ -5,14 +5,14 @@
     <div class="container after-nav">
       <div class="row py-4">
         <div class="col-12 col-sm-4">
-          <img
-            class="img-fluid"
-            src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/7/21/1326122/1326122_a2463b7f-f0fe-4bb4-93b1-baf3eec797ba_800_800.jpg"
-          >
           <!-- <img
             class="img-fluid"
-            :src="product.medias ? product.medias[0].url : null"
+            src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/7/21/1326122/1326122_a2463b7f-f0fe-4bb4-93b1-baf3eec797ba_800_800.jpg"
           > -->
+          <img
+            class="img-fluid"
+            :src="product.medias ? product.medias[0].url : null"
+          >
         </div>
         <div class="col-12 col-sm-8 col-md-7 col-xl-6 pt-4 ml-4">
           <h2 class="mb-3">

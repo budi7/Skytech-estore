@@ -32,7 +32,11 @@
               :key="i"
               :transaction="dt"
               class="col-12"
-            />
+            >
+              <p class="mb-0 text-gray small">
+                Total Tagihan: {{ dt.total | formatPrice }}
+              </p>
+            </listTransaction>
           </div>
         </div>
       </div>

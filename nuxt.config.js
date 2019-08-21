@@ -32,7 +32,9 @@ export default {
   */
   plugins: [
     { src: '~/plugins/carousel', ssr: false },
+    { src: '~/plugins/barcode', ssr: false },
     { src: '~/plugins/numberFormat', ssr: true },
+    { src: '~/plugins/dateFormat', ssr: true },
     { src: '~/plugins/stringFormat', ssr: true },
     { src: '~/plugins/indonesia', ssr: false }
   ],

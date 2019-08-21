@@ -66,7 +66,7 @@
         <div v-show="!isError">
           <div class="alert my-4 alert-warning">
             <p class="mb-0 small">
-              Segera selesaikan pembayaran tagihan Anda sebelum dd/mm/yyyy
+              Segera selesaikan pembayaran tagihan Anda sebelum {{ transaction.expired_at | formatDate }}
             </p>
           </div>
 
@@ -130,6 +130,10 @@
                     Kode Pembayaran
                   </strong>
                 </p>
+                <barcode
+                  :value="code"
+                  width="1"
+                />
               </div>
             </div>
           </div>
@@ -143,6 +147,59 @@
               <p class="mb-3">
                 <strong>
                   Rincian
+                </strong>
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 px-2">
+              <p class="mb-0 text-gray bg-light m-2 py-2 px-2">
+                Pembelelanjaan
+              </p>
+            </div>
+          </div>
+          <div v-for="(data,i) in transaction.lines" :key="i" class="row pt-3">
+            <div class="col-2 pl-4">
+              <p class="mb-0">
+                {{ data.qty }} X
+              </p>
+            </div>
+            <div class="col-7">
+              <p class="mb-0">
+                {{ data.product_name }}
+              </p>
+              <p class="mb-0 text-gray small">
+                {{ (data.price - (data.discount + data.additional_discount)) | formatPrice }}
+              </p>
+            </div>
+            <div class="col-3 pr-4">
+              <p class="mb-0 text-right">
+                {{ (data.price - (data.discount + data.additional_discount)) * data.qty | formatPrice }}
+              </p>
+            </div>
+            <div class="col-12">
+              <hr class="light mb-0">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 px-2">
+              <p class="mb-0 text-gray bg-light mx-2 mb-2 py-2 px-2">
+                Biaya Biaya Lain
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 pl-2 pr-0">
+              <p class="mb-0 text-gray bg-light ml-2 mb-2 py-2 pl-2">
+                <strong>
+                  Total
+                </strong>
+              </p>
+            </div>
+            <div class="col-6 pr-2 pl-0">
+              <p class="mb-0 text-gray bg-light text-right mr-2 mb-2 py-2 pr-2">
+                <strong>
+                  {{ transaction.total | formatPrice }}
                 </strong>
               </p>
             </div>
@@ -182,7 +239,8 @@ export default {
     return {
       transaction: [],
       isLoading: true,
-      isError: false
+      isError: false,
+      code: null
     }
   },
   created() {
@@ -229,6 +287,7 @@ export default {
 
         this.isLoading = false
         this.transaction = resp.data.SalesOrder.data[0]
+        this.code = this.transaction.no
       }).catch((err) => {
         console.log(err)
         this.isLoading = false

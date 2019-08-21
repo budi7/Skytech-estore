@@ -37,7 +37,7 @@
                 Total Tagihan: {{ dt.total | formatPrice }}
               </p>
               <p class="mb-0 small text-gray">
-                Kadaluarsa: {{ dt.expired_at }}
+                Kadaluarsa: {{ dt.expired_at | formatDate }}
               </p>
             </listTransaction>
           </div>

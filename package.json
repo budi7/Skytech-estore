@@ -20,6 +20,7 @@
     "bootstrap-vue": "^2.0.0-rc.11",
     "graphql-tag": "^2.10.1",
     "nuxt": "^2.0.0",
+    "vue-barcode": "^1.2.0",
     "vue-carousel": "^0.18.0"
   },
   "devDependencies": {
