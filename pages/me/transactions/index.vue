@@ -50,13 +50,13 @@
 </template>
 
 <script>
-import Layout from './components/layout'
+import Layout from '~/pages/me/components/layout'
 import HeaderBar from '~/components/HeaderBar'
 import FooterBar from '~/components/FooterBar'
 import errorHandler from '~/modules/errorHandler'
 import displayError from '~/components/displayError'
 import displayEmpty from '~/components/displayEmpty'
-import listTransaction from './components/listTransaction'
+import listTransaction from '~/pages/me/components/listTransaction'
 
 import apolloTransactions from '~/gql/transaction/transactions'
 

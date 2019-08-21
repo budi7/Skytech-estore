@@ -4,9 +4,11 @@ const transactions = gql`query SalesOrder(
   $customer_id: Int,
   $has_status: Boolean,
   $deleted_only: Boolean,
-  $status: String
+  $status: String,
+  $id: Int
 ) {
   SalesOrder (
+    id: $id,
     customer_id: $customer_id,
     has_status: $has_status,
     deleted_only: $deleted_only,
@@ -51,7 +53,8 @@ const transactions = gql`query SalesOrder(
         discount,
         additional_discount
       },
-      expired_at
+      expired_at,
+      total
     }
   }
 }`

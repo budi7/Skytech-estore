@@ -11,10 +11,6 @@
       </a>
 
       <div v-show="isLoading">
-        <p class="mb-3 mt-4 pt-3 pb-3 gradient-animate" style="width: 300px;" />
-
-        <hr>
-
         <p class="mb-3 mt-4">
           <strong>
             Pembayaran
@@ -72,14 +68,6 @@
 
           <p class="mb-3">
             <strong>
-              Tagihan {{ transaction.no }}
-            </strong>
-          </p>
-
-          <hr>
-
-          <p class="mb-3">
-            <strong>
               Pembayaran
             </strong>
           </p>
@@ -98,7 +86,7 @@
                 Total Tagihan
               </p>
               <p class="mb-3 text-gray">
-                {{ transaction.total | formatPrice }}
+                {{ 123456 | formatPrice }}
               </p>
             </div>
           </div>
@@ -205,7 +193,7 @@ export default {
 
         // Parameters
         variables: {
-          id: this.$route.params.id
+          id: 123
         }
       }).then((resp) => {
         if (resp.errors) {
