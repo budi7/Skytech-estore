@@ -13,9 +13,8 @@ const wishlist = {
   getters: {
     isOn: (state) => {
       return (productCode) => {
-        const idx = state.wishlist_items.map(function (data) { return data.product_code }).indexOf(productCode)
-        // eslint-disable-next-line no-unneeded-ternary
-        return idx > 0
+        const idx = state.wishlist_items.map(function (data) { return data.upc }).indexOf(productCode)
+        return idx >= 0
       }
     }
   },
@@ -119,6 +118,9 @@ const wishlist = {
       })
     },
     fetch: ({ commit, state }, payload) => {
+      // fix for : in flight reset store error
+      if (!process.browser) return
+
       return new Promise((resolve, reject) => {
         payload.apolloClient.query({
           // Query

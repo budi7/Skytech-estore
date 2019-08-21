@@ -49,7 +49,6 @@ const cart = {
         state.cart_items = prevData ? (prevData.cart_items ? prevData.cart_items : []) : []
         state.cart_total_price = prevData ? prevData.cart_total_price : null
         state.cart_total_item = prevData ? prevData.cart_total_item : null
-        console.log(state.cart_items)
       }
     },
     cartUpdate: (state, payload) => {
@@ -132,7 +131,6 @@ const cart = {
           return (acm + (next.qty * (next.price.price - next.price.discount)))
         }, 0)
 
-        console.log(state.cart_items)
         state.cart_total_item = state.cart_items.reduce(function (acm, next) {
           return (acm + next.qty)
         }, 0)

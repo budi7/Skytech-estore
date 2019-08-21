@@ -32,7 +32,7 @@
             </div>
             <div class="col-2 col-sm-2 col-md-2 col-xl-2">
               <a href="javascript:void(0);" class="btn btn-sm btn-block btn-outline-secondary" @click="toggleWishlist">
-                <i :class="$store.getters['modules/wishlist/isOn'](product.upc) === true ? 'fa fa-lg fa-heart text-danger' : 'fa fa-lg fa-heart-o'" />
+                <i :class="isWishlistLoading ? 'fa fa-lg fa-circle-o-notch fa-spin' : ($store.getters['modules/wishlist/isOn'](product.upc) === true ? 'fa fa-lg fa-heart text-danger' : 'fa fa-lg fa-heart-o')" />
               </a>
             </div>
           </div>
@@ -99,7 +99,8 @@ export default {
       product: [],
       qty: 1,
       isPurchasing: false,
-      inCart: null
+      inCart: null,
+      isWishlistLoading: false
     }
   },
   asyncData({ app, store, params }) {
@@ -109,7 +110,6 @@ export default {
         id: params.id
       }
     }).then((res) => {
-      console.log(res)
       return {
         product: res
       }
@@ -213,6 +213,8 @@ export default {
       // dispatch add wishlist
       // can i?
       if (this.isPurchasing) return
+      if (this.isWishlistLoading) return
+      this.isWishlistLoading = true
 
       // check looged in ?
       if (!this.$store.getters['modules/uac/isAuthed']) {
@@ -242,9 +244,9 @@ export default {
             msg: 'Barang telah dihapus dari wishlist',
             type: 'success'
           })
-          console.log(res)
+          this.isWishlistLoading = false
         }).catch((err) => {
-          console.log(err)
+          this.isWishlistLoading = false
 
           // check if not logged in
           if (err.graphQLErrors[0]) {
@@ -292,9 +294,9 @@ export default {
             msg: 'Barang telah ditambahkan kedalam wishlist',
             type: 'success'
           })
-          console.log(res)
+          this.isWishlistLoading = false
         }).catch((err) => {
-          console.log(err)
+          this.isWishlistLoading = false
 
           // check if not logged in
           if (err.graphQLErrors[0]) {

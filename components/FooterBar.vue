@@ -87,7 +87,7 @@
             <div class="row pt-1">
               <div class="col-6 col-sm-3 col-md-6 pr-1">
                 <a href="#" target="_blank" class="mr-1" title="Playstore">
-                  <img src="~assets/images/google_play.png" class="d-inline-block download img-fluid" alt="PlayStore">
+                  <img src="~assets/images/google_play.png" class="d-inline-block download img-fluid img-disabled" alt="PlayStore">
                 </a>
               </div>
               <div class="col-6 col-sm-3 col-md-6 pl-1">

@@ -123,7 +123,7 @@ export default {
         }
       }).then((res) => {
         alertHandler(this, {
-          msg: 'Selamat datang ' + res.user.name + '!',
+          msg: 'Selamat datang ' + res.user.customer.name + '!',
           type: 'success'
         })
         this.initError()

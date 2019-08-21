@@ -7,7 +7,7 @@
             <li :class="activeIndex === 'saya' ? 'active' : ''" @click="$router.push({ path: '/me' })">
               <i class="fa fa-user fa-lg" />
               Saya
-              <small v-show="!$store.getters['modules/uac/isProfileDataCompleted']">
+              <small v-show="! $store.getters['modules/uac/isProfileDataCompleted']">
                 <i class="fa fa-asterisk pull-right text-danger" style="padding-top: .3rem;" />
               </small>
             </li>
@@ -19,7 +19,7 @@
               <i class="fa fa-file-text-o fa-lg" />
               Tagihan Pembelian
               <small>
-                <i class="fa fa-asterisk pull-right text-danger" style="padding-top: .3rem;" />
+                <i v-show="has_invoice" class="fa fa-asterisk pull-right text-danger" style="padding-top: .3rem;" />
               </small>
             </li>
             <li :class="activeIndex === 'riwayat_pembelian' ? 'active' : ''" @click="$router.push({ path: '/me/transactions' })">
@@ -72,6 +72,7 @@
 
 <script>
 import { logout } from '~/modules/logout'
+import apolloTransactions from '~/gql/transaction/transactionsLength'
 
 export default {
   props: {
@@ -79,6 +80,29 @@ export default {
       default: null,
       type: String
     }
+  },
+  data() {
+    return {
+      has_invoice: false
+    }
+  },
+  mounted() {
+    this.$apollo.query({
+      query: apolloTransactions,
+
+      // Parameters
+      variables: {
+        customer_id: this.$store.state.modules.uac.customer_id,
+        has_status: false
+      },
+
+      // no cache
+      fetchPolicy: 'no-cache'
+    }).then((res) => {
+      this.has_invoice = res.data.SalesOrder.total > 0
+    }).catch((err) => {
+      console.log(err)
+    })
   },
   methods: {
     confirmLogout() {

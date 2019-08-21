@@ -105,6 +105,12 @@ export default {
 
     // console.log(this.$store.state.modules.uac.)
   },
+  mounted() {
+    this.$store.dispatch('modules/wishlist/fetch', {
+      apolloClient: this.$apollo,
+      data: null
+    })
+  },
   methods: {
 
   }

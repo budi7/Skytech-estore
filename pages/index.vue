@@ -147,7 +147,6 @@ export default {
       apolloClient: app.apolloProvider.defaultClient,
       data: null
     }).then((res) => {
-      console.log(res)
       return {
         categories: res
       }
@@ -195,8 +194,6 @@ export default {
         }
       }).then((res) => {
         vm.isLoading = false
-        console.log('here')
-        console.log(res)
 
         // empty?
         if (res.data.length === 0) {

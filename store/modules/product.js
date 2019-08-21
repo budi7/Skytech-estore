@@ -57,9 +57,9 @@ const product = {
     },
     setPagination: (state, payload) => {
       state.product_hasMorePages = payload.has_more_pages
-      console.log(payload.has_more_pages)
+      // console.log(payload.has_more_pages)
       if (payload.has_more_pages) state.product_next_page = payload.current_page + 1
-      console.log(state.product_next_page)
+      // console.log(state.product_next_page)
     },
     fetchProductDetail: (state, payload) => {
       console.log(payload)
