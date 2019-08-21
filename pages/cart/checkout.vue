@@ -551,7 +551,6 @@ export default {
           'is_selected': true
         }
       })
-      console.log(this.$store.state.modules.cart.cart_items)
     } else {
       // go back to cart
       this.$router.push({ path: '/cart' })
@@ -671,7 +670,6 @@ export default {
       // reload data
       const tmpToko = this.$store.getters['modules/toko/getSelectedToko']
       this.idx_pickup_store = this.$store.state.modules.toko.selected
-      console.log(tmpToko)
       let addr = {}
       if (tmpToko.address) {
         try {
@@ -947,7 +945,7 @@ export default {
         vm.is_loading = false
 
         // redirect to invoice detail
-        this.$router.push({ path: '/me/invoices' })
+        this.$router.push({ path: '/me/invoices/' + resp.data.StoreSalesOrder.id })
       }).catch((err) => {
         errorHandler(this, {
           response: err,
