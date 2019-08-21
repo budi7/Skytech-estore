@@ -94,21 +94,22 @@ export default {
     if (!this.$store.getters['modules/uac/isAuthed']) {
       // logout
       logout(this)
-      return
+    } else {
+      this.user = this.$store.state.modules.uac.name
+      this.$store.dispatch('modules/cart/cartFetch', {
+        apolloClient: this.$apollo,
+        data: null
+      })
     }
-
-    this.user = this.$store.state.modules.uac.name
-    this.$store.dispatch('modules/cart/cartFetch', {
-      apolloClient: this.$apollo,
-      data: null
-    })
 
     // console.log(this.$store.state.modules.uac.)
   },
   mounted() {
-    this.$store.dispatch('modules/wishlist/fetch', {
-      apolloClient: this.$apollo,
-      data: null
+    this.$nextTick(() => {
+      this.$store.dispatch('modules/wishlist/fetch', {
+        apolloClient: this.$apollo,
+        data: null
+      })
     })
   },
   methods: {
