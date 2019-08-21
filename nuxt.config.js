@@ -55,8 +55,8 @@ export default {
     includeNodeModules: true,
     clientConfigs: {
       default: {
-        // httpEndpoint: 'http://enginev1.skytech.id/graphql'
-        httpEndpoint: 'http://128.199.145.173:7888/graphql'
+        httpEndpoint: 'http://enginev1.skytech.id/graphql'
+        // httpEndpoint: 'http://128.199.145.173:7888/graphql'
         // httpLinkOptions: {
         //   headers: {
         //     // 'authorization': process.browser ? JSON.parse(window.localStorage.user).token : null
