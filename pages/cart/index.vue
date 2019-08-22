@@ -35,12 +35,23 @@
             <div v-for="(dt,i) in $store.state.modules.cart.cart_items" :key="i">
               <cardCard :product="dt" />
             </div>
-            <div class="row pb-5 pt-4">
-              <div class="col-4 col-sm-6 col-md-7 col-xl-8 text-right">
-                <h6>Total :</h6>
-              </div>
-              <div class="col-8 col-sm-6 col-md-5 col-xl-4 text-right">
-                <h6>{{ $store.state.modules.cart.cart_total_price | formatPrice }}</h6>
+            <div class="row my-3 py-3">
+              <div class="col-4 col-sm-3 col-md-3 pr-0 py-1" />
+              <div class="col">
+                <div class="row">
+                  <div class="col-12 col-sm-12 col-md-4" />
+                  <div class="col-12 col-sm-5 col-md-4 col-lg-4 col-xl-3">
+                    <div class="row">
+                      <div class="col-2" />
+                      <div class="col-10 text-right">
+                        <h6>Total :</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col text-right">
+                    <h6>{{ $store.state.modules.cart.cart_total_price | formatPrice }}</h6>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="row pt-4 pb-5 d-none d-sm-block">

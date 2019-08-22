@@ -5,11 +5,12 @@
     <div class="container after-nav">
       <div class="row py-4">
         <div class="col-12 col-sm-4">
-          <vue-load-image>
+          <vue-load-image v-if="product.medias.length > 0 && product.medias[0]">
             <img slot="image" :data-src="product.medias ? product.medias[0].url : null" class="img-fluid">
             <img slot="preloader" class="img-fluid" src="~/assets/images/base.png">
             <img slot="error" class="img-fluid" src="~/assets/images/base.png">
           </vue-load-image>
+          <img v-else class="img-fluid" src="~/assets/images/base.png">
         </div>
         <div class="col-12 col-sm-8 col-md-7 col-xl-6 pt-4 ml-4">
           <h2 class="mb-3">

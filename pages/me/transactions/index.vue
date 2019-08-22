@@ -103,7 +103,7 @@ export default {
         // Parameters
         variables: {
           customer_id: this.$store.state.modules.uac.customer_id,
-          has_status: false
+          status: 'confirmed'
         }
       }).then((resp) => {
         if (resp.errors) {

@@ -1,16 +1,19 @@
 <template>
   <div>
-    <div class="row pt-4">
-      <div class="col-3 col-sm-2 col-lg-2 col-xl-2">
-        <vue-load-image>
-          <img slot="image" :data-src="product.medias[0] ? product.medias[0].url : null" class="img-fluid">
+    <div class="row pt-3">
+      <div class="col-4 col-sm-3 col-md-3 pr-0 py-1">
+        <vue-load-image v-if="product.medias.length > 0 && product.medias[0]">
+          <img slot="image" :data-src="product.medias[0] ? product.medias[0].url : '~/assets/images/base.png'" class="img-fluid">
           <img slot="preloader" class="img-fluid" src="~/assets/images/base.png">
           <img slot="error" class="img-fluid" src="~/assets/images/base.png">
         </vue-load-image>
+        <img v-else class="img-fluid img-sm bg-white" src="~/assets/images/base.png">
       </div>
-      <div class="col pt-2">
-        <p class="product-title mb-3 mt-1">
-          {{ product.name }}
+      <div class="col pt-3">
+        <p class="mb-1 mt-1">
+          <strong>
+            {{ product.name }}
+          </strong>
         </p>
         <p v-show="product.discount" class="mb-0 product-discount">
           {{ product.price ? product.price.price : 0 | formatPrice }}
@@ -18,7 +21,7 @@
         <p class="mb-0 product-price">
           {{ product.price ? (product.price.price - product.price.discount) : 0 | formatPrice }}
         </p>
-        <div class="row">
+        <div class="row pt-3">
           <div class="col-12 col-sm-12 col-md-4">
             <div class="clearfix pt-3" />
           </div>
@@ -53,7 +56,7 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <hr>
+        <hr class="mb-0">
       </div>
     </div>
 

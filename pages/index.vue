@@ -84,7 +84,7 @@
       <div class="row py-4 pl-4">
         <ProductCard v-for="(dt, i) in $store.state.modules.product.products" :key="i" :product="dt" @tapped="$router.push({ path: '/product/' + dt.id })" />
       </div>
-      <ProductLoader v-show="isLoading" :n="12" class="py-4 pl-4 mb-3" />
+      <ProductLoader v-show="isLoading" :n="12" class="pb-4 pl-4 mb-3" />
       <div v-if="$store.state.modules.product.product_hasMorePages" v-show="!isLoading" class="row py-4 justify-content-center">
         <div class="col-8 col-sm-6 col-md-4 col-lg-3 ">
           <a href="javascript:void(0);" class="btn btn-outline-primary btn-block mb-5" @click="nextPageProduct()">

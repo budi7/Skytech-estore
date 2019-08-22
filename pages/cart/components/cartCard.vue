@@ -6,11 +6,14 @@
     <div class="col-5 col-sm-4 col-md-3 pr-0 py-3">
       <h5 v-show="!isLoading" :class="product.is_selected ? 'fa fa-lg fa-check-circle pr-3' : 'fa fa-lg fa-circle pr-3'" />
       <h5 v-show="isLoading" class="fa fa-lg fa-circle-o-notch fa-spin mr-3" />
-      <vue-load-image style="position: absolute; top: 1rem; left: 3.25rem; width:95%;">
-        <img slot="image" :data-src="product.medias[0] ? product.medias[0].url : null" class="img-fluid img-sm bg-white">
+      <vue-load-image v-if="product.medias.length > 0 && product.medias[0]" class="checkout-card-image">
+        <img slot="image" :data-src="product.medias[0] ? product.medias[0].url : '~/assets/images/base.png'" class="img-fluid img-sm bg-white">
         <img slot="preloader" class="img-fluid img-sm bg-white" src="~/assets/images/base.png">
         <img slot="error" class="img-fluid img-sm bg-white" src="~/assets/images/base.png">
       </vue-load-image>
+      <div v-else class="checkout-card-image">
+        <img class="img-fluid img-sm bg-white" src="~/assets/images/base.png">
+      </div>
     </div>
     <div class="col-7 col-sm-8 col-md-9 pl-1 py-3">
       <p class="mb-0 pt-3">

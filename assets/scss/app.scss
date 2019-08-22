@@ -761,9 +761,13 @@ hr {
 }
 
 .img-sm {
-  width: 55%;
   border: 1px solid rgba(0, 0, 0, 0.05);
   padding: .5rem;
+  width: 55%;
+
+  @include breakpoint('sm') {
+    width: 95%;
+  }
 }
 
 .clickable {
@@ -817,5 +821,21 @@ hr {
   img {
     filter: grayscale(100);
     opacity: .7 !important;
+  }
+}
+
+
+// checkout card
+.checkout-card-image {
+  position: absolute;
+  top: 1rem;
+  left: 3.25rem;
+  width:95%;
+
+  @include breakpoint('sm') {
+    position: inherit;
+    top: inherit;
+    left: inherit;
+    width: inherit;
   }
 }

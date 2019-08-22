@@ -87,11 +87,12 @@ import { logout } from '~/modules/logout'
 export default {
   data() {
     return {
-      user: null
+      user: null,
+      isAuthed: this.$store.getters['modules/uac/isAuthed']
     }
   },
   created() {
-    if (!this.$store.getters['modules/uac/isAuthed']) {
+    if (!this.isAuthed) {
       // logout
       logout(this)
     } else {
@@ -105,7 +106,9 @@ export default {
     // console.log(this.$store.state.modules.uac.)
   },
   mounted() {
+    const vm = this
     this.$nextTick(() => {
+      if (!vm.isAuthed) return
       this.$store.dispatch('modules/wishlist/fetch', {
         apolloClient: this.$apollo,
         data: null
