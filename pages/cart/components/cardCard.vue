@@ -1,15 +1,15 @@
 <template>
   <div>
     <div class="row pt-3">
-      <div class="col-4 col-sm-3 col-md-3 pr-0 py-1">
+      <div class="col-4 col-sm-3 col-md-3 col-lg-2 pr-0 py-1">
         <vue-load-image v-if="product.medias.length > 0 && product.medias[0]">
-          <img slot="image" :data-src="product.medias[0] ? product.medias[0].url : '~/assets/images/base.png'" class="img-fluid">
-          <img slot="preloader" class="img-fluid" src="~/assets/images/base.png">
-          <img slot="error" class="img-fluid" src="~/assets/images/base.png">
+          <img slot="image" :data-src="product.medias[0] ? product.medias[0].url : '~/assets/images/base.png'" class="img-fluid img-sm bg-white">
+          <img slot="preloader" class="img-fluid img-sm bg-white" src="~/assets/images/base.png">
+          <img slot="error" class="img-fluid img-sm bg-white" src="~/assets/images/base.png">
         </vue-load-image>
         <img v-else class="img-fluid img-sm bg-white" src="~/assets/images/base.png">
       </div>
-      <div class="col pt-3">
+      <div class="col pt-3 ls-spacer-l">
         <p class="mb-1 mt-1">
           <strong>
             {{ product.name }}
@@ -38,7 +38,8 @@
             </div>
           </div>
           <div class="col-12 col-sm-7 col-md-4 col-lg-4 col-xl-5 text-right">
-            <p class="mb-0 mt-2 total-price">
+            <p v-show="is_loading" class="gradient-animate mb-0 mt-1 pull-right py-3 w-50" />
+            <p v-show="!is_loading" class="mb-0 mt-2 total-price">
               {{ product.price ? (product.price.price - product.price.discount) * product.qty : 0 | formatPrice }}
             </p>
           </div>
@@ -60,7 +61,14 @@
       </div>
     </div>
 
-    <b-modal v-model="modalShow" centered hide-footer>
+    <b-modal
+      v-model="modalShow"
+      centered
+      hide-footer
+      no-close-on-esc
+      no-close-on-backdrop
+      :hide-header-close="is_loading"
+    >
       <div class="container-fluid">
         <div class="row">
           <div class="col-12 text-center">
@@ -74,12 +82,25 @@
         </div>
         <div class="row">
           <div class="col-12 pt-4 pb-3 text-center">
-            <a href="javascript:void(0);" class="btn btn-block btn-primary mb-3" @click="removeCartAddWishlist">
+            <b-button
+              variant="primary"
+              block
+              type="button"
+              :disabled="is_loading"
+              class="mb-3"
+              @click="removeCartAddWishlist"
+            >
               Hapus & Tambah ke Wishlist
-            </a>
-            <a href="javascript:void(0);" class="btn btn-block btn-outline-primary" @click="removeCart">
+            </b-button>
+            <b-button
+              variant="outline-primary"
+              block
+              type="button"
+              :disabled="is_loading"
+              @click="removeCart"
+            >
               Hapus
-            </a>
+            </b-button>
           </div>
         </div>
       </div>
@@ -104,7 +125,7 @@ export default {
   },
   data() {
     return {
-      isLoading: true,
+      is_loading: true,
       upc: null,
       qty: 1,
       tempQty: 1,
@@ -115,8 +136,9 @@ export default {
   watch: {
     qty(newval, oldval) {
       // add debouncer
+      const vm = this
       debounce(() => {
-        this.updateCart(newval)
+        vm.updateCart(newval)
       }, 500)
     }
   },
@@ -126,19 +148,19 @@ export default {
   },
   mounted() {
     const tmr = setTimeout(() => {
-      this.isLoading = false
+      this.is_loading = false
       clearTimeout(tmr)
-    }, 500)
+    }, 300)
   },
   methods: {
     updateCart(newval) {
       // can i?
-      if (this.isLoading) {
+      if (this.is_loading) {
         return
       }
 
       // set state
-      this.isLoading = true
+      this.is_loading = true
       const vm = this
 
       // update api
@@ -149,7 +171,7 @@ export default {
           qty: newval
         }
       }).then((res) => {
-        vm.isLoading = false
+        vm.is_loading = false
         vm.errors = null
         vm.tempQty = vm.qty
       }).catch((err) => {
@@ -161,7 +183,7 @@ export default {
 
         vm.qty = vm.tempQty
         vm.$nextTick(() => {
-          vm.isLoading = false
+          vm.is_loading = false
         })
       })
     },
@@ -170,13 +192,45 @@ export default {
       this.modalShow = false
     },
     removeCartAddWishlist() {
-      this.updateCart(0)
-      this.modalShow = false
+      // can i?
+      if (this.is_loading) {
+        return
+      }
+
+      // set state
+      this.is_loading = true
+      const vm = this
+
+      // update api
+      this.$store.dispatch('modules/cart/cartRemoveAddWishlist', {
+        apolloClient: this.$apollo,
+        data: {
+          upc: this.product.upc
+        }
+      }).then((res) => {
+        vm.is_loading = false
+        vm.errors = null
+        vm.modalShow = false
+        vm.$store.commit('modules/wishlist/wishlistAdd', res)
+      }).catch((err) => {
+        vm.errors = errorHandler(vm, {
+          response: err,
+          global: true,
+          debug: 'GQL set cart'
+        }).data
+
+        vm.$nextTick(() => {
+          vm.modalShow = false
+          vm.is_loading = false
+        })
+      })
     }
   }
 }
 </script>
 
-<style>
-
+<style scoped>
+  .img-sm{
+    width: 90%;
+  }
 </style>

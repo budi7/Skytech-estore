@@ -31,7 +31,14 @@
       <hr class="light my-0">
     </div>
 
-    <b-modal v-model="modalShow" centered hide-footer>
+    <b-modal
+      v-model="modalShow"
+      centered
+      hide-footer
+      no-close-on-esc
+      no-close-on-backdrop
+      :hide-header-close="is_loading"
+    >
       <div class="container-fluid">
         <div class="row">
           <div class="col-12 text-center">
@@ -45,12 +52,25 @@
         </div>
         <div class="row">
           <div class="col-12 pt-4 pb-3 text-center">
-            <a href="javascript:void(0);" class="btn btn-block btn-primary mb-3" @click="removeWishlistAddCart">
+            <b-button
+              variant="primary"
+              block
+              type="button"
+              :disabled="is_loading"
+              class="mb-3"
+              @click="removeWishlistAddCart"
+            >
               Hapus & Tambah ke Cart
-            </a>
-            <a href="javascript:void(0);" class="btn btn-block btn-outline-primary" @click="removeWishlist">
+            </b-button>
+            <b-button
+              variant="outline-primary"
+              block
+              type="button"
+              :disabled="is_loading"
+              @click="removeWishlist"
+            >
               Hapus
-            </a>
+            </b-button>
           </div>
         </div>
       </div>
@@ -128,8 +148,33 @@ export default {
       })
     },
     removeWishlistAddCart() {
-      if (this.isLoading) return
-      this.isLoading = true
+      if (this.is_loading) return
+      this.is_loading = true
+
+      // dispatch add cart
+      this.$store.dispatch('modules/wishlist/itemRemoveAddCart', {
+        apolloClient: this.$apollo,
+        data: {
+          upc: this.product.upc
+        }
+      }).then((resp) => {
+        this.is_loading = false
+        this.modalShow = false
+        this.$store.commit('modules/cart/cartUpdate', resp)
+        this.$store.commit('modules/cart/countCart')
+        this.$store.commit('modules/cart/countCartTotal')
+        alertHandler(this, {
+          msg: 'Barang telah dihapus dari wishlist dan ditambahkan ke keranjang',
+          type: 'success'
+        })
+      }).catch((err) => {
+        this.is_loading = false
+        this.errors = errorHandler(this, {
+          response: err,
+          global: true,
+          debug: 'GQL remove wishlist add to cart'
+        })
+      })
     },
     confirmRemove() {
       this.modalShow = true

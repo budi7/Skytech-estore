@@ -1,6 +1,7 @@
 // import Vuex from 'vuex'
 import apolloMutationAddWishlist from '../../gql/transaction/addWishlist'
 import apolloQueryMyWishlist from '../../gql/transaction/myWishlist'
+import apolloMutationRemoveWishlist from '../../gql/transaction/removeWishlistAddCart'
 
 // lint rules
 const wishlist = {
@@ -30,6 +31,7 @@ const wishlist = {
     },
     wishlistAdd: (state, payload) => {
       state.wishlist_items.push({
+        'id': payload.product.id,
         'upc': payload.product.upc,
         'medias': payload.product.medias,
         'name': payload.product.name,
@@ -117,6 +119,27 @@ const wishlist = {
         })
       })
     },
+    itemRemoveAddCart: ({ commit, state }, payload) => {
+      return new Promise((resolve, reject) => {
+        payload.apolloClient.mutate({
+          // Query
+          mutation: apolloMutationRemoveWishlist,
+
+          // Parameters
+          variables: {
+            product_code: payload.data.upc
+          }
+        }).then((resp) => {
+          // error ?
+          if (resp.error) reject(resp.errors)
+          commit('wishlistRemove', resp.data.ToggleWishlist)
+          resolve(resp.data.AddToMyCart)
+        }).catch((error) => {
+          console.log(error)
+          reject(error)
+        })
+      })
+    },
     fetch: ({ commit, state }, payload) => {
       // fix for : in flight reset store error
       if (!process.browser) return
@@ -127,7 +150,10 @@ const wishlist = {
           query: apolloQueryMyWishlist,
 
           // Parameters
-          variables: {}
+          variables: {},
+
+          // no cache
+          fetchPolicy: 'no-cache'
         }).then((resp) => {
           if (resp.errors) reject(resp.errors)
           commit('wishlistFetch', resp.data.MyWishlist.data)

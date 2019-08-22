@@ -22,26 +22,6 @@
           {{ address.province }}, {{ address.country }}, {{ address.zip_code }}
         </p>
       </div>
-      <!-- <div class="col-12 pt-2">
-        <p v-show="is_loading" class="small mb-0" style="color:#aaa!important;">
-          <i class="fa fa-circle-o-notch fa-spin fa-lg" />
-          Memeriksa ketersedian barang
-        </p>
-        <div v-show="!is_loading">
-          <p class="text-danger small mb-0">
-            <i class="fa fa-times" />
-            Semua barang tidak tersedia di toko ini
-          </p>
-          <p class="text-warning small mb-0">
-            <i class="fa fa-warning" />
-            Beberapa barang tidak tersedia di toko ini
-          </p>
-          <p class="text-success small mb-0">
-            <i class="fa fa-check" />
-            Semua barang Tersedia di toko ini
-          </p>
-        </div>
-      </div> -->
     </div>
   </div>
 </template>
@@ -68,7 +48,6 @@ export default {
   },
   mounted() {
     // init address
-    console.log(this.address)
     if (this.data.address) {
       try {
         this.address = JSON.parse(this.data.address)
@@ -86,7 +65,7 @@ export default {
 
       // init map
       const tmp = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyCDRTbouYUaBoJ0IBSXwxK30MSyHkzVv2E&q='
-      const addr = this.address.address + ', ' + this.address.city + ', ' + this.address.province + ', ' + this.address.country + ', ' + this.address.zip_code
+      const addr = this.data.name + ' ' + this.address.address + ' ' + this.address.city + ' ' + this.address.province + ' ' + this.address.country + ' ' + this.address.zip_code
       this.addr = tmp + addr.replace(/\s/g, '+')
     }
 

@@ -824,6 +824,14 @@ hr {
   }
 }
 
+//customs
+.ls-spacer-l {
+  margin-left: 1rem;
+
+  @include breakpoint('sm') {
+    margin-left: 0rem;
+  }
+}
 
 // checkout card
 .checkout-card-image {

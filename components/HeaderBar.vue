@@ -2,10 +2,10 @@
   <div>
     <nav class="navbar fixed-top navbar-light main">
       <div class="container top-nav">
-        <a href="#" class="">Download Aplikasi Skytech</a>
+        <a href="javascript:void(0);" class="" @click="$router.push({ path: '/download' })">Download Aplikasi Skytech</a>
         <div class="right-menu">
-          <a href="#" class="mr-3">Lokasi Toko</a>
-          <a href="#" class="">Bantuan</a>
+          <a href="javascript:void(0);" class="" @click="$router.push({ path: '/locations' })">Lokasi Toko</a>
+          <!-- <a href="#" class="">Bantuan</a> -->
         </div>
       </div>
       <div class="container pt-1">

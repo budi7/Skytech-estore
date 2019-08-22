@@ -8,7 +8,6 @@ const addCart = gql`mutation setMyCart (
     product_code: $product_code,
     qty: $qty
   ) {
-    user_id,
     product_code,
     qty,
     product {

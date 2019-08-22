@@ -41,7 +41,14 @@
         <slot />
       </div>
     </div>
-    <b-modal id="bv-modal-logout" ref="modal-logout-confirm" centered hide-footer>
+    <b-modal
+      id="bv-modal-logout"
+      ref="modal-logout-confirm"
+      centered
+      hide-footer
+      no-close-on-esc
+      no-close-on-backdrop
+    >
       <div class="container-fluid">
         <div class="row">
           <div class="col-12 text-center">

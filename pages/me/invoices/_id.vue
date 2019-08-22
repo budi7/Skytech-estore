@@ -91,7 +91,7 @@
                   Metode Pembayaran
                 </p>
                 <p class="mb-3 text-gray">
-                  Bayar di kasir
+                  {{ transaction.payment_method === 'CASH' ? 'Bayar di kasir' : 'Online' }}
                 </p>
               </div>
               <div class="col-6">

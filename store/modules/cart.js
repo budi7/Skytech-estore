@@ -2,6 +2,7 @@
 import apolloMutationAddCart from '../../gql/transaction/addCart'
 import apolloMutationUpdateCart from '../../gql/transaction/setCart'
 import apolloQueryMyCart from '../../gql/transaction/myCart'
+import apolloMutationRemoveCartAddWishlit from '../../gql/transaction/removeCartAddWishlit'
 
 // lint rules
 const cart = {
@@ -227,6 +228,29 @@ const cart = {
           commit('countCartTotal')
 
           resolve(resp.data.Cart)
+        }).catch((error) => {
+          reject(error)
+        })
+      })
+    },
+    cartRemoveAddWishlist: ({ commit, state }, payload) => {
+      return new Promise((resolve, reject) => {
+        payload.apolloClient.mutate({
+          // Query
+          mutation: apolloMutationRemoveCartAddWishlit,
+
+          // Parameters
+          variables: {
+            product_code: payload.data.upc
+          }
+        }).then((resp) => {
+          // error ?
+          if (resp.error) reject(resp.errors)
+          commit('cartUpdate', resp.data.SetMyCart)
+          commit('countCart')
+          commit('countCartTotal')
+
+          resolve(resp.data.ToggleWishlist)
         }).catch((error) => {
           reject(error)
         })
