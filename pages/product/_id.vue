@@ -16,8 +16,11 @@
           <h2 class="mb-3">
             {{ product.name }}
           </h2>
-          <p class="text-line text-gray mb-1 small">
+          <p v-if="product.price.discount" class="text-line text-gray mb-1 small">
             {{ product.price ? product.price.price : 0 | formatPrice }}
+          </p>
+          <p v-else class="text-line text-gray mb-1 small">
+            &nbsp;
           </p>
           <h6>
             {{ product.price ? (product.price.price - product.price.discount) : 0 | formatPrice }}
