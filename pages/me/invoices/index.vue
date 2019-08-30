@@ -110,7 +110,7 @@ export default {
         }
       }).then((resp) => {
         if (resp.errors) {
-          console.log(resp)
+          // console.log(resp)
           this.isLoading = false
         }
         this.isLoading = false

@@ -941,7 +941,7 @@ export default {
             debug: null
           })
         }
-        console.log(resp)
+        // console.log(resp)
         vm.is_loading = false
 
         // redirect to invoice detail

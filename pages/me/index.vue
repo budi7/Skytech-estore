@@ -158,7 +158,7 @@ export default {
       this.name = this.$store.state.modules.uac.name
       this.username = this.$store.state.modules.uac.username
       this.profile = this.$store.state.modules.uac.profile
-      console.log(this.profile)
+      // console.log(this.profile)
 
       // parse address
       let addr = {}

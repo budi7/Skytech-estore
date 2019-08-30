@@ -41,7 +41,7 @@ const product = {
           variables: {}
         }).then((resp) => {
           if (resp.errors) reject(resp.errors)
-          console.log(resp)
+          // console.log(resp)
           commit('fetchCategories', resp.data.Categories.data)
           resolve(resp.data.Categories.data)
         }).catch((error) => {

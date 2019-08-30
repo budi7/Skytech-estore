@@ -59,7 +59,7 @@ const toko = {
           // error ?
           if (resp.errors) reject(resp.errors)
 
-          console.log(resp)
+          // console.log(resp)
           // commit('fetch', resp.data.Stock.data)
 
           resolve(resp.data.Stock)
