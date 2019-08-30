@@ -5,7 +5,7 @@
     <div class="container after-nav">
       <div class="row py-4">
         <div class="col-12 col-sm-4">
-          <vue-load-image v-if="product.medias.length > 0 && product.medias[0]">
+          <vue-load-image v-if="product.medias && product.medias.length > 0 && product.medias[0]">
             <img slot="image" :data-src="product.medias ? product.medias[0].url : null" class="img-fluid">
             <img slot="preloader" class="img-fluid" src="~/assets/images/base.png">
             <img slot="error" class="img-fluid" src="~/assets/images/base.png">
@@ -16,14 +16,14 @@
           <h2 class="mb-3">
             {{ product.name }}
           </h2>
-          <p v-if="product.price.discount" class="text-line text-gray mb-1 small">
-            {{ product.price ? product.price.price : 0 | formatPrice }}
+          <p v-if="product.price && product.price.discount" class="text-line text-gray mb-1 small">
+            {{ product.price ? (product.price ? product.price.price : 0) : 0 | formatPrice }}
           </p>
           <p v-else class="text-line text-gray mb-1 small">
             &nbsp;
           </p>
           <h6>
-            {{ product.price ? (product.price.price - product.price.discount) : 0 | formatPrice }}
+            {{ product.price ? (product.price ? (product.price.price - product.price.discount) : 0) : 0 | formatPrice }}
           </h6>
           <div class="clearfix pt-4" />
           <!-- <a href="javascript:void(0):" class="fa fa-plus-circle fa-2x" /> -->
@@ -169,7 +169,7 @@ export default {
         this.isPurchasing = false
 
         // check if not logged in
-        if (err.graphQLErrors[0]) {
+        if (err.graphQLErrors && err.graphQLErrors[0]) {
           if (err.graphQLErrors[0].message === 'Unauthorized') {
             // unauthorized ?
             this.errors = errorHandler(this, {

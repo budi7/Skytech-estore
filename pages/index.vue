@@ -66,7 +66,7 @@
       </div> -->
       <div class="row py-3 pl-3">
         <div v-for="(data, i) in categories" :key="i" class="col-6 col-md-4 col-xl-3 mb-3 pl-0">
-          <div class="card-category align-items-center card-group" @click="$router.push({ path: '/product' })">
+          <div class="card-category align-items-center card-group" @click="selectCategory(data)">
             <h3 class="mb-0">
               {{ data.category }}
             </h3>
@@ -83,8 +83,10 @@
       </div>
       <div class="row py-4 pl-4">
         <ProductCard v-for="(dt, i) in $store.state.modules.product.products" :key="i" :product="dt" @tapped="$router.push({ path: '/product/' + dt.id })" />
+        <div class="col-12">
+          <ProductLoader v-show="isLoading" :n="12" />
+        </div>
       </div>
-      <ProductLoader v-show="isLoading" :n="12" class="pb-4 pl-4 mb-3" />
       <div v-if="$store.state.modules.product.product_hasMorePages" v-show="!isLoading" class="row py-4 justify-content-center">
         <div class="col-8 col-sm-6 col-md-4 col-lg-3 ">
           <a href="javascript:void(0);" class="btn btn-outline-primary btn-block mb-5" @click="nextPageProduct()">
@@ -219,16 +221,18 @@ export default {
         apolloClient: this.$apollo
       }).then((res) => {
         vm.isLoading = false
-
-        // empty?
-        if (res.data.length === 0) {
-          // set empty indicator
-          console.log('No data')
-          // return
-        }
       }).catch((err) => {
         vm.isLoading = false
         console.log(err)
+      })
+    },
+    selectCategory(ct) {
+      this.$router.push({
+        path: '/product',
+        query: {
+          kategori: ct.category,
+          kategori_id: ct.id
+        }
       })
     }
   }

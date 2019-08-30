@@ -4,6 +4,7 @@ import apolloQueryProducts from '../../gql/product/product'
 
 const product = {
   namespaced: true,
+
   state() {
     return {
       categories: [],
@@ -20,7 +21,10 @@ const product = {
       product_next_page: 1,
       product_hasMorePages: false,
       product_detailId: null,
-      product_detailData: []
+      product_detailData: [],
+      price_gte: null,
+      price_lte: null,
+      product_kategori: null
     }
   },
   getters: {
@@ -47,13 +51,25 @@ const product = {
       }
     },
     setFilters: (state, payload) => {
-      state.product_search = payload
+      // state.product_search = payload
     },
     setSort: (state, payload) => {
-      state.product_search = payload
+      state.product_orderBy = payload.sort && payload.sort.orderBy ? payload.sort.orderBy : 'updated_at'
+      state.product_orderDesc = payload.sort && payload.sort.orderBy ? payload.sort.orderDesc : true
+    },
+    setBrand: (state, payload) => {
+      state.product_brand = payload || null
+    },
+    setPrice: (state, payload) => {
+      state.price_gte = payload.price_gte || null
+      state.price_lte = payload.price_lte || null
     },
     setSearch: (state, payload) => {
-      state.product_search = payload
+      if (payload) {
+        state.product_search = payload
+      } else {
+        state.product_search = null
+      }
     },
     setPagination: (state, payload) => {
       state.product_hasMorePages = payload.has_more_pages
@@ -66,6 +82,9 @@ const product = {
     },
     resetProduct: (state) => {
       state.products = []
+    },
+    setKategori: (state, payload) => {
+      state.product_kategori = payload
     }
   },
   actions: {
@@ -89,9 +108,16 @@ const product = {
           query: apolloQueryProducts,
           variables: {
             page: 1,
-            orderBy: payload.data.sort.orderBy,
-            orderDesc: payload.data.sort.orderDesc
-          }
+            orderBy: payload.data.sort && payload.data.sort.orderBy ? payload.data.sort.orderBy : 'updated_at',
+            orderDesc: payload.data.sort && payload.data.sort.orderBy ? payload.data.sort.orderDesc : true,
+            search: payload.data.search ? '*' + payload.data.search + '*' : null,
+            kategori: payload.data.kategori ? [payload.data.kategori] : null,
+            price_gte: payload.data.price_start ? payload.data.price_start : null,
+            price_lte: payload.data.price_end ? payload.data.price_end : null,
+            brand: payload.data.brand
+          },
+          // no cache
+          fetchPolicy: 'no-cache'
         }).then((resp) => {
           // commit product
           commit('fetchProducts', {
@@ -100,16 +126,25 @@ const product = {
           })
 
           // commit search
-          commit('setSearch', payload.search)
+          commit('setSearch', payload.data.search)
 
-          // commit filters
-          commit('setFilters', payload.filter)
+          // commit kategori
+          commit('setKategori', payload.data.kategori)
 
           // commit sorting
-          commit('setSort', payload.sort)
+          commit('setSort', payload.data.sort)
+
+          // commit brand
+          commit('setBrand', payload.data.brand)
 
           // commit pagination
           commit('setPagination', resp.data.Products)
+
+          // commit price
+          commit('setPrice', {
+            price_gte: payload.data.price_start,
+            price_lte: payload.data.price_end
+          })
 
           resolve(resp.data.Products)
         }).catch((error) => {
@@ -124,7 +159,10 @@ const product = {
           variables: {
             page: state.product_next_page,
             orderBy: state.product_orderBy,
-            orderDesc: state.product_orderDesc
+            orderDesc: state.product_orderDesc,
+            search: state.product_search ? '*' + state.product_search + '*' : null,
+            kategori: state.product_kategori ? [state.product_kategori] : null,
+            brand: state.brand
           }
         }).then((resp) => {
           // commit product
@@ -132,15 +170,6 @@ const product = {
             data: resp.data.Products,
             override: false
           })
-
-          // commit search
-          commit('setSearch', payload.search)
-
-          // commit filters
-          commit('setFilters', payload.filter)
-
-          // commit sorting
-          commit('setSort', payload.sort)
 
           // commit pagination
           commit('setPagination', resp.data.Products)

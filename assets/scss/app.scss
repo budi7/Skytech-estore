@@ -497,6 +497,9 @@ a {
 
 .card-product {
   border: none !important;
+  &:not(.loading) {
+    cursor: pointer;
+  }
 
   .card-body {
     padding: .1rem;

@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div v-for="(dt,i) in n" :key="i" :class="customClass">
-      <div class="card card-product mb-4">
+      <div class="card loading card-product mb-4">
         <div class="card-body">
           <div class="gradient-animate loader-image" />
         </div>

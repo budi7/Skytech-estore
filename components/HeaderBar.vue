@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="container pt-1">
-        <a class="navbar-brand menu-left head" href="#" @click="$router.push({ path: '/' })">
+        <a class="navbar-brand menu-left head" href="javascript:void(0);" @click="$router.push({ path: '/' })">
           <img src="~assets/images/logo-only.png" height="30" class="d-inline-block align-center" alt="">
           <span>
             SKYTECH
@@ -40,12 +40,19 @@
           </ul>
         </div>
 
-        <form action="" class="searchbar">
+        <form class="searchbar" @submit.prevent="setSearch">
           <!-- <input class="form-control form-control-sm"> -->
           <div class="input-group">
-            <input type="text" class="form-control form-control-sm" placeholder="Cari apa?" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <input
+              v-model="search"
+              type="text"
+              class="form-control form-control-sm"
+              placeholder="Cari apa?"
+              aria-label="Recipient's username"
+              aria-describedby="button-addon2"
+            >
             <div class="input-group-append">
-              <button class="btn btn-secondary btn-sm" type="button">
+              <button class="btn btn-secondary btn-sm" type="submit">
                 <i class="fa fa-search" />
               </button>
             </div>
@@ -88,7 +95,8 @@ export default {
   data() {
     return {
       user: null,
-      isAuthed: this.$store.getters['modules/uac/isAuthed']
+      isAuthed: this.$store.getters['modules/uac/isAuthed'],
+      search: null
     }
   },
   created() {
@@ -116,7 +124,27 @@ export default {
     })
   },
   methods: {
+    setSearch() {
+      if (!this.search) return
+      if (this.search.replace(/\s/g, '') === '') return
 
+      const q = {}
+      q.search = this.search
+
+      if (this.$route.query.kategori && this.$route.query.kategori_id) {
+        q.kategori = this.$route.query.kategori
+        q.kategori_id = this.$route.query.kategori_id
+      }
+
+      console.log(q)
+
+      this.$router.push({
+        path: '/product',
+        // send this qs
+        query: q
+      })
+      this.search = ''
+    }
   }
 }
 </script>

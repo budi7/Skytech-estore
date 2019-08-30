@@ -111,8 +111,8 @@ const cart = {
       }
     },
     cartFetch: (state, payload) => {
-      if (state.cart_items.length === 0) {
-        state.cart_items = {}
+      if (payload.length === 0) {
+        state.cart_items = []
         state.cart_total_price = 0
         state.cart_total_item = 0
       } else {
