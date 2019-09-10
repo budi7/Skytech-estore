@@ -17,13 +17,16 @@
           :navigation-click-target-size="10"
         >
           <slide>
-            <img class="img-fluid" src="https://ecs7.tokopedia.net/img/cache/1190/attachment/2019/6/29/24241914/24241914_2ec284d4-dc7d-4d29-be9b-7f1a695ec35b.jpg">
+            <img class="img-fluid" src="https://sgp1.digitaloceanspaces.com/skytech-space/skytech/media/Banner/2%20store.png">
           </slide>
           <slide>
-            <img class="img-fluid" src="https://ecs7.tokopedia.net/img/cache/1190/attachment/2019/6/24/25568798/25568798_3a1c5368-d302-4205-8022-1244c70d4613.jpg">
+            <img class="img-fluid" src="https://sgp1.digitaloceanspaces.com/skytech-space/skytech/media/Banner/3%20imoo.png">
           </slide>
           <slide>
-            <img class="img-fluid" src="https://ecs7.tokopedia.net/img/cache/1190/attachment/2019/7/1/25568798/25568798_2a6e523a-229b-4c92-83fc-676b7b289dc0.png">
+            <img class="img-fluid" src="https://sgp1.digitaloceanspaces.com/skytech-space/skytech/media/Banner/4%20apple%20product.png">
+          </slide>
+          <slide>
+            <img class="img-fluid" src="https://sgp1.digitaloceanspaces.com/skytech-space/skytech/media/Banner/5%20gaming%20product.png">
           </slide>
         </carousel>
       </NoSsr>
