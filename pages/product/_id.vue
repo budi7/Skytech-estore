@@ -6,7 +6,7 @@
       <div class="row py-4">
         <div class="col-12 col-sm-4">
           <vue-load-image v-if="product.medias && product.medias.length > 0 && product.medias[0]">
-            <img slot="image" :data-src="product.medias ? product.medias[0].url : null" class="img-fluid">
+            <img slot="image" :src="product.medias ? formatLink(product.medias[0].url) : null" class="img-fluid">
             <img slot="preloader" class="img-fluid" src="~/assets/images/base.png">
             <img slot="error" class="img-fluid" src="~/assets/images/base.png">
           </vue-load-image>
@@ -129,6 +129,14 @@ export default {
     // console.log(this.$store.state.modules.cart.cart_items)
   },
   methods: {
+    formatLink(link) {
+      const tmp = link.split('://')
+      if (tmp && tmp.length > 0) {
+        return 'https://' + tmp[1]
+      } else {
+        return link
+      }
+    },
     addToCart(goToCart) {
       // can i?
       if (this.isPurchasing) return

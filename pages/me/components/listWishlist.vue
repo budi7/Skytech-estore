@@ -15,7 +15,7 @@
         @ {{ product.price ? (product.price.price - product.price.discount) : 0 | formatPrice }}
       </h6>
       <div class="row">
-        <div class="col-12">
+        <div class="col-12 mb-3">
           <b-button variant="primary" class="btn-sm" type="button" :disabled="is_loading" @click.stop="addToCart">
             <i class="fa fa-cart-plus fa-lg" />
             Tambahkan ke Keranjang

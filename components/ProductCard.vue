@@ -3,11 +3,12 @@
     <div class="card card-product mb-4">
       <div class="card-body">
         <vue-load-image v-if="product.medias.length > 0 && product.medias[0]">
-          <div
+          <!-- <div
             slot="image"
-            :style="'background-image: url(' + product.medias[0].url + ')'"
-            :data-src="product.medias[0].url"
-          />
+            :style="'background-image: url(' + formatLink(product.medias[0].url) + ')'"
+            :data-src="formatLink(product.medias[0].url)"
+          /> -->
+          <img slot="image" class="img-fluid" :src="formatLink(product.medias[0].url)">
           <img slot="preloader" class="img-fluid" src="~/assets/images/base.png">
           <img slot="error" class="img-fluid" src="~/assets/images/base.png">
         </vue-load-image>
@@ -40,6 +41,16 @@ export default {
   },
   data() {
     return {
+    }
+  },
+  methods: {
+    formatLink(link) {
+      const tmp = link.split('://')
+      if (tmp && tmp.length > 0) {
+        return 'https://' + tmp[1]
+      } else {
+        return link
+      }
     }
   }
 }

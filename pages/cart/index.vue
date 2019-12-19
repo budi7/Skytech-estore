@@ -56,7 +56,7 @@
             </div>
             <div class="row pt-4 pb-5 d-none d-sm-block">
               <div class="col-12">
-                <a href="javascript:void(0);" class="btn btn-outline-primary">
+                <a href="javascript:void(0);" class="btn btn-outline-primary" @click="$router.push({ path: '/product' })">
                   <i class="fa fa-angle-left" />
                   Belanja Lagi
                 </a>

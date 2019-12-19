@@ -3,7 +3,7 @@
     <div class="row pt-3">
       <div class="col-4 col-sm-3 col-md-3 col-lg-2 pr-0 py-1">
         <vue-load-image v-if="product.medias.length > 0 && product.medias[0]">
-          <img slot="image" :data-src="product.medias[0] ? product.medias[0].url : '~/assets/images/base.png'" class="img-fluid img-sm bg-white">
+          <img slot="image" :src="product.medias[0] ? formatLink(product.medias[0].url) : '~/assets/images/base.png'" class="img-fluid img-sm bg-white">
           <img slot="preloader" class="img-fluid img-sm bg-white" src="~/assets/images/base.png">
           <img slot="error" class="img-fluid img-sm bg-white" src="~/assets/images/base.png">
         </vue-load-image>
@@ -153,6 +153,14 @@ export default {
     }, 300)
   },
   methods: {
+    formatLink(link) {
+      const tmp = link.split('://')
+      if (tmp && tmp.length > 0) {
+        return 'https://' + tmp[1]
+      } else {
+        return link
+      }
+    },
     updateCart(newval) {
       // can i?
       if (this.is_loading) {

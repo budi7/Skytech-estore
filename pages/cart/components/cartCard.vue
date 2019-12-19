@@ -7,7 +7,7 @@
       <h5 v-show="!isLoading" :class="product.is_selected ? 'fa fa-lg fa-check-circle pr-3' : 'fa fa-lg fa-circle pr-3'" />
       <h5 v-show="isLoading" class="fa fa-lg fa-circle-o-notch fa-spin mr-3" />
       <vue-load-image v-if="product.medias.length > 0 && product.medias[0]" class="checkout-card-image">
-        <img slot="image" :data-src="product.medias[0] ? product.medias[0].url : '~/assets/images/base.png'" class="img-fluid img-sm bg-white">
+        <img slot="image" :src="product.medias[0] ? formatLink(product.medias[0].url) : '~/assets/images/base.png'" class="img-fluid img-sm bg-white">
         <img slot="preloader" class="img-fluid img-sm bg-white" src="~/assets/images/base.png">
         <img slot="error" class="img-fluid img-sm bg-white" src="~/assets/images/base.png">
       </vue-load-image>
@@ -138,6 +138,14 @@ export default {
     this.totalPrice = (this.product.price.price - this.product.price.discount) * this.qty
   },
   methods: {
+    formatLink(link) {
+      const tmp = link.split('://')
+      if (tmp && tmp.length > 0) {
+        return 'https://' + tmp[1]
+      } else {
+        return link
+      }
+    },
     toggleSelection() {
       if (this.isLoading === false) {
         if (this.isError) {
