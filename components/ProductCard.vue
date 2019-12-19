@@ -17,11 +17,11 @@
         <p class="product-title mt-2 mb-2">
           {{ product.name }}
         </p>
-        <p v-show="product.price.discount" class="mb-0 product-discount">
+        <p v-show="product.price && product.price.discount" class="mb-0 product-discount">
           {{ product.price ? product.price.price : 0 | formatPrice }}
         </p>
         <p class="mb-0 product-price">
-          {{ product.price ? (product.price.price - product.price.discount) : 0 | formatPrice }}
+          {{ product.price ? (product.price.price - (product.price && product.price.discount ? product.price.discount : 0)) : 0 | formatPrice }}
         </p>
       </div>
     </div>
