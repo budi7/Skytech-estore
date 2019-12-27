@@ -10,7 +10,7 @@
       </div>
       <div class="container pt-1">
         <a class="navbar-brand menu-left head" href="javascript:void(0);" @click="$router.push({ path: '/' })">
-          <img src="~assets/images/logo-only.png" height="30" class="d-inline-block align-center" alt="">
+          <img src="https://estore.skytech.id/assets/images/logo-only.png" height="30" class="d-inline-block align-center" alt="">
           <span>
             SKYTECH
           </span>

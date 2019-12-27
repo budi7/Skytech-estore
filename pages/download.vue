@@ -16,21 +16,21 @@
               <div class="row pt-5">
                 <div class="col-4 pr-1">
                   <a href="#" target="_blank" class="mr-1" title="Playstore">
-                    <img src="~assets/images/google_play.png" class="d-inline-block download img-fluid img-disabled" alt="PlayStore">
+                    <img src="https://estore.skytech.id/assets/images/google_play.png" class="d-inline-block download img-fluid img-disabled" alt="PlayStore">
                   </a>
                 </div>
                 <div class="col-4 pl-1">
                   <a href="javascript:void(0);" target="_blank" class="mr-1" title="Appstore">
-                    <img src="~assets/images/app_store.png" class="d-inline-block download img-fluid img-disabled" alt="AppStore">
+                    <img src="https://estore.skytech.id/assets/images/app_store.png" class="d-inline-block download img-fluid img-disabled" alt="AppStore">
                   </a>
                 </div>
               </div>
             </div>
             <div class="d-none d-sm-block col-sm-6 col-md-7 col-lg-8 text-right">
-              <img src="~assets/images/apps.png" class="img img-fluid">
+              <img src="https://estore.skytech.id/assets/images/apps.png" class="img img-fluid">
             </div>
             <div class="d-sm-none col-sm-6 col-md-7 col-lg-8 pt-5 mt-3 text-center">
-              <img src="~assets/images/apps.png" class="img img-fluid w-50">
+              <img src="https://estore.skytech.id/assets/images/apps.png" class="img img-fluid w-50">
             </div>
             <div class="d-sm-none col-sm-6 col-md-5 col-lg-4 pt-3 mb-5">
               <p class="text-muted">
@@ -39,12 +39,12 @@
               <div class="row">
                 <div class="col-5 pr-1">
                   <a href="#" target="_blank" class="mr-1" title="Playstore">
-                    <img src="~assets/images/google_play.png" class="d-inline-block download img-fluid img-disabled" alt="PlayStore">
+                    <img src="https://estore.skytech.id/assets/images/google_play.png" class="d-inline-block download img-fluid img-disabled" alt="PlayStore">
                   </a>
                 </div>
                 <div class="col-5 pl-1">
                   <a href="javascript:void(0);" target="_blank" class="mr-1" title="Appstore">
-                    <img src="~assets/images/app_store.png" class="d-inline-block download img-fluid img-disabled" alt="AppStore">
+                    <img src="https://estore.skytech.id/assets/images/app_store.png" class="d-inline-block download img-fluid img-disabled" alt="AppStore">
                   </a>
                 </div>
               </div>

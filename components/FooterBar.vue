@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-6 logo pr-0">
             <a class="navbar-brand menu-left head pt-2" href="#" @click="$router.push({ path: '/' })">
-              <img src="~assets/images/logo-only.png" height="30" class="d-inline-block align-center" alt="">
+              <img src="https://estore.skytech.id/assets/images/logo-only.png" height="30" class="d-inline-block align-center" alt="">
               <span>
                 SKYTECH
               </span>
@@ -13,10 +13,10 @@
           </div>
           <div class="col-6 pl-0 text-right align-items-center socmed">
             <a href="https://www.youtube.com/channel/UCQlZ4k1aix09Ze-du_S94Kw/" target="_blank" class="mr-1" title="Youtube">
-              <img src="~assets/images/youtube.png" width="24px" height="24px" class="d-inline-block align-top" alt="Youtube">
+              <img src="https://estore.skytech.id/assets/images/youtube.png" width="24px" height="24px" class="d-inline-block align-top" alt="Youtube">
             </a>
             <a href="https://www.instagram.com/skytech.id/" target="_blank" class="mr-3" title="Instagram">
-              <img src="~assets/images/instagram.png" width="24px" height="24px" class="d-inline-block align-top" alt="Instagram">
+              <img src="https://estore.skytech.id/assets/images/instagram.png" width="24px" height="24px" class="d-inline-block align-top" alt="Instagram">
             </a>
             <p class="mr-3 hidden-xxs hidden-xxxs">
               Temukan kami di
@@ -87,12 +87,12 @@
             <div class="row pt-1">
               <div class="col-6 col-sm-3 col-md-6 pr-1">
                 <a href="#" target="_blank" class="mr-1" title="Playstore">
-                  <img src="~assets/images/google_play.png" class="d-inline-block download img-fluid img-disabled" alt="PlayStore">
+                  <img src="https://estore.skytech.id/assets/images/google_play.png" class="d-inline-block download img-fluid img-disabled" alt="PlayStore">
                 </a>
               </div>
               <div class="col-6 col-sm-3 col-md-6 pl-1">
                 <a href="javascript:void(0);" target="_blank" class="mr-1" title="Appstore">
-                  <img src="~assets/images/app_store.png" class="d-inline-block download img-fluid img-disabled" alt="AppStore">
+                  <img src="https://estore.skytech.id/assets/images/app_store.png" class="d-inline-block download img-fluid img-disabled" alt="AppStore">
                 </a>
               </div>
             </div>
