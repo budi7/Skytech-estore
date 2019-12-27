@@ -1,10 +1,16 @@
 import gql from 'graphql-tag'
 
-const transactions = gql`query SalesOrder(
+const invoices = gql`query Invoices(
+  $customer_id: Int,
+  $deleted_only: Boolean,
+  $status: String,
   $id: Int
 ) {
-  SalesOrder (
+  Invoices (
     id: $id,
+    customer_id: $customer_id,
+    deleted_only: $deleted_only,
+    status: $status
   ) {
     data {
       id,
@@ -23,19 +29,10 @@ const transactions = gql`query SalesOrder(
       customer_address,
       customer_phone,
       customer_email,
-      receiver_id,
-      receiver_name,
-      receiver_address,
-      receiver_phone,
-      receiver_email,
-      courier_name,
-      courier_service,
       delivery_to,
       delivery_date,
       payment_method,
       payment_terms,
-      invoice_terms,
-      shipping_terms,
       note,
       status,
       lines {
@@ -45,21 +42,9 @@ const transactions = gql`query SalesOrder(
         discount,
         additional_discount
       },
-      accounts {
-        tag,
-        amount
-      },
-      expired_at,
-      total
     }
-  },
-  CheckBillingDetail (
-    ref_id: $id,
-    ref_type: "SALES_ORDER"
-  ){
-    tag
-    amount
+    total
   }
 }`
 
-export default transactions
+export default invoices

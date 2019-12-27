@@ -848,7 +848,7 @@ export default {
 
       const today = new Date()
       const dd = today.getDate()
-      const mm = today.getMonth()
+      const mm = today.getMonth() + 1
       inputSO.date = today.getFullYear() + '-' + mm + '-' + dd
 
       if (this.shipping_method === 'pickup_product') {

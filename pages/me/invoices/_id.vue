@@ -67,7 +67,7 @@
           <div v-show="!isError">
             <div class="alert my-4 alert-warning">
               <p class="mb-0 small">
-                Segera selesaikan pembayaran tagihan Anda sebelum {{ transaction.expired_at | formatDate }}
+                Segera selesaikan pembayaran tagihan Anda sebelum {{ transaction.expired_at | formatDateTime }}
               </p>
             </div>
 
@@ -189,11 +189,11 @@
                 </p>
               </div>
             </div>
-            <div v-for="(data,i) in additional" :key="'a-' + i">
+            <div v-for="(data,i) in transaction.accounts" :key="'a-' + i">
               <div v-if="data.tag.toLowerCase() !== 'total'" class="row pt-3">
                 <div class="col-8 pl-4">
                   <p class="mb-0">
-                    {{ data.tag }}
+                    {{ data.tag.split('_').join(' ') }}
                   </p>
                 </div>
                 <div class="col-4 pr-4">
@@ -257,7 +257,6 @@ export default {
   data() {
     return {
       transaction: [],
-      additional: [],
       isLoading: true,
       isError: false,
       code: null

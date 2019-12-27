@@ -31,7 +31,7 @@ export default {
       type: Object
     },
     url: {
-      default: 'transaction',
+      default: 'transactions',
       type: String
     }
   },

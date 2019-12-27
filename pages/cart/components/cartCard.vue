@@ -177,7 +177,7 @@ export default {
         fetchPolicy: 'no-cache'
       }).then((resp) => {
         // no stock
-        if (!resp.data.Stock[0]) {
+        if (!resp.data.Stock.data[0]) {
           this.available = 0
           this.isLoading = false
           return
@@ -185,13 +185,13 @@ export default {
 
         // this.available = 0
         this.product.is_selected = true
-        this.available = resp.data.Stock[0].available
+        this.available = resp.data.Stock.data[0].available
         this.isLoading = false
         // commit('fetch', resp.data.Stock.data)
         //
-
         // is adjusted stock
         if (this.available < this.qty) this.qty = this.available
+        // if (this.available >= this.qty) this.isAvailable = true
       }).catch((err) => {
         console.log(err)
         this.isError = true

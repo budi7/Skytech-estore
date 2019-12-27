@@ -1,11 +1,14 @@
 import gql from 'graphql-tag'
 
 const transactions = gql`query SalesOrder(
+  $id: Int
   $customer_id: Int,
   $has_status: Boolean,
   $deleted_only: Boolean,
   $status: String,
-  $id: Int
+  $statuses: [String],
+  $order_by: String,
+  $order_desc: Boolean
 ) {
   SalesOrder (
     id: $id,
@@ -13,6 +16,9 @@ const transactions = gql`query SalesOrder(
     has_status: $has_status,
     deleted_only: $deleted_only,
     status: $status
+    statuses: $statuses
+    order_by: $order_by
+    order_desc: $order_desc
   ) {
     data {
       id,

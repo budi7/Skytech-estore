@@ -2,11 +2,11 @@
   <div>
     <headerBar />
 
-    <Layout active-index="tagihan_pembelian">
+    <Layout active-index="riwayat_pembelian">
       <h4 class="mt-3 mb-1">
-        Detail Tagihan Pembelian
+        Detail Transaksi Pembelian
       </h4>
-      <a href="javascript:void(0);" class="text-primary small" @click="$router.push({ path: '/me/invoices' })">
+      <a href="javascript:void(0);" class="text-primary small" @click="$router.push({ path: '/me/transactions' })">
         <i class="fa fa-angle-left" /> Kembali
       </a>
 
@@ -30,7 +30,7 @@
           </div>
           <div class="col-6">
             <p class="mb-2">
-              Total Tagihan
+              Total Transaksi
             </p>
             <p class="mb-3 gradient-animate pt-3 pb-2" style="width: 150px;" />
           </div>
@@ -65,15 +65,21 @@
       <no-ssr>
         <div v-show="!isLoading">
           <div v-show="!isError">
-            <div class="alert my-4 alert-warning">
+            <div class="alert my-4 alert-info" v-if="transaction.status === 'CONFIRMED'">
               <p class="mb-0 small">
-                Segera selesaikan pembayaran tagihan Anda sebelum {{ transaction.expired_at | formatDate }}
+                Pesanan Anda sedang dalam proses pengiriman
               </p>
             </div>
 
-            <p class="mb-3">
+            <p class="mb-3" v-if="transaction.status === 'CONFIRMED'">
               <strong>
-                Tagihan {{ transaction.no }}
+                Transaksi {{ transaction.no }}
+              </strong>
+            </p>
+
+            <p class="my-4" v-else>
+              <strong>
+                Transaksi {{ transaction.no }}
               </strong>
             </p>
 
@@ -96,48 +102,14 @@
               </div>
               <div class="col-6">
                 <p class="mb-2">
-                  Total Tagihan
+                  Total Transaksi
                 </p>
                 <p class="mb-3 text-gray">
-                  {{ transaction.total | formatPrice }}
+                  {{ total | formatPrice }}
                 </p>
               </div>
             </div>
 
-            <div class="row pt-3">
-              <div class="col-12 col-md-6">
-                <p class="mb-2">
-                  Cara Pembayaran
-                </p>
-                <ol class="text-gray pl-3">
-                  <li class="pl-2 mb-2">
-                    Datang ke toko Skytech
-                  </li>
-                  <li class="pl-2 mb-2">
-                    Tunjukkan kode pembayaran pada halaman ini kepada kasir
-                  </li>
-                  <li class="pl-2 mb-2">
-                    Kasir akan memindai kode QR pada halaman ini
-                  </li>
-                  <li class="pl-2 mb-2">
-                    Lakukan pembayaran di kasir. Kasir kami akan membantu Anda.
-                  </li>
-                </ol>
-              </div>
-              <div class="col-12 col-md-6">
-                <div class="card p-3">
-                  <p class="small">
-                    <strong>
-                      Kode Pembayaran
-                    </strong>
-                  </p>
-                  <barcode
-                    :value="code"
-                    width="1"
-                  />
-                </div>
-              </div>
-            </div>
             <div class="row">
               <div class="col-12">
                 <hr>
@@ -155,7 +127,7 @@
             <div class="row">
               <div class="col-12 px-2">
                 <p class="mb-0 text-gray bg-light m-2 py-2 px-2">
-                  Pembelelanjaan
+                  Pembelanjaan
                 </p>
               </div>
             </div>
@@ -189,11 +161,11 @@
                 </p>
               </div>
             </div>
-            <div v-for="(data,i) in additional" :key="'a-' + i">
+            <div v-for="(data,i) in transaction.accounts" :key="'a-' + i">
               <div v-if="data.tag.toLowerCase() !== 'total'" class="row pt-3">
                 <div class="col-8 pl-4">
                   <p class="mb-0">
-                    {{ data.tag }}
+                    {{ data.tag.split('_').join(' ') }}
                   </p>
                 </div>
                 <div class="col-4 pr-4">
@@ -217,7 +189,7 @@
               <div class="col-6 pr-2 pl-0">
                 <p class="mb-0 text-gray bg-light text-right mr-2 mb-2 py-2 pr-2">
                   <strong>
-                    {{ transaction.total | formatPrice }}
+                    {{ total | formatPrice }}
                   </strong>
                 </p>
               </div>
@@ -245,7 +217,7 @@ import FooterBar from '~/components/FooterBar'
 import displayError from '~/components/displayError'
 import errorHandler from '~/modules/errorHandler'
 
-import apolloTransactions from '~/gql/transaction/transactionDetail'
+import apolloInvoices from '~/gql/transaction/transactionDetail'
 
 export default {
   components: {
@@ -260,6 +232,17 @@ export default {
       isLoading: true,
       isError: false,
       code: null
+    }
+  },
+  computed: {
+    total() {
+      if (!this.transaction || !this.transaction.accounts) return 0
+      let tmp = 0
+
+      for (let i = 0; i < this.transaction.accounts.length; i++) {
+        tmp = tmp + this.transaction.accounts[i].amount
+      }
+      return tmp
     }
   },
   created() {
@@ -278,7 +261,7 @@ export default {
 
       this.$apollo.mutate({
         // Query
-        mutation: apolloTransactions,
+        mutation: apolloInvoices,
 
         // Parameters
         variables: {

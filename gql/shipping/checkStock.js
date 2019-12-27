@@ -5,9 +5,11 @@ const checkStock = gql`query stock($products: [String], $warehouse_id: [Int]) {
     product_code: $products,
     warehouse_id: $warehouse_id
   ){
-    product_code
-    product_name
-    available
+    data{
+      product_code,
+      product_name,
+      available
+    }
   }
 }`
 

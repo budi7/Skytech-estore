@@ -20,21 +20,27 @@
           <displayEmpty
             title="Belum Ada Data Transaksi"
             msg="Mulai belanja di Skytech.id"
-            :is-visible="transactions.length === 0 ? true : false"
+            :is-visible="invoices.length === 0 ? true : false"
             :is-actionable="true"
             action-title="Belanja"
             class="mb-5 pb-5"
             @retry="$router.push({ path: '/product' })"
           />
-          <div v-show="transactions.length > 0" class="row py-4">
+          <div v-show="invoices.length > 0" class="row py-4">
             <listTransaction
-              v-for="(dt, i) in transactions"
+              v-for="(dt, i) in invoices"
               :key="i"
               :transaction="dt"
               class="col-12"
             >
               <p class="mb-0 text-gray small">
                 Total Tagihan: {{ dt.total | formatPrice }}
+              </p>
+              <p class="mb-0 small badge badge-info" v-if="dt.status === 'CONFIRMED'">
+                {{ dt.status }}
+              </p>
+              <p class="mb-0 small badge badge-success" v-if="dt.status === 'CLOSED'">
+                {{ dt.status }}
               </p>
             </listTransaction>
           </div>
@@ -45,7 +51,7 @@
         :msg="errors.msg"
         :is-visible="errors.msg ? true : false"
         class="mb-5 pb-5"
-        @retry="fetchTransaction()"
+        @retry="fetchInvoice()"
       />
     </Layout>
 
@@ -62,7 +68,7 @@ import displayError from '~/components/displayError'
 import displayEmpty from '~/components/displayEmpty'
 import listTransaction from '~/pages/me/components/listTransaction'
 
-import apolloTransactions from '~/gql/transaction/transactions'
+import apolloInvoices from '~/gql/transaction/transactions'
 
 export default {
   components: {
@@ -76,7 +82,7 @@ export default {
   data() {
     return {
       isLoading: false,
-      transactions: [],
+      invoices: [],
       errors: {
         msg: null,
         data: {}
@@ -84,10 +90,10 @@ export default {
     }
   },
   mounted() {
-    this.fetchTransaction()
+    this.fetchInvoice()
   },
   methods: {
-    fetchTransaction() {
+    fetchInvoice() {
       if (this.isLoading) return
       this.isLoading = true
 
@@ -98,19 +104,21 @@ export default {
 
       this.$apollo.query({
         // Query
-        query: apolloTransactions,
+        query: apolloInvoices,
 
         // Parameters
         variables: {
           customer_id: this.$store.state.modules.uac.customer_id,
-          status: 'confirmed'
+          statuses: ['CONFIRMED', 'CLOSED'],
+          order_by: 'updated_at',
+          order_desc: true
         }
       }).then((resp) => {
         if (resp.errors) {
-          // console.log(resp)
           this.isLoading = false
         }
         this.isLoading = false
+        this.invoices = resp.data.SalesOrder.data
       }).catch((err) => {
         this.isLoading = false
         this.errors = errorHandler(this, {

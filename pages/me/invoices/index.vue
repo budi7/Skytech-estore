@@ -37,7 +37,7 @@
                 Total Tagihan: {{ dt.total | formatPrice }}
               </p>
               <p class="mb-0 small text-gray">
-                Kadaluarsa: {{ dt.expired_at | formatDate }}
+                Kadaluarsa: {{ dt.expired_at | formatDateTime }}
               </p>
             </listTransaction>
           </div>
@@ -106,11 +106,12 @@ export default {
         // Parameters
         variables: {
           customer_id: this.$store.state.modules.uac.customer_id,
-          has_status: false
+          has_status: false,
+          order_by: 'updated_at',
+          order_desc: false
         }
       }).then((resp) => {
         if (resp.errors) {
-          // console.log(resp)
           this.isLoading = false
         }
         this.isLoading = false

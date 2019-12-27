@@ -1,9 +1,9 @@
 import gql from 'graphql-tag'
 
-const transactions = gql`query SalesOrder(
+const transactions = gql`query Invoices(
   $id: Int
 ) {
-  SalesOrder (
+  Invoices (
     id: $id,
   ) {
     data {
@@ -23,19 +23,10 @@ const transactions = gql`query SalesOrder(
       customer_address,
       customer_phone,
       customer_email,
-      receiver_id,
-      receiver_name,
-      receiver_address,
-      receiver_phone,
-      receiver_email,
-      courier_name,
-      courier_service,
       delivery_to,
       delivery_date,
       payment_method,
       payment_terms,
-      invoice_terms,
-      shipping_terms,
       note,
       status,
       lines {
@@ -49,17 +40,9 @@ const transactions = gql`query SalesOrder(
         tag,
         amount
       },
-      expired_at,
-      total
     }
+    total
   },
-  CheckBillingDetail (
-    ref_id: $id,
-    ref_type: "SALES_ORDER"
-  ){
-    tag
-    amount
-  }
 }`
 
 export default transactions
