@@ -10,7 +10,7 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "HOST=https://estore.skytech.id PORT=5555 NODE_ENV='production' IS_STATIC=true nuxtent generate"
   },
   "config": {
     "nuxt": {
