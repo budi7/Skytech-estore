@@ -39,16 +39,16 @@
 </template>
 
 <script>
+import cardStoreStock from './cardStoreStock'
 import displayError from '~/components/displayError'
 import displayEmpty from '~/components/displayEmpty'
 import errorHandler from '~/modules/errorHandler'
-import cardStoreStock from './cardStoreStock'
 
 export default {
   components: {
+    cardStoreStock,
     displayError,
-    displayEmpty,
-    cardStoreStock
+    displayEmpty
   },
   props: {
   },

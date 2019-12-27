@@ -140,27 +140,27 @@
 
 <script>
 // page components
-import HeaderBar from '~/components/HeaderBar'
-import FooterBar from '~/components/FooterBar'
-import ProductCard from '~/components/ProductCard'
-import ProductLoader from '~/components/ProductLoader'
-import displayEmpty from '~/components/displayEmpty'
 import modalKategori from './components/modalKategori'
 import modalSorting from './components/modalSorting'
 import modalBrand from './components/modalBrand'
 import modalHarga from './components/modalHarga'
+import displayEmpty from '~/components/displayEmpty'
+import ProductCard from '~/components/ProductCard'
+import ProductLoader from '~/components/ProductLoader'
+import HeaderBar from '~/components/HeaderBar'
+import FooterBar from '~/components/FooterBar'
 
 export default {
   components: {
-    HeaderBar,
-    FooterBar,
-    ProductCard,
-    ProductLoader,
-    displayEmpty,
     modalKategori,
     modalSorting,
     modalBrand,
-    modalHarga
+    modalHarga,
+    ProductCard,
+    ProductLoader,
+    displayEmpty,
+    HeaderBar,
+    FooterBar
   },
   data() {
     return {

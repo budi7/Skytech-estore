@@ -71,11 +71,11 @@ const cart = {
           } else {
             // update cerrent item
             state.cart_items.splice(idx, 1, {
-              'upc': payload.product.upc,
-              'medias': payload.product.medias,
-              'name': payload.product.name,
-              'price': payload.product.price,
-              'qty': payload.qty
+              upc: payload.product.upc,
+              medias: payload.product.medias,
+              name: payload.product.name,
+              price: payload.product.price,
+              qty: payload.qty
             })
           }
         } else {
@@ -84,11 +84,11 @@ const cart = {
           if (payload.qty === 0) return
 
           state.cart_items.push({
-            'upc': payload.product.upc,
-            'medias': payload.product.medias,
-            'name': payload.product.name,
-            'price': payload.product.price,
-            'qty': payload.qty
+            upc: payload.product.upc,
+            medias: payload.product.medias,
+            name: payload.product.name,
+            price: payload.product.price,
+            qty: payload.qty
           })
         }
       } else {
@@ -97,11 +97,11 @@ const cart = {
         if (payload.qty === 0) return
 
         state.cart_items.push({
-          'upc': payload.product.upc,
-          'medias': payload.product.medias,
-          'name': payload.product.name,
-          'price': payload.product.price,
-          'qty': payload.qty
+          upc: payload.product.upc,
+          medias: payload.product.medias,
+          name: payload.product.name,
+          price: payload.product.price,
+          qty: payload.qty
         })
       }
 
@@ -120,11 +120,11 @@ const cart = {
           .filter(dt => dt.qty > 0)
           .map(function (data) {
             return {
-              'upc': data.product.upc,
-              'medias': data.product.medias,
-              'name': data.product.name,
-              'price': data.product.price,
-              'qty': data.qty
+              upc: data.product.upc,
+              medias: data.product.medias,
+              name: data.product.name,
+              price: data.product.price,
+              qty: data.qty
             }
           })
 

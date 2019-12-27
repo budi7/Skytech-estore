@@ -48,7 +48,7 @@ const readGQLError = (gqlResponse) => {
   // const inputRegex = /input\./gi
   const translator = (val) => {
     const definition = {
-      'not_for_sell': 'Maaf barang untuk sementara tidak tersedia'
+      not_for_sell: 'Maaf barang untuk sementara tidak tersedia'
     }
 
     const tmp = val.split(':')
@@ -62,19 +62,20 @@ const readGQLError = (gqlResponse) => {
       case 'exists': return 'Isian telah ada sebelumnya'
       case 'invalid': return definition[tmp[1]] ? definition[tmp[1]] : 'Isian salah/tidak valid'
       case 'in': return `Isian harus salah satu dari ${tmp[1]}`
-      case 'date': return `Isian tanggal tidak benar`
+      case 'date': return 'Isian tanggal tidak benar'
       case 'lt': return `Isian harus kurang dari ${tmp[1]}`
       case 'size': return `Isian harus terdiri dari ${tmp[1]} karakter`
-      case 'notfound': return `Data tidak ditemukan`
-      case 'notallowed': return `Operasi tidak diperbolehkan`
+      case 'notfound': return 'Data tidak ditemukan'
+      case 'notallowed': return 'Operasi tidak diperbolehkan'
       default: return val
     }
   }
 
   let formErrors = null
   formErrors = []
+
   for (const key in gqlResponse.graphQLErrors[0].validation) {
-    if (gqlResponse.graphQLErrors[0].validation.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(gqlResponse.graphQLErrors[0].validation, key)) {
       if (!Array.isArray(formErrors[key])) {
         formErrors[key] = []
       }
@@ -151,7 +152,7 @@ const errorHandler = (vm, param) => {
         }
       }
     } else {
-      if (gqlResponse[0].message === 'validation') {
+      if (gqlResponse.length && gqlResponse[0].message === 'validation') {
         if (isGlobal) showGlobalError(vm, errorPresets.input)
         return {
           msg: errorPresets.input,

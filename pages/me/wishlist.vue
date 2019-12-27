@@ -46,21 +46,21 @@
 
 <script>
 import Layout from './components/layout'
-import HeaderBar from '~/components/HeaderBar'
-import errorHandler from '~/modules/errorHandler'
-import FooterBar from '~/components/FooterBar'
+import listWishlist from './components/listWishlist'
 import displayError from '~/components/displayError'
 import displayEmpty from '~/components/displayEmpty'
-import listWishlist from './components/listWishlist'
+import errorHandler from '~/modules/errorHandler'
+import HeaderBar from '~/components/HeaderBar'
+import FooterBar from '~/components/FooterBar'
 
 export default {
   components: {
-    HeaderBar,
-    FooterBar,
     Layout,
+    listWishlist,
     displayError,
     displayEmpty,
-    listWishlist
+    HeaderBar,
+    FooterBar
   },
   data() {
     return {

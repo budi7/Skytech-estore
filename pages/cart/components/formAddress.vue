@@ -118,7 +118,7 @@ export default {
     }
   },
   watch: {
-    'province': function (nv) {
+    province: function (nv) {
       this.APIPropinsi(nv)
         .then((res) => {
           this.initCity()

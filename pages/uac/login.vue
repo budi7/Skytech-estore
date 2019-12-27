@@ -15,7 +15,7 @@
         <label for="input-username">Nomor Ponsel</label>
         <b-input
           v-model="username"
-          placeholder="081xxxxxxxx"
+          placeholder="6281xxxxxxxx"
           class="form-control"
           type="text"
           name="input-username"

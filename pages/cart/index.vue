@@ -99,17 +99,17 @@
 </template>
 
 <script>
-import { logout } from '~/modules/logout'
+import cardCard from './components/cardCard'
 import errorHandler from '~/modules/errorHandler'
 import HeaderBar from '~/components/HeaderBar'
 import FooterBar from '~/components/FooterBar'
-import cardCard from './components/cardCard'
+import { logout } from '~/modules/logout'
 
 export default {
   components: {
+    cardCard,
     HeaderBar,
-    FooterBar,
-    cardCard
+    FooterBar
   },
   beforeRouteEnter(to, from, next) {
     next((vm) => {

@@ -458,27 +458,27 @@
 </template>
 
 <script>
-import HeaderBar from '~/components/HeaderBar'
-import FooterBar from '~/components/FooterBar'
-import cartCard from './components/cartCard'
 import errorHandler from '../../modules/errorHandler'
-
-import formAddress from './components/formAddress'
 import listAddress from './components/listAddress'
 import listStore from './components/listStore'
 import listCourier from './components/listCourier'
+
+import cartCard from './components/cartCard'
+import formAddress from './components/formAddress'
+import FooterBar from '~/components/FooterBar'
+import HeaderBar from '~/components/HeaderBar'
 
 import apolloStoreSo from '~/gql/transaction/createSo'
 
 export default {
   components: {
-    HeaderBar,
-    FooterBar,
-    cartCard,
-    formAddress,
     listAddress,
     listStore,
-    listCourier
+    listCourier,
+    cartCard,
+    formAddress,
+    FooterBar,
+    HeaderBar
   },
   data() {
     return {
@@ -543,12 +543,12 @@ export default {
     if (this.$store.state.modules.cart.cart_items) {
       this.products = this.$store.state.modules.cart.cart_items.map(function (data) {
         return {
-          'upc': data.upc,
-          'medias': data.medias,
-          'name': data.name,
-          'price': data.price,
-          'qty': data.qty,
-          'is_selected': true
+          upc: data.upc,
+          medias: data.medias,
+          name: data.name,
+          price: data.price,
+          qty: data.qty,
+          is_selected: true
         }
       })
     } else {
@@ -599,12 +599,12 @@ export default {
     selectAllItem(val) {
       this.products = this.products.map(function (data) {
         return {
-          'upc': data.upc,
-          'medias': data.medias,
-          'name': data.name,
-          'price': data.price,
-          'qty': data.qty,
-          'is_selected': true
+          upc: data.upc,
+          medias: data.medias,
+          name: data.name,
+          price: data.price,
+          qty: data.qty,
+          is_selected: true
         }
       })
     },

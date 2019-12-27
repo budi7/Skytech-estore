@@ -31,11 +31,11 @@ const wishlist = {
     },
     wishlistAdd: (state, payload) => {
       state.wishlist_items.push({
-        'id': payload.product.id,
-        'upc': payload.product.upc,
-        'medias': payload.product.medias,
-        'name': payload.product.name,
-        'price': payload.product.price
+        id: payload.product.id,
+        upc: payload.product.upc,
+        medias: payload.product.medias,
+        name: payload.product.name,
+        price: payload.product.price
       })
 
       // store local

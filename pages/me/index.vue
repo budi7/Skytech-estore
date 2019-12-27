@@ -87,20 +87,20 @@
 </template>
 
 <script>
-import errorHandler from '~/modules/errorHandler'
-import HeaderBar from '~/components/HeaderBar'
-import FooterBar from '~/components/FooterBar'
 import Layout from './components/layout'
 import formProfile from './components/formProfile'
 import formPassword from './components/formPassword'
+import HeaderBar from '~/components/HeaderBar'
+import FooterBar from '~/components/FooterBar'
+import errorHandler from '~/modules/errorHandler'
 
 export default {
   components: {
-    HeaderBar,
-    FooterBar,
     Layout,
     formProfile,
-    formPassword
+    formPassword,
+    HeaderBar,
+    FooterBar
   },
   beforeRouteEnter(to, from, next) {
     next((vm) => {
