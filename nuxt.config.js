@@ -17,6 +17,10 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  buildDir: '_nuxt',
+  build: {
+    publicPath: '_nuxt/dist/'
+  },
   /*
   ** Customize the progress-bar color
   */
