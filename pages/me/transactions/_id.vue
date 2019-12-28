@@ -6,7 +6,7 @@
       <h4 class="mt-3 mb-1">
         Detail Transaksi Pembelian
       </h4>
-      <a href="javascript:void(0);" class="text-primary small" @click="$router.push({ path: '/me/transactions' })">
+      <a @click="$router.push({ path: '/me/transactions' })" href="javascript:void(0);" class="text-primary small">
         <i class="fa fa-angle-left" /> Kembali
       </a>
 
@@ -65,19 +65,19 @@
       <no-ssr>
         <div v-show="!isLoading">
           <div v-show="!isError">
-            <div class="alert my-4 alert-info" v-if="transaction.status === 'CONFIRMED'">
+            <div v-if="transaction.status === 'CONFIRMED'" class="alert my-4 alert-info">
               <p class="mb-0 small">
                 Pesanan Anda sedang dalam proses pengiriman
               </p>
             </div>
 
-            <p class="mb-3" v-if="transaction.status === 'CONFIRMED'">
+            <p v-if="transaction.status === 'CONFIRMED'" class="mb-3">
               <strong>
                 Transaksi {{ transaction.no }}
               </strong>
             </p>
 
-            <p class="my-4" v-else>
+            <p v-else class="my-4">
               <strong>
                 Transaksi {{ transaction.no }}
               </strong>
@@ -196,10 +196,10 @@
             </div>
           </div>
           <displayError
-            msg="Tidak dapat memuat data"
             :is-visible="isError ? true : false"
-            class="mb-5 pb-5"
             @retry="fetchTransaction()"
+            msg="Tidak dapat memuat data"
+            class="mb-5 pb-5"
           />
         </div>
       </no-ssr>

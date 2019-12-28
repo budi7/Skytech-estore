@@ -1,6 +1,6 @@
 <template>
-  <form class="pt-3" @submit.prevent="saveProfile()">
-    <b-alert variant="danger" fade :show="errors.msg">
+  <form @submit.prevent="saveProfile()" class="pt-3">
+    <b-alert :show="errors.msg" variant="danger" fade>
       {{ errors.msg }}
     </b-alert>
     <div class="form-group pb-3">
@@ -9,11 +9,11 @@
           <label for="input-nama">Nama Lengkap</label>
           <b-input
             v-model="nama"
+            :disabled="is_loading === true"
             placeholder="Nama Lengkap"
             class="form-control"
             type="text"
             name="input-nama"
-            :disabled="is_loading === true"
           />
           <formError :msg="errors.data.nama" />
         </div>
@@ -36,11 +36,11 @@
           <label for="input-whatsapp">Whatsapp</label>
           <b-input
             v-model="whatsapp"
+            :disabled="is_loading === true"
             placeholder="081xxxxxxxxxx"
             class="form-control"
             type="tel"
             name="input-whatsapp"
-            :disabled="is_loading === true"
           />
           <formError :msg="errors.data.whatsapp" />
         </div>
@@ -48,11 +48,11 @@
           <label for="input-email">Email</label>
           <b-input
             v-model="email"
+            :disabled="is_loading === true"
             placeholder="Email Anda"
             class="form-control"
             type="email"
             name="input-email"
-            :disabled="is_loading === true"
           />
           <formError :msg="errors.data.email" />
         </div>
@@ -75,10 +75,10 @@
           <label for="input-province">Provinsi</label>
           <b-form-select
             v-model.lazy="province"
-            placholder="pilih"
-            class="form-control"
             :options="option_province"
             :disabled="is_loading === true"
+            placholder="pilih"
+            class="form-control"
           />
           <formError :msg="errors.data.province" />
         </div>
@@ -87,8 +87,8 @@
           <b-form-select
             v-model="city"
             :options="option_cities"
-            class="form-control"
             :disabled="option_cities.length <= 1 || is_loading === true"
+            class="form-control"
           />
           <formError :msg="errors.data.city" />
         </div>
@@ -100,11 +100,11 @@
           <label for="input-postcode">Kode Pos</label>
           <b-input
             v-model="postcode"
+            :disabled="is_loading === true"
             placeholder="xxxxx"
             class="form-control"
             type="tel"
             name="input-postcode"
-            :disabled="is_loading === true"
           />
           <formError :msg="errors.data.postcode" />
         </div>
@@ -114,16 +114,16 @@
       <label for="input-address">Alamat Lengkap</label>
       <b-form-textarea
         v-model="address"
+        :disabled="is_loading === true"
         placeholder="Detail alamat pengiriman"
         rows="3"
         max-rows="3"
-        :disabled="is_loading === true"
         no-resize
       />
       <formError :msg="errors.data.address" />
     </div>
     <div class="form-group pt-3">
-      <b-button variant="primary" block type="submit" :disabled="is_loading">
+      <b-button :disabled="is_loading" variant="primary" block type="submit">
         <span v-show="!is_loading">Simpan</span><i v-show="is_loading" class="fa fa-circle-o-notch fa-lg fa-spin" />
       </b-button>
     </div>

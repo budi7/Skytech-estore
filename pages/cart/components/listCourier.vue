@@ -13,17 +13,17 @@
         </div>
         <div v-show="!is_loading">
           <displayEmpty
-            title="Tidak ada Kurir"
-            msg="Silahkan hubungi Custtomer Service kami untuk bantuan"
             :is-visible="couriers.length === 0 ? true : false"
             :is-actionable="false"
+            title="Tidak ada Kurir"
+            msg="Silahkan hubungi Custtomer Service kami untuk bantuan"
           />
           <div v-show="couriers.length > 0">
             <div
               v-for="(dt, i) in couriers"
               :key="i"
-              class="card hover py-3 px-3 mb-3"
               @click="selectCourier(dt)"
+              class="card hover py-3 px-3 mb-3"
             >
               <p class="mb-0 text-capitalize">
                 {{ dt.courier_name }} - {{ dt.courier_service }}

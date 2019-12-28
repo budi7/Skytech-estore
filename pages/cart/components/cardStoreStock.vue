@@ -3,10 +3,10 @@
     <div class="row">
       <div ref="parentMap" class="col-12">
         <iframe
+          :src="addr"
           frameborder="0"
           style="border:0;Width:100% !important; background-color: #f4f4f4!important;"
           height="120"
-          :src="addr"
         />
       </div>
       <div class="col-12 pt-3">

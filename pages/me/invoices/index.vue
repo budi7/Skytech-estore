@@ -18,10 +18,10 @@
         </div>
         <div v-show="!isLoading">
           <displayEmpty
-            title="Anda Tidak Memiliki Tagihan"
-            msg="Mulai belanja di Skytech.id"
             :is-visible="transactions.length === 0 ? true : false"
             :is-actionable="true"
+            title="Anda Tidak Memiliki Tagihan"
+            msg="Mulai belanja di Skytech.id"
             action-title="Belanja"
             class="mb-5 pb-5"
           />
@@ -47,8 +47,8 @@
       <displayError
         :msg="errors.msg"
         :is-visible="errors.msg ? true : false"
-        class="mb-5 pb-5"
         @retry="fetchTransaction()"
+        class="mb-5 pb-5"
       />
     </Layout>
 

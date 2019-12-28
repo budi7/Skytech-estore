@@ -2,14 +2,14 @@
   <div>
     <nav class="navbar fixed-top navbar-light main">
       <div class="container top-nav">
-        <a href="javascript:void(0);" class="" @click="$router.push({ path: '/download' })">Download Aplikasi Skytech</a>
+        <a @click="$router.push({ path: '/download' })" href="javascript:void(0);" class="">Download Aplikasi Skytech</a>
         <div class="right-menu">
-          <a href="javascript:void(0);" class="" @click="$router.push({ path: '/locations' })">Lokasi Toko</a>
+          <a @click="$router.push({ path: '/locations' })" href="javascript:void(0);" class="">Lokasi Toko</a>
           <!-- <a href="#" class="">Bantuan</a> -->
         </div>
       </div>
       <div class="container pt-1">
-        <a class="navbar-brand menu-left head" href="javascript:void(0);" @click="$router.push({ path: '/' })">
+        <a @click="$router.push({ path: '/' })" class="navbar-brand menu-left head" href="javascript:void(0);">
           <img src="https://estore.skytech.id/assets/images/logo-only.png" height="30" class="d-inline-block align-center" alt="">
           <span>
             SKYTECH
@@ -19,13 +19,13 @@
         <div class="right-menu d-md-none d-lg-none d-xl-none">
           <ul class="navbar-nav">
             <li v-show="!this.$store.getters['modules/uac/isAuthed']" class="nav-item hidden-xxs">
-              <a href="javascript:void(0);" class="nav-link" @click="$router.push({ path: '/uac/register' })">Daftar</a>
+              <a @click="$router.push({ path: '/uac/register' })" href="javascript:void(0);" class="nav-link">Daftar</a>
             </li>
             <li v-show="!this.$store.getters['modules/uac/isAuthed']" class="nav-item">
-              <a href="javascript:void(0);" class="nav-link" @click="$router.push({ path: '/uac/login' })">Login</a>
+              <a @click="$router.push({ path: '/uac/login' })" href="javascript:void(0);" class="nav-link">Login</a>
             </li>
             <li v-show="this.$store.getters['modules/uac/isAuthed']" class="nav-item">
-              <a href="javascript:void(0);" class="nav-link" @click="$router.push({ path: '/me' })">
+              <a @click="$router.push({ path: '/me' })" href="javascript:void(0);" class="nav-link">
                 {{ user | firstWord }} <i class="fa fa-user fa-adjustment" />
               </a>
             </li>
@@ -33,14 +33,14 @@
               <a href="#" class="py-1 nav-link separator disabled">&nbsp;</a>
             </li>
             <li class="nav-item">
-              <a href="javascript:void(0);" class="nav-link" @click="$router.push({ path: '/cart' })">
+              <a @click="$router.push({ path: '/cart' })" href="javascript:void(0);" class="nav-link">
                 <i class="fa fa-shopping-cart fa-adjustment" /> <small>{{ $store.state.modules.cart.cart_total_item }}</small>
               </a>
             </li>
           </ul>
         </div>
 
-        <form class="searchbar" @submit.prevent="setSearch">
+        <form @submit.prevent="setSearch" class="searchbar">
           <!-- <input class="form-control form-control-sm"> -->
           <div class="input-group">
             <input
@@ -62,13 +62,13 @@
         <div class="right-menu d-none d-md-block">
           <ul class="navbar-nav">
             <li v-show="!this.$store.getters['modules/uac/isAuthed']" class="nav-item">
-              <a href="javascript:void(0);" class="nav-link" @click="$router.push({ path: '/uac/register' })">Daftar</a>
+              <a @click="$router.push({ path: '/uac/register' })" href="javascript:void(0);" class="nav-link">Daftar</a>
             </li>
             <li v-show="!this.$store.getters['modules/uac/isAuthed']" class="nav-item">
-              <a href="javascript:void(0);" class="nav-link" @click="$router.push({ path: '/uac/login' })">Login</a>
+              <a @click="$router.push({ path: '/uac/login' })" href="javascript:void(0);" class="nav-link">Login</a>
             </li>
             <li v-show="this.$store.getters['modules/uac/isAuthed']" class="nav-item">
-              <a href="javascript:void(0);" class="nav-link" @click="$router.push({ path: '/me' })">
+              <a @click="$router.push({ path: '/me' })" href="javascript:void(0);" class="nav-link">
                 {{ user | firstWord }} <i class="fa fa-user fa-adjustment" />
               </a>
             </li>
@@ -76,7 +76,7 @@
               <a href="#" class="py-1 nav-link separator disabled">&nbsp;</a>
             </li>
             <li class="nav-item">
-              <a href="javascript:void(0);" class="nav-link" @click="$router.push({ path: '/cart' })">
+              <a @click="$router.push({ path: '/cart' })" href="javascript:void(0);" class="nav-link">
                 <i class="fa fa-shopping-cart" /> {{ $store.state.modules.cart.cart_total_item }}
               </a>
             </li>

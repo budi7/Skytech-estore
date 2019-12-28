@@ -17,10 +17,6 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  buildDir: '_nuxt',
-  build: {
-    publicPath: '_nuxt/dist/'
-  },
   /*
   ** Customize the progress-bar color
   */
@@ -101,18 +97,19 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    extend(config, ctx) {
-      if (ctx.dev && ctx.isClient) {
-        config.module.rules.push({
-          enforce : 'pre',
-          test    : /\.(js|vue)$/,
-          loader  : 'eslint-loader',
-          exclude : /(node_modules)/,
-          options : {
-              fix : true
-          }
-        });
-      }
-    }
-  }
+    // extend(config, ctx) {
+    //   config.module.rules.push({
+    //     enforce : 'pre',
+    //     test    : /\.(js|vue)$/,
+    //     loader  : 'eslint-loader',
+    //     exclude : /(node_modules)/,
+    //     options : {
+    //         fix : true
+    //     }
+    //   });
+    // },
+    publicPath: '_nuxt/dist/',
+    filenames: { chunk: '[name].[chunkhash].js' }
+  },
+  buildDir: '_nuxt'
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="row clickable cartCard" @click="$router.push({ path: '/product/' + product.id })">
+  <div @click="$router.push({ path: '/product/' + product.id })" class="row clickable cartCard">
     <div class="col-5 col-sm-4 col-md-3 pr-0 py-3">
       <img
         class="img-fluid img-sm bg-white ml-2"
@@ -16,11 +16,11 @@
       </h6>
       <div class="row">
         <div class="col-12 mb-3">
-          <b-button variant="primary" class="btn-sm" type="button" :disabled="is_loading" @click.stop="addToCart">
+          <b-button :disabled="is_loading" @click.stop="addToCart" variant="primary" class="btn-sm" type="button">
             <i class="fa fa-cart-plus fa-lg" />
             Tambahkan ke Keranjang
           </b-button>
-          <b-button variant="outline-primary" class="btn-sm" type="button" :disabled="is_loading" @click.stop="confirmRemove">
+          <b-button :disabled="is_loading" @click.stop="confirmRemove" variant="outline-primary" class="btn-sm" type="button">
             <i class="fa fa-trash fa-lg" />
             Hapus
           </b-button>
@@ -33,11 +33,11 @@
 
     <b-modal
       v-model="modalShow"
+      :hide-header-close="is_loading"
       centered
       hide-footer
       no-close-on-esc
       no-close-on-backdrop
-      :hide-header-close="is_loading"
     >
       <div class="container-fluid">
         <div class="row">
@@ -53,21 +53,21 @@
         <div class="row">
           <div class="col-12 pt-4 pb-3 text-center">
             <b-button
+              :disabled="is_loading"
+              @click="removeWishlistAddCart"
               variant="primary"
               block
               type="button"
-              :disabled="is_loading"
               class="mb-3"
-              @click="removeWishlistAddCart"
             >
               Hapus & Tambah ke Cart
             </b-button>
             <b-button
+              :disabled="is_loading"
+              @click="removeWishlist"
               variant="outline-primary"
               block
               type="button"
-              :disabled="is_loading"
-              @click="removeWishlist"
             >
               Hapus
             </b-button>

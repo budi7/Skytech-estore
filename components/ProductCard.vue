@@ -1,5 +1,5 @@
 <template>
-  <div class="col-6 col-sm-4 col-md-4 col-lg-3 pl-0 pr-4" @click="$emit('tapped')">
+  <div @click="$emit('tapped')" class="col-6 col-sm-4 col-md-4 col-lg-3 pl-0 pr-4">
     <div class="card card-product mb-4">
       <div class="card-body">
         <vue-load-image v-if="product.medias.length > 0 && product.medias[0]">
@@ -8,7 +8,7 @@
             :style="'background-image: url(' + formatLink(product.medias[0].url) + ')'"
             :data-src="formatLink(product.medias[0].url)"
           /> -->
-          <img slot="image" class="img-fluid" :src="formatLink(product.medias[0].url)">
+          <img slot="image" :src="formatLink(product.medias[0].url)" class="img-fluid">
           <img slot="preloader" class="img-fluid" src="~/assets/images/base.png">
           <img slot="error" class="img-fluid" src="~/assets/images/base.png">
         </vue-load-image>

@@ -13,10 +13,10 @@
         </div>
         <div v-show="!is_loading">
           <displayEmpty
-            title="Tidak ada Toko"
-            msg="Silahkan hubungi Custtomer Service kami untuk bantuan"
             :is-visible="toko.length === 0 ? true : false"
             :is-actionable="false"
+            title="Tidak ada Toko"
+            msg="Silahkan hubungi Custtomer Service kami untuk bantuan"
           />
           <div v-show="toko.length > 0">
             <cardStoreStock

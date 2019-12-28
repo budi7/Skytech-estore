@@ -35,7 +35,7 @@ const uac = {
     initStore: (state) => {
       // look for prev data
       let prevData = null
-      if (process.browser) {
+      if (process.client) {
         prevData = window.sessionStorage.getItem('user') ? JSON.parse(window.sessionStorage.getItem('user')) : null
 
         // init value
@@ -53,7 +53,7 @@ const uac = {
       state.profile = payload.user.customer
       state.customer_id = payload.user.customer_id
 
-      if (process.browser) {
+      if (process.client) {
         sessionStorage.setItem('user', JSON.stringify(state))
       }
     },
@@ -64,7 +64,7 @@ const uac = {
       state.name = payload.name
       state.profile = payload
 
-      if (process.browser) {
+      if (process.client) {
         sessionStorage.setItem('user', JSON.stringify(state))
       }
     },
@@ -72,7 +72,7 @@ const uac = {
       state.username = null
       state.token = null
 
-      if (process.browser) {
+      if (process.client) {
         sessionStorage.setItem('user', JSON.stringify(state))
       }
     }
@@ -122,7 +122,7 @@ const uac = {
           }
         }).then((resp) => {
           if (!resp) reject(resp)
-          commit('login', resp)
+          commit('login', { token: '', user: { username: payload.data.username, customer: { name: '' }, customer_id: '' } })
           resolve(resp.data.RequestResetPasswordToken)
         }).catch((error) => {
           reject(error)
@@ -136,11 +136,11 @@ const uac = {
           variables: {
             token: payload.data.token,
             password: payload.data.password,
-            username: ''
+            username: payload.data.username
           }
         }).then((resp) => {
           if (!resp) reject(resp)
-          commit('login', resp)
+          commit('login', { token: '', user: { username: payload.data.username, customer: { name: '' }, customer_id: '' } })
           resolve(resp.data.ResetPasswordWithToken)
         }).catch((error) => {
           reject(error)
@@ -185,7 +185,6 @@ const uac = {
           commit('updateProfile', resp.data.StoreCustomer)
           resolve(resp.data.StoreCustomer)
         }).catch((err) => {
-          console.log(err)
           reject(err)
         })
       })

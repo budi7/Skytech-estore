@@ -18,13 +18,13 @@
         </div>
         <div v-show="!isLoading">
           <displayEmpty
-            title="Belum Ada Data Transaksi"
-            msg="Mulai belanja di Skytech.id"
             :is-visible="invoices.length === 0 ? true : false"
             :is-actionable="true"
+            @retry="$router.push({ path: '/product' })"
+            title="Belum Ada Data Transaksi"
+            msg="Mulai belanja di Skytech.id"
             action-title="Belanja"
             class="mb-5 pb-5"
-            @retry="$router.push({ path: '/product' })"
           />
           <div v-show="invoices.length > 0" class="row py-4">
             <listTransaction
@@ -36,10 +36,10 @@
               <p class="mb-0 text-gray small">
                 Total Tagihan: {{ dt.total | formatPrice }}
               </p>
-              <p class="mb-0 small badge badge-info" v-if="dt.status === 'CONFIRMED'">
+              <p v-if="dt.status === 'CONFIRMED'" class="mb-0 small badge badge-info">
                 {{ dt.status }}
               </p>
-              <p class="mb-0 small badge badge-success" v-if="dt.status === 'CLOSED'">
+              <p v-if="dt.status === 'CLOSED'" class="mb-0 small badge badge-success">
                 {{ dt.status }}
               </p>
             </listTransaction>
@@ -50,8 +50,8 @@
       <displayError
         :msg="errors.msg"
         :is-visible="errors.msg ? true : false"
-        class="mb-5 pb-5"
         @retry="fetchInvoice()"
+        class="mb-5 pb-5"
       />
     </Layout>
 

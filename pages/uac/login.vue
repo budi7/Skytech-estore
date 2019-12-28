@@ -7,7 +7,7 @@
         Login
       </h3>
 
-      <b-alert variant="danger" fade :show="errors.msg">
+      <b-alert :show="errors.msg" variant="danger" fade>
         {{ errors.msg }}
       </b-alert>
 
@@ -15,11 +15,11 @@
         <label for="input-username">Nomor Ponsel</label>
         <b-input
           v-model="username"
+          :disabled="is_loading"
           placeholder="6281xxxxxxxx"
           class="form-control"
           type="text"
           name="input-username"
-          :disabled="is_loading"
         />
       </div>
 
@@ -27,34 +27,34 @@
         <label for="input-password">Password</label>
         <b-input
           v-model="password"
+          :disabled="is_loading"
           placeholder="Password anda"
           class="form-control"
           type="password"
           name="input-password"
-          :disabled="is_loading"
         />
       </div>
 
       <div class="form-group text-right pb-3">
-        <a href="javascript:void(0);" class="text-primary" @click="$router.push({ path: './requestResetPassword' })">
+        <a @click="$router.push({ path: './requestResetPassword' })" href="javascript:void(0);" class="text-primary">
           Lupa Password?
         </a>
       </div>
 
       <div class="form-group pb-1">
-        <b-button variant="primary" block type="submit" :disabled="is_loading">
+        <b-button :disabled="is_loading" variant="primary" block type="submit">
           <span v-show="!is_loading">Login</span><i v-show="is_loading" class="fa fa-circle-o-notch fa-lg fa-spin" />
         </b-button>
       </div>
 
       <div class="form-group">
-        <button class="btn btn-outline-primary btn-block" type="button" @click="$router.push({ path: './register' })">
+        <button @click="$router.push({ path: './register' })" class="btn btn-outline-primary btn-block" type="button">
           Mendaftar
         </button>
       </div>
 
       <div class="form-group py-4 text-center">
-        <a href="javascript:void(0);" class="text-primary" @click="handleBack">
+        <a @click="handleBack" href="javascript:void(0);" class="text-primary">
           {{ pageBeforeLogin ? 'Kembali' : 'Kembali ke Halaman Awal' }} <i class="fa fa-angle-right" />
         </a>
       </div>

@@ -3,8 +3,8 @@
     <div class="row">
       <div class="col-12">
         <div
-          class="card hover py-3 px-3 mb-3"
           @click="toggleSelection('price', false)"
+          class="card hover py-3 px-3 mb-3"
         >
           Harga termurah
         </div>
@@ -12,8 +12,8 @@
 
       <div class="col-12">
         <div
-          class="card hover py-3 px-3 mb-3"
           @click="toggleSelection('price', true)"
+          class="card hover py-3 px-3 mb-3"
         >
           Harga termahal
         </div>
@@ -21,8 +21,8 @@
 
       <div class="col-12">
         <div
-          class="card hover py-3 px-3 mb-3"
           @click="toggleSelection('updated_at', true)"
+          class="card hover py-3 px-3 mb-3"
         >
           Produk terbaru
         </div>
@@ -30,8 +30,8 @@
 
       <div class="col-12">
         <div
-          class="card hover py-3 px-3 mb-3"
           @click="toggleSelection('updated_at', false)"
+          class="card hover py-3 px-3 mb-3"
         >
           Produk terlama
         </div>
@@ -39,8 +39,8 @@
 
       <div class="col-12">
         <div
-          class="card hover py-3 px-3 mb-3"
           @click="toggleSelection('name', false)"
+          class="card hover py-3 px-3 mb-3"
         >
           Abjad A ke Z
         </div>
@@ -48,8 +48,8 @@
 
       <div class="col-12">
         <div
-          class="card hover py-3 px-3 mb-3"
           @click="toggleSelection('name', true)"
+          class="card hover py-3 px-3 mb-3"
         >
           Abjad Z ke A
         </div>

@@ -28,7 +28,7 @@
           <div class="col-12 col-sm-5 col-md-4 col-lg-4 col-xl-3">
             <div class="row">
               <div class="col-2">
-                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger" @click="modalShow = true">
+                <a @click="modalShow = true" href="javascript:void(0);" class="btn btn-sm btn-outline-danger">
                   <i class="fa fa-trash" />
                 </a>
               </div>
@@ -63,11 +63,11 @@
 
     <b-modal
       v-model="modalShow"
+      :hide-header-close="is_loading"
       centered
       hide-footer
       no-close-on-esc
       no-close-on-backdrop
-      :hide-header-close="is_loading"
     >
       <div class="container-fluid">
         <div class="row">
@@ -83,21 +83,21 @@
         <div class="row">
           <div class="col-12 pt-4 pb-3 text-center">
             <b-button
+              :disabled="is_loading"
+              @click="removeCartAddWishlist"
               variant="primary"
               block
               type="button"
-              :disabled="is_loading"
               class="mb-3"
-              @click="removeCartAddWishlist"
             >
               Hapus & Tambah ke Wishlist
             </b-button>
             <b-button
+              :disabled="is_loading"
+              @click="removeCart"
               variant="outline-primary"
               block
               type="button"
-              :disabled="is_loading"
-              @click="removeCart"
             >
               Hapus
             </b-button>

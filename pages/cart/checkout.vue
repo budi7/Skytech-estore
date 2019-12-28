@@ -49,7 +49,7 @@
                 {{ shipping_address.receiver_address.province }}, {{ shipping_address.receiver_address.country }}, {{ shipping_address.receiver_address.zip_code }}
               </span>
             </p>
-            <a href="javascript:void(0);" class="text-primary" @click="openAddressModal()">
+            <a @click="openAddressModal()" href="javascript:void(0);" class="text-primary">
               {{ shipping_address.length === 0 ? 'Tambahkan Alamat' : 'Ubah Alamat' }} <i :class="shipping_address.length === 0 ? 'fa fa-plus' : 'fa fa-exchange'" />
             </a>
           </div>
@@ -65,7 +65,7 @@
                 {{ shipping_store.province }}, {{ shipping_store.country }}, {{ shipping_store.zip_code }}
               </span>
             </p>
-            <a href="javascript:void(0);" :class="shipping_address.length === 0 ? 'disabled' : 'text-primary'" @click="selectShippingStore()">
+            <a :class="shipping_address.length === 0 ? 'disabled' : 'text-primary'" @click="selectShippingStore()" href="javascript:void(0);">
               {{ shipping_store.length === 0 ? 'Pilih Toko' : 'Ubah Toko' }} <i :class="shipping_store.length === 0 ? 'fa fa-plus' : 'fa fa-exchange'" />
             </a>
             <p v-show="shipping_address.length === 0" class="small text-gray">
@@ -121,7 +121,7 @@
                 {{ pickup_store.province }}, {{ pickup_store.country }}, {{ pickup_store.zip_code }}
               </span>
             </p>
-            <a href="javascript:void(0);" class="text-primary" @click="selectPickupStore">
+            <a @click="selectPickupStore" href="javascript:void(0);" class="text-primary">
               {{ pickup_store.length === 0 ? 'Pilih Toko' : 'Ubah Toko' }} <i :class="pickup_store.length === 0 ? 'fa fa-plus' : 'fa fa-exchange'" />
             </a>
           </div>
@@ -146,11 +146,11 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <a href="javascript:void(0);" class="text-primary" @click="selectAllItem()">
+            <a @click="selectAllItem()" href="javascript:void(0);" class="text-primary">
               <i class="fa fa-lg fa-check-circle mr-3" />
               Pilih Semua Produk
             </a>
-            <a href="javascript:void(0);" class="text-primary pull-right" @click="fetchStock()">
+            <a @click="fetchStock()" href="javascript:void(0);" class="text-primary pull-right">
               <i class="fa fa-lg fa-refresh" />
               Refresh
             </a>
@@ -182,7 +182,7 @@
         <div class="row pb-5 mb-4">
           <div class="col-12 col-sm-6 col-md-7 col-xl-8" />
           <div class="col-12 col-sm-6 col-md-5 col-xl-4 text-right">
-            <button class="btn btn-primary btn-block" @click="checkout()">
+            <button @click="checkout()" class="btn btn-primary btn-block">
               Selesaikan Pembayaran
               <i class="fa fa-angle-right" />
             </button>
@@ -207,7 +207,7 @@
           <div class="row h-min">
             <div class="col-12">
               <div class="pt-3">
-                <div class="card hover text-center py-4" @click="openNewAddressModal()">
+                <div @click="openNewAddressModal()" class="card hover text-center py-4">
                   <p class="mb-0">
                     <i class="fa fa-plus" />
                     Alamat Baru
@@ -215,7 +215,7 @@
                 </div>
               </div>
 
-              <listAddress ref="list-address" class="mt-3" @selected="onAddressSelected()" />
+              <listAddress ref="list-address" @selected="onAddressSelected()" class="mt-3" />
             </div>
           </div>
         </b-modal>
@@ -241,8 +241,8 @@
         >
           <listStore
             ref="list-shipping-store"
-            class="h-min"
             @selected="onTokoSelected()"
+            class="h-min"
           />
         </b-modal>
 
@@ -256,19 +256,19 @@
         >
           <listStore
             ref="list-pickup-store"
-            class="h-min"
             @selected="onPickUpTokoSelected()"
+            class="h-min"
           />
         </b-modal>
 
         <b-modal
           ref="modal-finish"
+          :hide-header-close="is_loading"
           title=""
           centered
           hide-footer
           no-close-on-esc
           no-close-on-backdrop
-          :hide-header-close="is_loading"
         >
           <div v-show="shipping_method === 'deliver_product'">
             <div class="row">
@@ -300,7 +300,7 @@
                 </div>
                 <div class="row px-2">
                   <div class="col-12 pr-2">
-                    <div class="card hover px-3 py-2" @click="selectCourier()">
+                    <div @click="selectCourier()" class="card hover px-3 py-2">
                       <p class="mb-0 small text-center">
                         {{ shipping_courier.length === 0 ? 'Pilih Kurir' : 'Ubah Kurir' }}<i class="fa fa-lg fa-angle-right" />
                       </p>
@@ -422,11 +422,11 @@
           <div class="row pt-4">
             <div class="col-12">
               <b-button
+                :disabled="isAllowedSubmit || is_loading"
+                @click="createSO"
                 variant="primary"
                 block
                 type="button"
-                :disabled="isAllowedSubmit || is_loading"
-                @click="createSO"
               >
                 <span v-show="!is_loading">
                   Bayar
@@ -447,8 +447,8 @@
         >
           <listCourier
             ref="list-courier"
-            class="h-min"
             @selected="onCourierSelected"
+            class="h-min"
           />
         </b-modal>
       </no-ssr>

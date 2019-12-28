@@ -13,10 +13,10 @@
         </div>
         <div v-show="!is_loading">
           <displayEmpty
-            title="Data Alamat Kosong"
-            msg="Klik tombol tambah alamat baru untuk menambahkan alamat Anda"
             :is-visible="addresses.length === 0 ? true : false"
             :is-actionable="false"
+            title="Data Alamat Kosong"
+            msg="Klik tombol tambah alamat baru untuk menambahkan alamat Anda"
           />
           <div v-show="addresses.length > 0">
             <div

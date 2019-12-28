@@ -1,18 +1,18 @@
 <template>
   <div class="row">
     <div class="col-12">
-      <form class="pt-3" @submit.prevent="saveAddress()">
+      <form @submit.prevent="saveAddress()" class="pt-3">
         <div class="form-group">
           <div class="row">
             <div class="col-6">
               <label for="input-nama">Nama Penerima</label>
               <b-input
                 v-model="nama"
+                :disabled="is_loading === true"
                 placeholder="Nama Sesuai KTP"
                 class="form-control"
                 type="text"
                 name="input-nama"
-                :disabled="is_loading === true"
               />
               <formError :msg="errors.data.nama" />
             </div>
@@ -20,11 +20,11 @@
               <label for="input-n-hp">Nomor HP</label>
               <b-input
                 v-model="no_hp"
+                :disabled="is_loading === true"
                 placeholder="081xxxxxxxxxx"
                 class="form-control"
                 type="tel"
                 name="input-no_hp"
-                :disabled="is_loading === true"
               />
               <formError :msg="errors.data.no_hp" />
             </div>
@@ -36,9 +36,9 @@
               <label for="input-province">Provinsi</label>
               <b-form-select
                 v-model.lazy="province"
-                placholder="pilih"
                 :options="option_province"
                 :disabled="is_loading === true"
+                placholder="pilih"
               />
               <formError :msg="errors.data.province" />
             </div>
@@ -59,11 +59,11 @@
               <label for="input-zip_code">Kode Pos</label>
               <b-input
                 v-model="zip_code"
+                :disabled="is_loading === true"
                 placeholder="xxxxx"
                 class="form-control"
                 type="tel"
                 name="input-zip_code"
-                :disabled="is_loading === true"
               />
               <formError :msg="errors.data.zip_code" />
             </div>
@@ -73,16 +73,16 @@
           <label for="input-address">Alamat Lengkap</label>
           <b-form-textarea
             v-model="address"
+            :disabled="is_loading === true"
             placeholder="Detail alamat pengiriman"
             rows="3"
             max-rows="3"
-            :disabled="is_loading === true"
             no-resize
           />
           <formError :msg="errors.data.address" />
         </div>
         <div class="form-group pt-3">
-          <b-button variant="primary" block type="submit" :disabled="is_loading">
+          <b-button :disabled="is_loading" variant="primary" block type="submit">
             <span v-show="!is_loading">Tambah</span><i v-show="is_loading" class="fa fa-circle-o-notch fa-lg fa-spin" />
           </b-button>
         </div>

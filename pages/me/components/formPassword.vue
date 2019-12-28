@@ -1,6 +1,6 @@
 <template>
-  <form class="pt-3" @submit.prevent="savePassword()">
-    <b-alert variant="danger" fade :show="errors.msg">
+  <form @submit.prevent="savePassword()" class="pt-3">
+    <b-alert :show="errors.msg" variant="danger" fade>
       {{ errors.msg }}
     </b-alert>
 
@@ -10,11 +10,11 @@
           <label for="input-old_password">Password Lama</label>
           <b-input
             v-model="old_password"
+            :disabled="is_loading === true"
             placeholder="6-15 karakter password"
             class="form-control"
             type="password"
             name="input-old_password"
-            :disabled="is_loading === true"
           />
           <formError :msg="errors.data.old_password" />
         </div>
@@ -27,11 +27,11 @@
           <label for="input-new_password">Password Baru</label>
           <b-input
             v-model="new_password"
+            :disabled="is_loading === true"
             placeholder="6-15 karakter password"
             class="form-control"
             type="password"
             name="input-new_password"
-            :disabled="is_loading === true"
           />
           <formError :msg="errors.data.new_password" />
         </div>
@@ -39,7 +39,7 @@
     </div>
 
     <div class="form-group pt-3">
-      <b-button variant="primary" block type="submit" :disabled="is_loading">
+      <b-button :disabled="is_loading" variant="primary" block type="submit">
         <span v-show="!is_loading">Simpan</span><i v-show="is_loading" class="fa fa-circle-o-notch fa-lg fa-spin" />
       </b-button>
     </div>

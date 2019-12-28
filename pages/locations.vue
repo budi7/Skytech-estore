@@ -23,10 +23,10 @@
             </div>
             <div class="col-12 col-sm-8">
               <iframe
+                :src="parseAdr(data)"
                 frameborder="0"
                 style="border:0;Width:100% !important; background-color: #f4f4f4!important;"
                 height="320"
-                :src="parseAdr(data)"
               />
             </div>
           </div>

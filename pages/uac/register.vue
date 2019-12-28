@@ -7,18 +7,18 @@
         Daftar
       </h3>
 
-      <b-alert variant="danger" fade :show="errors.msg">
+      <b-alert :show="errors.msg" variant="danger" fade>
         {{ errors.msg }}
       </b-alert>
 
       <b-form-group label="Nama Lengkap">
         <b-input
           v-model="name"
+          :disabled="is_loading"
           placeholder="Nama sesuai ktp"
           class="form-control"
           type="text"
           name="input-name"
-          :disabled="is_loading"
         />
         <formError :msg="errors.data.name" />
       </b-form-group>
@@ -26,11 +26,11 @@
       <b-form-group label="Nomor Ponsel">
         <b-input
           v-model="username"
+          :disabled="is_loading"
           placeholder="6281xxxxxxxx"
           class="form-control"
           type="text"
           name="input-username"
-          :disabled="is_loading"
         />
         <formError :msg="errors.data.username" />
       </b-form-group>
@@ -38,29 +38,29 @@
       <b-form-group label="Password">
         <b-input
           v-model="password"
+          :disabled="is_loading"
           placeholder="Password anda"
           class="form-control"
           type="password"
           name="input-password"
-          :disabled="is_loading"
         />
         <formError :msg="errors.data.password" />
       </b-form-group>
 
       <div class="form-group pb-1 pt-3">
-        <b-button variant="primary" block type="submit" :disabled="is_loading">
+        <b-button :disabled="is_loading" variant="primary" block type="submit">
           <span v-show="!is_loading">Mendaftar</span><i v-show="is_loading" class="fa fa-circle-o-notch fa-lg fa-spin" />
         </b-button>
       </div>
 
       <div class="form-group">
-        <button class="btn btn-outline-primary btn-block" type="button" @click="$router.push({ path: './login' })">
+        <button @click="$router.push({ path: './login' })" class="btn btn-outline-primary btn-block" type="button">
           Login
         </button>
       </div>
 
       <div class="form-group py-4 text-center">
-        <a href="javascript:void(0);" class="text-primary" @click="$router.push({ path: '/' })">Kembali ke Halaman Awal <i class="fa fa-angle-right" /></a>
+        <a @click="$router.push({ path: '/' })" href="javascript:void(0);" class="text-primary">Kembali ke Halaman Awal <i class="fa fa-angle-right" /></a>
       </div>
     </form>
   </div>

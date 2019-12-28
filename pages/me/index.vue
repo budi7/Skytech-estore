@@ -39,10 +39,10 @@
         {{ address ? address : 'Belum diisi' }}
       </p>
 
-      <button class="btn btn-outline-primary mr-2" type="button" @click="editProfile">
+      <button @click="editProfile" class="btn btn-outline-primary mr-2" type="button">
         {{ $store.getters['modules/uac/isProfileDataCompleted'] === false ? 'Lengkapi Data Pribadi' : 'Perbarui Profile' }}
       </button>
-      <button class="btn btn-outline-primary mr-2" type="button" @click="editPassword">
+      <button @click="editPassword" class="btn btn-outline-primary mr-2" type="button">
         Perbarui Password
       </button>
 
@@ -53,12 +53,12 @@
 
     <b-modal
       ref="modal-update-profile"
+      :hide-header-close="isLoading"
       title="Perbarui Profile"
       centered
       hide-footer
       no-close-on-esc
       no-close-on-backdrop
-      :hide-header-close="isLoading"
     >
       <formProfile
         ref="form-profile"
@@ -70,12 +70,12 @@
 
     <b-modal
       ref="modal-update-password"
+      :hide-header-close="isLoading"
       title="Perbarui Password"
       centered
       hide-footer
       no-close-on-esc
       no-close-on-backdrop
-      :hide-header-close="isLoading"
     >
       <formPassword
         ref="form-password"

@@ -6,7 +6,7 @@
       <h4 class="mt-3 mb-1">
         Detail Tagihan Pembelian
       </h4>
-      <a href="javascript:void(0);" class="text-primary small" @click="$router.push({ path: '/me/invoices' })">
+      <a @click="$router.push({ path: '/me/invoices' })" href="javascript:void(0);" class="text-primary small">
         <i class="fa fa-angle-left" /> Kembali
       </a>
 
@@ -224,10 +224,10 @@
             </div>
           </div>
           <displayError
-            msg="Tidak dapat memuat data"
             :is-visible="isError ? true : false"
-            class="mb-5 pb-5"
             @retry="fetchTransaction()"
+            msg="Tidak dapat memuat data"
+            class="mb-5 pb-5"
           />
         </div>
       </no-ssr>

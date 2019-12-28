@@ -2,7 +2,7 @@
   <div>
     <componentLogo />
 
-    <form @submit.prevent="request()">
+    <form @submit.prevent="request">
       <h3 class="mb-3">
         Lupa Password
       </h3>
@@ -18,23 +18,23 @@
         <label for="input-username">Nomor Ponsel</label>
         <b-input
           v-model="username"
+          :disabled="is_loading"
           placeholder="6281xxxxxxxx"
           class="form-control"
           type="text"
           name="input-username"
-          :disabled="is_loading"
         />
         <formError :msg="errors.data.username" />
       </div>
 
       <div class="form-group pb-1 pt-3">
-        <b-button variant="primary" block type="submit" :disabled="is_loading">
+        <b-button :disabled="is_loading" variant="primary" block type="submit">
           <span v-show="!is_loading">Kirim Kode</span><i v-show="is_loading" class="fa fa-circle-o-notch fa-lg fa-spin" />
         </b-button>
       </div>
 
       <div class="form-group py-4 text-center">
-        <a href="javascript:void(0);" class="text-primary" @click="$router.push({ path: '/uac/login' })">Kembali<i class="fa fa-angle-right" /></a>
+        <a @click="$router.push({ path: '/uac/login' })" href="javascript:void(0);" class="text-primary">Kembali<i class="fa fa-angle-right" /></a>
       </div>
     </form>
   </div>
@@ -76,15 +76,12 @@ export default {
 
         this.$router.push({ path: '/uac/resetPassword' })
       }).catch((err) => {
-        console.log('error : ' + err)
         this.errors = errorHandler(this, {
           response: err,
           global: false,
           msg: 'Tidak dapat mengirimkan kode',
           debug: 'GQL forgotPassword'
         })
-
-        console.log(this.errors)
         this.is_loading = false
       })
     }
