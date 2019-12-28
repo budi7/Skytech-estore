@@ -108,7 +108,7 @@ export default {
     //     }
     //   });
     // },
-    publicPath: '_nuxt/dist/',
+    publicPath: '_nuxt/dist/client/',
     filenames: { chunk: '[name].[chunkhash].js' }
   },
   buildDir: '_nuxt'

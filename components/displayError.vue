@@ -1,7 +1,7 @@
 <template>
   <div v-show="isVisible" class="row justify-content-center">
     <div class="col-10 col-sm-8 col-md-7 col-xl-6 pt-5 text-center">
-      <img src="https://estore.skytech.id/assets/images/error.png">
+      <img src="https://skytech.id/assets/images/error.png">
       <p class="mt-2 mb-0">
         <strong>
           {{ title }}

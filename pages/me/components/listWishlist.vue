@@ -3,7 +3,7 @@
     <div class="col-5 col-sm-4 col-md-3 pr-0 py-3">
       <img
         class="img-fluid img-sm bg-white ml-2"
-        src="https://estore.skytech.id/assets/images/temp1a.png"
+        src="https://skytech.id/assets/images/temp1a.png"
         style="width:65%!important;"
       >
     </div>
