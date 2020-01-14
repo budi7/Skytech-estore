@@ -12,7 +12,67 @@
           </vue-load-image>
           <img v-else class="img-fluid" src="~/assets/images/base.png">
         </div>
-        <div class="col-12 col-sm-8 col-md-7 col-xl-6 pt-4 ml-4">
+        <div class="d-none d-sm-block col-sm-8 col-md-7 col-xl-6 pt-4 ml-4">
+          <h2 class="mb-3">
+            {{ product.name }}
+          </h2>
+          <p v-if="product.price && product.price.discount" class="text-line text-gray mb-1 small">
+            {{ product.price ? (product.price ? product.price.price : 0) : 0 | formatPrice }}
+          </p>
+          <p v-else class="text-line text-gray mb-1 small">
+            &nbsp;
+          </p>
+          <h6>
+            {{ product.price ? (product.price ? (product.price.price - product.price.discount) : 0) : 0 | formatPrice }}
+          </h6>
+          <div class="clearfix pt-4" />
+          <!-- <a href="javascript:void(0):" class="fa fa-plus-circle fa-2x" /> -->
+          <div class="row">
+            <div class="col-10 col-sm-5 col-md-4 col-xl-4 pr-0">
+              <ProductQuantity v-model="qty" />
+            </div>
+            <div class="col-2 col-sm-2 col-md-2 col-xl-2">
+              <a @click="toggleWishlist" href="javascript:void(0);" class="btn btn-sm btn-block btn-outline-secondary">
+                <i :class="isWishlistLoading ? 'fa fa-lg fa-circle-o-notch fa-spin' : ($store.getters['modules/wishlist/isOn'](product.upc) === true ? 'fa fa-lg fa-heart text-danger' : 'fa fa-lg fa-heart-o')" />
+              </a>
+            </div>
+          </div>
+          <div class="row pt-3 mb-1">
+            <div class="col-12 col-sm-4 col-md-6 pr-1 mb-3">
+              <a @click="addToCart(true)" href="javascript:void(0);" class="btn btn-sm btn-block btn-primary">
+                Beli Sekarang
+              </a>
+            </div>
+            <div class="col-12 col-sm-8 col-md-6 pl-1 mb-3">
+              <a @click="addToCart()" href="javascript:void(0);" class="btn btn-sm btn-block btn-outline-primary">
+                <i class="fa fa-cart-plus fa-lg" /> Tambahkan ke Keranjang
+              </a>
+            </div>
+          </div>
+          <!-- <hr>
+          <div class="row">
+            <div class="col-4 text-center">
+              <a href="#" class="text-gray">
+                <i class="fa fa-lg fa-heart-o" />
+                <span> Wishlist</span>
+              </a>
+            </div>
+            <div class="col-4 text-center">
+              <a href="#" class="text-gray">
+                <i class="fa fa-lg fa-balance-scale" />
+                <span> Bandingkan</span>
+              </a>
+            </div>
+            <div class="col-4 text-center">
+              <a href="#" class="text-gray">
+                <i class="fa fa-lg fa-share-alt" />
+                <span> Bagikan</span>
+              </a>
+            </div>
+          </div>
+          <hr> -->
+        </div>
+        <div class="d-block d-sm-none col-12 pt-4">
           <h2 class="mb-3">
             {{ product.name }}
           </h2>
