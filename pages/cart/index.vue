@@ -23,7 +23,7 @@
             <h6 class="mb-2">
               Tidak dapat memuat data
             </h6>
-            <a @click="fetchCart" href="javascript:void(0);" class="btn btn-sm btn-secondary">
+            <a href="javascript:void(0);" class="btn btn-sm btn-secondary" @click="fetchCart">
               Coba Lagi
             </a>
           </div>
@@ -56,11 +56,11 @@
             </div>
             <div class="row pt-4 pb-5 d-none d-sm-block">
               <div class="col-12">
-                <a @click="$router.push({ path: '/product' })" href="javascript:void(0);" class="btn btn-outline-primary">
+                <a href="javascript:void(0);" class="btn btn-outline-primary" @click="$router.push({ path: '/product' })">
                   <i class="fa fa-angle-left" />
                   Belanja Lagi
                 </a>
-                <a @click="$router.push({ path: '/cart/checkout' })" href="javascript:void(0);" class="btn btn-primary pull-right">
+                <a href="javascript:void(0);" class="btn btn-primary pull-right" @click="$router.push({ path: '/cart/checkout' })">
                   Checkout
                   <i class="fa fa-angle-right" />
                 </a>
@@ -68,10 +68,10 @@
             </div>
             <div class="row pt-4 pb-5 d-lg-none d-xl-none d-md-none d-sm-none">
               <div class="col-12 py-3">
-                <a href="javascript:void(0);" class="btn btn-block btn-primary mb-3">
+                <a href="javascript:void(0);" class="btn btn-block btn-primary mb-3" @click="$router.push({ path: '/cart/checkout' })">
                   Checkout
                 </a>
-                <a href="javascript:void(0);" class="btn btn-block btn-outline-primary">
+                <a href="javascript:void(0);" class="btn btn-block btn-outline-primary" @click="$router.push({ path: '/product' })">
                   Belanja Lagi
                 </a>
               </div>
@@ -83,7 +83,7 @@
                 <h6 class="mb-2">
                   Keranjang masih kosong
                 </h6>
-                <a @click="$router.push({ path: '/product' })" href="javascript:void(0);" class="btn btn-sm btn-secondary">
+                <a href="javascript:void(0);" class="btn btn-sm btn-secondary" @click="$router.push({ path: '/product' })">
                   Belanja
                   <i class="fa fa-angle-right" />
                 </a>
@@ -111,8 +111,8 @@ export default {
     HeaderBar,
     FooterBar
   },
-  beforeRouteEnter(to, from, next) {
-    next((vm) => {
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
       if (!vm.$store.getters['modules/uac/isAuthed']) {
         vm.errors = errorHandler(vm, {
           global: true,
@@ -125,25 +125,25 @@ export default {
       }
     })
   },
-  data() {
+  data () {
     return {
       isLoading: false,
       isError: false,
       carts: []
     }
   },
-  created() {
+  created () {
     // this.$store.commit('modules/cart/countCartTotal')
     // this.$store.commit('modules/cart/countCart')
     // this.carts = this.$store.state.modules.cart.cart_items
   },
-  mounted() {
+  mounted () {
     this.$nextTick(() => {
       this.fetchCart()
     })
   },
   methods: {
-    fetchCart() {
+    fetchCart () {
       // can i?
       if (this.isLoading) return
 
@@ -156,11 +156,11 @@ export default {
       this.$store.dispatch('modules/cart/cartFetch', {
         apolloClient: this.$apollo,
         data: null
-      }).then((res) => {
+      }).then(res => {
         vm.isLoading = false
         vm.isError = false
         vm.carts = res.data
-      }).catch((err) => {
+      }).catch(err => {
         vm.isLoading = false
         vm.isError = true
 
@@ -196,7 +196,7 @@ export default {
         }
       })
     },
-    updateCart(val) {
+    updateCart (val) {
       // can i?
       // if (this.isLoading) return
 
