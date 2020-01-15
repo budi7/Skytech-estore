@@ -38,12 +38,12 @@
             </div>
           </div>
           <div class="row pt-3 mb-1">
-            <div class="col-12 col-sm-4 col-md-6 pr-1 mb-3">
+            <div class="col-12 col-sm-4 col-md-6 mb-3">
               <a @click="addToCart(true)" href="javascript:void(0);" class="btn btn-sm btn-block btn-primary">
                 Beli Sekarang
               </a>
             </div>
-            <div class="col-12 col-sm-8 col-md-6 pl-1 mb-3">
+            <div class="col-12 col-sm-8 col-md-6 mb-3">
               <a @click="addToCart()" href="javascript:void(0);" class="btn btn-sm btn-block btn-outline-primary">
                 <i class="fa fa-cart-plus fa-lg" /> Tambahkan ke Keranjang
               </a>
