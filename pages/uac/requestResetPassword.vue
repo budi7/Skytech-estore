@@ -10,7 +10,7 @@
         Masukkan nomor ponsel Anda untuk mengirimkan kode penggantian password.
       </p>
 
-      <b-alert variant="danger" fade :show="errors.msg">
+      <b-alert :show="errors.msg" variant="danger" fade>
         {{ errors.msg }}
       </b-alert>
 
