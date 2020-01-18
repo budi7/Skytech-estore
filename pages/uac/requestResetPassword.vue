@@ -34,7 +34,7 @@
       </div>
 
       <div class="form-group py-4 text-center">
-        <a @click="$router.push({ path: '/uac/login' })" href="javascript:void(0);" class="text-primary">Kembali<i class="fa fa-angle-right" /></a>
+        <a href="javascript:void(0);" class="text-primary" @click="$router.push({ path: '/uac/login' })">Kembali<i class="fa fa-angle-right" /></a>
       </div>
     </form>
   </div>

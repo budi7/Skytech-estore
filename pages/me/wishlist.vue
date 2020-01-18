@@ -20,11 +20,11 @@
           <displayEmpty
             :is-visible="products.length === 0 ? true : false"
             :is-actionable="true"
-            @retry="$router.push({ path: '/product' })"
             title="Wishlist Anda Kosong"
             msg="Untuk melihat wishlist, Anda perlu untuk mulai menambahkan barang yang Anda inginkan kedalam wishlist terlebih dahulu"
             action-title="Mulai"
             class="mb-5 pb-5"
+            @retry="$router.push({ path: '/product' })"
           />
           <div v-show="products.length > 0" class="row py-4">
             <listWishlist v-for="(product, i) in products" :key="i" :product="product" class="col-12" />
@@ -35,8 +35,8 @@
       <displayError
         :msg="errors.msg"
         :is-visible="errors.msg ? true : false"
-        @retry="fetchWishlist()"
         class="mb-5 pb-5"
+        @retry="fetchWishlist()"
       />
     </Layout>
 

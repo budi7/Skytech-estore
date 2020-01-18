@@ -69,7 +69,7 @@
       </div> -->
       <div class="row py-3 pl-3">
         <div v-for="(data, i) in categories" :key="i" class="col-6 col-md-4 col-xl-3 mb-3 pl-0">
-          <div @click="selectCategory(data)" class="card-category align-items-center card-group">
+          <div class="card-category align-items-center card-group" @click="selectCategory(data)">
             <h3 class="mb-0">
               {{ data.category }}
             </h3>
@@ -92,7 +92,7 @@
       </div>
       <div v-if="$store.state.modules.product.product_hasMorePages" v-show="!isLoading" class="row py-4 justify-content-center">
         <div class="col-8 col-sm-6 col-md-4 col-lg-3 ">
-          <a @click="nextPageProduct()" href="javascript:void(0);" class="btn btn-outline-primary btn-block mb-5">
+          <a href="javascript:void(0);" class="btn btn-outline-primary btn-block mb-5" @click="nextPageProduct()">
             Muat Lebih Banyak
           </a>
         </div>

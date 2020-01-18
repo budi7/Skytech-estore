@@ -32,19 +32,19 @@
               <ProductQuantity v-model="qty" />
             </div>
             <div class="col-2 col-sm-2 col-md-2 col-xl-2">
-              <a @click="toggleWishlist" href="javascript:void(0);" class="btn btn-sm btn-block btn-outline-secondary">
+              <a href="javascript:void(0);" class="btn btn-sm btn-block btn-outline-secondary" @click="toggleWishlist">
                 <i :class="isWishlistLoading ? 'fa fa-lg fa-circle-o-notch fa-spin' : ($store.getters['modules/wishlist/isOn'](product.upc) === true ? 'fa fa-lg fa-heart text-danger' : 'fa fa-lg fa-heart-o')" />
               </a>
             </div>
           </div>
           <div class="row pt-3 mb-1">
             <div class="col-12 col-sm-4 col-md-6 mb-3">
-              <a @click="addToCart(true)" href="javascript:void(0);" class="btn btn-sm btn-block btn-primary">
+              <a href="javascript:void(0);" class="btn btn-sm btn-block btn-primary" @click="addToCart(true)">
                 Beli Sekarang
               </a>
             </div>
             <div class="col-12 col-sm-8 col-md-6 mb-3">
-              <a @click="addToCart()" href="javascript:void(0);" class="btn btn-sm btn-block btn-outline-primary">
+              <a href="javascript:void(0);" class="btn btn-sm btn-block btn-outline-primary" @click="addToCart()">
                 <i class="fa fa-cart-plus fa-lg" /> Tambahkan ke Keranjang
               </a>
             </div>
@@ -92,19 +92,19 @@
               <ProductQuantity v-model="qty" />
             </div>
             <div class="col-2 col-sm-2 col-md-2 col-xl-2">
-              <a @click="toggleWishlist" href="javascript:void(0);" class="btn btn-sm btn-block btn-outline-secondary">
+              <a href="javascript:void(0);" class="btn btn-sm btn-block btn-outline-secondary" @click="toggleWishlist">
                 <i :class="isWishlistLoading ? 'fa fa-lg fa-circle-o-notch fa-spin' : ($store.getters['modules/wishlist/isOn'](product.upc) === true ? 'fa fa-lg fa-heart text-danger' : 'fa fa-lg fa-heart-o')" />
               </a>
             </div>
           </div>
           <div class="row pt-3 mb-1">
             <div class="col-12 col-sm-4 col-md-6 mb-3">
-              <a @click="addToCart(true)" href="javascript:void(0);" class="btn btn-sm btn-block btn-primary">
+              <a href="javascript:void(0);" class="btn btn-sm btn-block btn-primary" @click="addToCart(true)">
                 Beli Sekarang
               </a>
             </div>
             <div class="col-12 col-sm-8 col-md-6 mb-3">
-              <a @click="addToCart()" href="javascript:void(0);" class="btn btn-sm btn-block btn-outline-primary">
+              <a href="javascript:void(0);" class="btn btn-sm btn-block btn-outline-primary" @click="addToCart()">
                 <i class="fa fa-cart-plus fa-lg" /> Tambahkan ke Keranjang
               </a>
             </div>

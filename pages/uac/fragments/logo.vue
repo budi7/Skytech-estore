@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-12 py-5 text-center">
-      <a @click="$router.push({ path: '/' })" href="javascript:void(0);">
+      <a href="javascript:void(0);" @click="$router.push({ path: '/' })">
         <img src="https://skytech.id/assets/images/logo-default.png" class="d-inline-block align-top img-fluid main-logo" alt="">
       </a>
     </div>

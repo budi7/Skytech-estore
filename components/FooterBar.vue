@@ -4,7 +4,7 @@
       <div class="container text-md-left">
         <div class="row">
           <div class="col-6 logo pr-0">
-            <a @click="$router.push({ path: '/' })" class="navbar-brand menu-left head pt-2" href="#">
+            <a class="navbar-brand menu-left head pt-2" href="#" @click="$router.push({ path: '/' })">
               <img src="https://skytech.id/assets/images/logo-only.png" height="30" class="d-inline-block align-center" alt="">
               <span>
                 SKYTECH
@@ -102,7 +102,7 @@
     </footer>
     <footer class="bg-primary mt-4">
       <div class="footer-copyright text-center py-2">
-        <a @click="$router.push({ path: '/' })" href="javascript:void(0);" class="text-white">
+        <a href="javascript:void(0);" class="text-white" @click="$router.push({ path: '/' })">
           © 2019 COPYRIGHT SKYTECH
         </a>
       </div>

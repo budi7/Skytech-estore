@@ -20,11 +20,11 @@
           <displayEmpty
             :is-visible="invoices.length === 0 ? true : false"
             :is-actionable="true"
-            @retry="$router.push({ path: '/product' })"
             title="Belum Ada Data Transaksi"
             msg="Mulai belanja di Skytech.id"
             action-title="Belanja"
             class="mb-5 pb-5"
+            @retry="$router.push({ path: '/product' })"
           />
           <div v-show="invoices.length > 0" class="row py-4">
             <listTransaction
@@ -50,8 +50,8 @@
       <displayError
         :msg="errors.msg"
         :is-visible="errors.msg ? true : false"
-        @retry="fetchInvoice()"
         class="mb-5 pb-5"
+        @retry="fetchInvoice()"
       />
     </Layout>
 

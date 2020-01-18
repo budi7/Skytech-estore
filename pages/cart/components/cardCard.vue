@@ -28,7 +28,7 @@
           <div class="col-12 col-sm-5 col-md-4 col-lg-4 col-xl-3">
             <div class="row">
               <div class="col-2">
-                <a @click="modalShow = true" href="javascript:void(0);" class="btn btn-sm btn-outline-danger">
+                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger" @click="modalShow = true">
                   <i class="fa fa-trash" />
                 </a>
               </div>
@@ -84,20 +84,20 @@
           <div class="col-12 pt-4 pb-3 text-center">
             <b-button
               :disabled="is_loading"
-              @click="removeCartAddWishlist"
               variant="primary"
               block
               type="button"
               class="mb-3"
+              @click="removeCartAddWishlist"
             >
               Hapus & Tambah ke Wishlist
             </b-button>
             <b-button
               :disabled="is_loading"
-              @click="removeCart"
               variant="outline-primary"
               block
               type="button"
+              @click="removeCart"
             >
               Hapus
             </b-button>

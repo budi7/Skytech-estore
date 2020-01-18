@@ -10,26 +10,26 @@
               &nbsp;
                 {{ search }}
               &nbsp;
-                <a @click="clearSearch" href="#" class="mb-1 text-primary">
+                <a href="#" class="mb-1 text-primary" @click="clearSearch">
                   [Hapus Pencarian]
                 </a>
               </div>
             </div>
             <div class="col-8 pr-0 pb-1 text-right">
-              <a @click="openModalKategori" href="javascript:void(0);" class="mb-0 text-gray pr-4">
+              <a href="javascript:void(0);" class="mb-0 text-gray pr-4" @click="openModalKategori">
                 <i class="fa fa-angle-down" />
                 {{ kategori ? kategori : 'Semua Kategori' }}
               </a>
-              <a @click="openModalBrand" href="javascript:void(0);" class="mb-0 text-gray pr-4">
+              <a href="javascript:void(0);" class="mb-0 text-gray pr-4" @click="openModalBrand">
                 <i class="fa fa-angle-down" />
                 {{ brand ? brand : 'Semua Merek' }}
               </a>
-              <a @click="openModalHarga" href="javascript:void(0);" class="mb-0 text-gray pr-4">
+              <a href="javascript:void(0);" class="mb-0 text-gray pr-4" @click="openModalHarga">
                 <i class="fa fa-angle-down" />
                 Harga
                 <i v-show="price_end || price_start" class="fa fa-check-circle" />
               </a>
-              <a @click="openModalSorting" href="javascript:void(0);" class="mb-0 text-gray">
+              <a href="javascript:void(0);" class="mb-0 text-gray" @click="openModalSorting">
                 <i class="fa fa-angle-down" />
                 Urutkan
                 <i v-show="orderBy" class="fa fa-check-circle" />
@@ -42,14 +42,14 @@
 
     <div class="container after-nav mt-5">
       <div class="row py-4 pl-4">
-        <ProductCard v-for="(dt, i) in $store.state.modules.product.products" :key="i" :product="dt" @tapped="$router.push({ path: '/product/' + dt.id })" class="mb-3" />
+        <ProductCard v-for="(dt, i) in $store.state.modules.product.products" :key="i" :product="dt" class="mb-3" @tapped="$router.push({ path: '/product/' + dt.id })" />
         <div class="col-12">
           <ProductLoader v-show="isLoading" :n="12" />
         </div>
       </div>
       <div v-if="$store.state.modules.product.product_hasMorePages" v-show="!isLoading" class="row py-4 justify-content-center">
         <div class="col-8 col-sm-6 col-md-4 col-lg-3 ">
-          <a @click="nextPageProduct()" href="javascript:void(0);" class="btn btn-outline-primary btn-block mb-5">
+          <a href="javascript:void(0);" class="btn btn-outline-primary btn-block mb-5" @click="nextPageProduct()">
             Muat Lebih Banyak
           </a>
         </div>

@@ -10,7 +10,7 @@
       <p class="small mb-4">
         {{ msg }}
       </p>
-      <button v-if="isActionable" @click="retry()" class="btn btn-secondary btn-sm">
+      <button v-if="isActionable" class="btn btn-secondary btn-sm" @click="retry()">
         {{ actionTitle }}
       </button>
     </div>

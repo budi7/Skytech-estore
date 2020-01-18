@@ -36,7 +36,7 @@
       </div>
 
       <div class="form-group text-right pb-3">
-        <a @click="$router.push({ path: './requestResetPassword' })" href="javascript:void(0);" class="text-primary">
+        <a href="javascript:void(0);" class="text-primary" @click="$router.push({ path: './requestResetPassword' })">
           Lupa Password?
         </a>
       </div>
@@ -48,13 +48,13 @@
       </div>
 
       <div class="form-group">
-        <button @click="$router.push({ path: './register' })" class="btn btn-outline-primary btn-block" type="button">
+        <button class="btn btn-outline-primary btn-block" type="button" @click="$router.push({ path: './register' })">
           Mendaftar
         </button>
       </div>
 
       <div class="form-group py-4 text-center">
-        <a @click="handleBack" href="javascript:void(0);" class="text-primary">
+        <a href="javascript:void(0);" class="text-primary" @click="handleBack">
           {{ pageBeforeLogin ? 'Kembali' : 'Kembali ke Halaman Awal' }} <i class="fa fa-angle-right" />
         </a>
       </div>

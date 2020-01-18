@@ -16,8 +16,8 @@
             class="col-12 pl-0"
           >
             <div
-              @click="toggleSelection(null)"
               class="card hover py-3 px-3 mb-3"
+              @click="toggleSelection(null)"
             >
               Semua Kategori
             </div>
@@ -28,8 +28,8 @@
             class="col-6 pl-0 pr-3"
           >
             <div
-              @click="toggleSelection(dt)"
               class="card hover py-3 px-3 mb-3"
+              @click="toggleSelection(dt)"
             >
               {{ dt.category }}
             </div>
@@ -39,8 +39,8 @@
       <div v-show="isError">
         <displayError
           :is-visible="true"
-          @retry="fetch()"
           msg="Tidak dapat memuat kategori"
+          @retry="fetch()"
         />
       </div>
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <div @click="$emit('tapped')" class="col-6 col-sm-4 col-md-4 col-lg-3 pl-0 pr-4">
+  <div class="col-6 col-sm-4 col-md-4 col-lg-3 pl-0 pr-4" @click="$emit('tapped')">
     <div class="card card-product mb-4">
       <div class="card-body">
         <vue-load-image v-if="product.medias.length > 0 && product.medias[0]">

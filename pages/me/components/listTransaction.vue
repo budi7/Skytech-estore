@@ -1,5 +1,5 @@
 <template>
-  <div @click="$router.push({ path: '/me/' + url + '/' + transaction.id })" class="row clickable cartCard">
+  <div class="row clickable cartCard" @click="$router.push({ path: '/me/' + url + '/' + transaction.id })">
     <div class="col-12">
       <div class="row py-3">
         <div class="col-8">

@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-12">
-      <form @submit.prevent="saveAddress()" class="pt-3">
+      <form class="pt-3" @submit.prevent="saveAddress()">
         <div class="form-group">
           <div class="row">
             <div class="col-6">

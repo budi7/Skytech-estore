@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="savePassword()" class="pt-3">
+  <form class="pt-3" @submit.prevent="savePassword()">
     <b-alert :show="errors.msg" variant="danger" fade>
       {{ errors.msg }}
     </b-alert>

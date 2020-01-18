@@ -11,7 +11,7 @@
           </h1>
           <h3>Print Header</h3>
         </printer>
-        <button @click="print" class="btn btn-primary">
+        <button class="btn btn-primary" @click="print">
           Print
         </button>
       </div>

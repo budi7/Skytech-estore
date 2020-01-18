@@ -23,7 +23,7 @@
             <h6 class="mb-2">
               Tidak dapat memuat data
             </h6>
-            <a @click="fetchCart" href="javascript:void(0);" class="btn btn-sm btn-secondary">
+            <a href="javascript:void(0);" class="btn btn-sm btn-secondary" @click="fetchCart">
               Coba Lagi
             </a>
           </div>
@@ -56,11 +56,11 @@
             </div>
             <div class="row pt-4 pb-5 d-none d-sm-block">
               <div class="col-12">
-                <a @click="$router.push({ path: '/product' })" href="javascript:void(0);" class="btn btn-outline-primary">
+                <a href="javascript:void(0);" class="btn btn-outline-primary" @click="$router.push({ path: '/product' })">
                   <i class="fa fa-angle-left" />
                   Belanja Lagi
                 </a>
-                <a @click="$router.push({ path: '/cart/checkout' })" href="javascript:void(0);" class="btn btn-primary pull-right">
+                <a href="javascript:void(0);" class="btn btn-primary pull-right" @click="$router.push({ path: '/cart/checkout' })">
                   Checkout
                   <i class="fa fa-angle-right" />
                 </a>
@@ -68,10 +68,10 @@
             </div>
             <div class="row pt-4 pb-5 d-lg-none d-xl-none d-md-none d-sm-none">
               <div class="col-12 py-3">
-                <a @click="$router.push({ path: '/cart/checkout' })" href="javascript:void(0);" class="btn btn-block btn-primary mb-3">
+                <a href="javascript:void(0);" class="btn btn-block btn-primary mb-3" @click="$router.push({ path: '/cart/checkout' })">
                   Checkout
                 </a>
-                <a @click="$router.push({ path: '/product' })" href="javascript:void(0);" class="btn btn-block btn-outline-primary">
+                <a href="javascript:void(0);" class="btn btn-block btn-outline-primary" @click="$router.push({ path: '/product' })">
                   Belanja Lagi
                 </a>
               </div>
@@ -83,7 +83,7 @@
                 <h6 class="mb-2">
                   Keranjang masih kosong
                 </h6>
-                <a @click="$router.push({ path: '/product' })" href="javascript:void(0);" class="btn btn-sm btn-secondary">
+                <a href="javascript:void(0);" class="btn btn-sm btn-secondary" @click="$router.push({ path: '/product' })">
                   Belanja
                   <i class="fa fa-angle-right" />
                 </a>

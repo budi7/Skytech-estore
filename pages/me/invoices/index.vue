@@ -47,8 +47,8 @@
       <displayError
         :msg="errors.msg"
         :is-visible="errors.msg ? true : false"
-        @retry="fetchTransaction()"
         class="mb-5 pb-5"
+        @retry="fetchTransaction()"
       />
     </Layout>
 

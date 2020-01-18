@@ -22,8 +22,8 @@
             <div
               v-for="(dt, i) in couriers"
               :key="i"
-              @click="selectCourier(dt)"
               class="card hover py-3 px-3 mb-3"
+              @click="selectCourier(dt)"
             >
               <p class="mb-0 text-capitalize">
                 {{ dt.courier_name }} - {{ dt.courier_service }}

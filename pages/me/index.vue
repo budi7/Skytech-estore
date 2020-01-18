@@ -39,10 +39,10 @@
         {{ address ? address : 'Belum diisi' }}
       </p>
 
-      <button @click="editProfile" class="btn btn-outline-primary mr-2" type="button">
+      <button class="btn btn-outline-primary mr-2" type="button" @click="editProfile">
         {{ $store.getters['modules/uac/isProfileDataCompleted'] === false ? 'Lengkapi Data Pribadi' : 'Perbarui Profile' }}
       </button>
-      <button @click="editPassword" class="btn btn-outline-primary mr-2" type="button">
+      <button class="btn btn-outline-primary mr-2" type="button" @click="editPassword">
         Perbarui Password
       </button>
 
