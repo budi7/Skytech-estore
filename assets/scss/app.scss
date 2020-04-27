@@ -416,6 +416,13 @@ a {
 }
 
 // index
+.category {
+  &:hover {
+    cursor: pointer !important;
+    opacity: .8 !important;
+  }
+}
+
 .card-category {
   border-radius: .3rem;
   // background-image:

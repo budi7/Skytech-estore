@@ -67,12 +67,78 @@
 
         </div>
       </div> -->
-      <div class="row py-3 pl-3">
+      <!-- <div class="row py-3 pl-3">
         <div v-for="(data, i) in categories" :key="i" class="col-6 col-md-4 col-xl-3 mb-3 pl-0">
           <div class="card-category align-items-center card-group" @click="selectCategory(data)">
             <h3 class="mb-0">
               {{ data.category }}
             </h3>
+          </div>
+        </div>
+      </div> -->
+      <div class="row py-3 pl-3">
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
+          <div
+            class="align-items-center card-group category"
+            @click="selectCategory({category: 'Smartphone', id:'20'})"
+          >
+            <img class="img-fluid" src="/Smartphone@2x.png">
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
+          <div
+            class="align-items-center card-group category"
+            @click="selectCategory({category: 'Notebook', id:'21'})"
+          >
+            <img class="img-fluid" src="/Notebook@2x.png">
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
+          <div
+            class="align-items-center card-group category"
+            @click="selectCategory({category: 'Tablet', id:'22'})"
+          >
+            <img class="img-fluid" src="/Tablet@2x.png">
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
+          <div
+            class="align-items-center card-group category"
+            @click="selectCategory({category: 'Printer', id:'24'})"
+          >
+            <img class="img-fluid" src="/Printer@2x.png">
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
+          <div
+            class="align-items-center card-group category"
+            @click="selectCategory({category: 'Gaming Accesories', id:'25'})"
+          >
+            <img class="img-fluid" src="/Gaming Accesories@2x.png">
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
+          <div
+            class="align-items-center card-group category"
+            @click="selectCategory({category: 'Gaming Notebook', id:'26'})"
+          >
+            <img class="img-fluid" src="/Gaming Notebook@2x.png">
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
+          <div
+            class="align-items-center card-group category"
+            @click="selectCategory({category: 'Camera', id:'27'})"
+          >
+            <img class="img-fluid" src="/Camera@2x.png">
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
+          <div
+            class="align-items-center card-group category"
+            @click="selectCategory({category: 'In Ear Headphone', id:'39'})"
+          >
+            <img class="img-fluid" src="/In Ear Headphone@2x.png">
           </div>
         </div>
       </div>
@@ -230,6 +296,7 @@ export default {
       })
     },
     selectCategory(ct) {
+      console.log(ct)
       this.$router.push({
         path: '/product',
         query: {
