@@ -8,7 +8,7 @@
       </h4>
 
       <div class="form-group py-4 text-center">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdck1kf4u96XEtiptimtQnnUOOw27QMHfcnRPNr9MGWUlGW8Q/viewform?usp=sf_link" class="btn btn-block btn-primary" >
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdck1kf4u96XEtiptimtQnnUOOw27QMHfcnRPNr9MGWUlGW8Q/viewform?usp=sf_link" class="btn btn-block btn-primary">
           Bergabung Sekarang <i class="fa fa-angle-right" />
         </a>
       </div>

@@ -4,10 +4,10 @@
       <img src="~assets/images/logo-default.png" class="d-inline-block align-top img-fluid main-logo" style="filter: brightness(10);" alt="">
     </div>
     <ul class="slideshow">
-      <li><span></span></li>
-      <li><span></span></li>
-      <li><span></span></li>
-      <li><span></span></li>
+      <li><span /></li>
+      <li><span /></li>
+      <li><span /></li>
+      <li><span /></li>
     </ul>
     <div class="row pt-3 w-100 ml-0 align-item-center bg-primary footer-title" style="position:absolute; bottom:0px;">
       <div class="col-6">
