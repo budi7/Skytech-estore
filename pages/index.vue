@@ -82,7 +82,7 @@
             class="align-items-center card-group category"
             @click="selectCategory({category: 'Smartphone', id:'20'})"
           >
-            <img class="img-fluid" src="/Smartphone@2x.png">
+            <img class="img-fluid" src="https://sgp1.digitaloceanspaces.com/skytech-space/skytech/media/Banner/Smartphone@2x.png">
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
@@ -90,7 +90,7 @@
             class="align-items-center card-group category"
             @click="selectCategory({category: 'Notebook', id:'21'})"
           >
-            <img class="img-fluid" src="/Notebook@2x.png">
+            <img class="img-fluid" src="https://sgp1.digitaloceanspaces.com/skytech-space/skytech/media/Banner/Notebook@2x.png">
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
@@ -98,7 +98,7 @@
             class="align-items-center card-group category"
             @click="selectCategory({category: 'Tablet', id:'22'})"
           >
-            <img class="img-fluid" src="/Tablet@2x.png">
+            <img class="img-fluid" src="https://sgp1.digitaloceanspaces.com/skytech-space/skytech/media/Banner/Tablet@2x.png">
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
@@ -106,7 +106,7 @@
             class="align-items-center card-group category"
             @click="selectCategory({category: 'Printer', id:'24'})"
           >
-            <img class="img-fluid" src="/Printer@2x.png">
+            <img class="img-fluid" src="https://sgp1.digitaloceanspaces.com/skytech-space/skytech/media/Banner/Printer@2x.png">
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
@@ -114,7 +114,7 @@
             class="align-items-center card-group category"
             @click="selectCategory({category: 'Gaming Accesories', id:'25'})"
           >
-            <img class="img-fluid" src="/Gaming Accesories@2x.png">
+            <img class="img-fluid" src="https://sgp1.digitaloceanspaces.com/skytech-space/skytech/media/Banner/Gaming%20Accesories@2x.png">
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
@@ -122,7 +122,7 @@
             class="align-items-center card-group category"
             @click="selectCategory({category: 'Gaming Notebook', id:'26'})"
           >
-            <img class="img-fluid" src="/Gaming Notebook@2x.png">
+            <img class="img-fluid" src="https://sgp1.digitaloceanspaces.com/skytech-space/skytech/media/Banner/Gaming%20Notebook@2x.png">
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
@@ -130,7 +130,7 @@
             class="align-items-center card-group category"
             @click="selectCategory({category: 'Camera', id:'27'})"
           >
-            <img class="img-fluid" src="/Camera@2x.png">
+            <img class="img-fluid" src="https://sgp1.digitaloceanspaces.com/skytech-space/skytech/media/Banner/Camera@2x.png">
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
@@ -138,7 +138,7 @@
             class="align-items-center card-group category"
             @click="selectCategory({category: 'In Ear Headphone', id:'39'})"
           >
-            <img class="img-fluid" src="/In Ear Headphone@2x.png">
+            <img class="img-fluid" src="https://sgp1.digitaloceanspaces.com/skytech-space/skytech/media/Banner/In%20Ear%20Headphone@2x.png">
           </div>
         </div>
       </div>
