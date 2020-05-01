@@ -54,8 +54,9 @@ const product = {
       // state.product_search = payload
     },
     setSort: (state, payload) => {
-      state.product_orderBy = payload.sort && payload.sort.orderBy ? payload.sort.orderBy : 'updated_at'
-      state.product_orderDesc = payload.sort && payload.sort.orderBy ? payload.sort.orderDesc : true
+      console.log(payload)
+      state.product_orderBy = payload.orderBy ? payload.orderBy : 'updated_at'
+      state.product_orderDesc = payload.orderBy ? payload.orderDesc : true
     },
     setBrand: (state, payload) => {
       state.product_brand = payload || null
@@ -153,6 +154,8 @@ const product = {
       })
     },
     nextPageProduct: ({ commit, state }, payload) => {
+      console.log(state.product_orderBy)
+      console.log(state.product_orderDesc)
       return new Promise((resolve, reject) => {
         payload.apolloClient.query({
           query: apolloQueryProducts,
