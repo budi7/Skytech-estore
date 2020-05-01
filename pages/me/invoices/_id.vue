@@ -6,7 +6,7 @@
       <h4 class="mt-3 mb-1">
         Detail Tagihan Pembelian
       </h4>
-      <a href="javascript:void(0);" class="text-primary small" @click="$router.push({ path: '/me/invoices' })">
+      <a @click="$router.push({ path: '/me/invoices' })" href="javascript:void(0);" class="text-primary small">
         <i class="fa fa-angle-left" /> Kembali
       </a>
 
@@ -109,7 +109,7 @@
                 <p class="mb-2">
                   Cara Pembayaran
                 </p>
-                <ol class="text-gray pl-3">
+                <ol v-if="transaction.payment_method === 'CASH'" class="text-gray pl-3">
                   <li class="pl-2 mb-2">
                     Datang ke toko Skytech
                   </li>
@@ -123,9 +123,49 @@
                     Lakukan pembayaran di kasir. Kasir kami akan membantu Anda.
                   </li>
                 </ol>
+                <ol v-else class="text-gray pl-3">
+                  <li class="pl-2 mb-2">
+                    Lakukan transfer pembayaran ke rekening Skytech
+                  </li>
+                  <li class="pl-2 mb-2">
+                    Kirimkan bukti transfer Anda melalui wa Skytech
+                  </li>
+                  <li class="pl-2 mb-2">
+                    Tim Skytech akan melakukan konfirmasi pembayaran Anda
+                  </li>
+                  <li class="pl-2 mb-2">
+                    Apabila pembayaran Anda sudah terkonfirmasi, barang akan segera diproses untuk dikirim
+                  </li>
+                  <li class="pl-2 mb-2">
+                    Tim Skytech siap membantu Anda, Anda dapat menghubungi kami melalui telepon/wa Skytech.
+                  </li>
+                </ol>
               </div>
               <div class="col-12 col-md-6">
                 <div class="card p-3">
+                  <div v-if="transaction.payment_method === 'BANK_TRANSFER'">
+                    <p class="small">
+                      <strong>
+                        Rekening Skytech
+                      </strong>
+                    </p>
+                    <p class="text-gray">
+                      <strong>BCA</strong> 1000.8000.20 <br>
+                      PT. SKYTECH TEKNOLOGI INTERNUSA
+                    </p>
+                    <hr>
+                  </div>
+
+                  <p class="small">
+                    <strong>
+                      No. Telpon/WhatsApp Skytech
+                    </strong>
+                  </p>
+                  <p class="text-gray">
+                    08113530030
+                  </p>
+                  <hr>
+
                   <p class="small">
                     <strong>
                       Kode Pembayaran
@@ -225,9 +265,9 @@
           </div>
           <displayError
             :is-visible="isError ? true : false"
+            @retry="fetchTransaction()"
             msg="Tidak dapat memuat data"
             class="mb-5 pb-5"
-            @retry="fetchTransaction()"
           />
         </div>
       </no-ssr>

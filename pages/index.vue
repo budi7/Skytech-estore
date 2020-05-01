@@ -79,64 +79,64 @@
       <div class="row py-3 pl-3">
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
           <div
-            class="align-items-center card-group category"
             @click="selectCategory({category: 'Smartphone', id:'20'})"
+            class="align-items-center card-group category"
           >
             <img class="img-fluid" src="https://sgp1.digitaloceanspaces.com/skytech-space/skytech/media/Banner/Smartphone@2x.png">
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
           <div
-            class="align-items-center card-group category"
             @click="selectCategory({category: 'Notebook', id:'21'})"
+            class="align-items-center card-group category"
           >
             <img class="img-fluid" src="https://sgp1.digitaloceanspaces.com/skytech-space/skytech/media/Banner/Notebook@2x.png">
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
           <div
-            class="align-items-center card-group category"
             @click="selectCategory({category: 'Tablet', id:'22'})"
+            class="align-items-center card-group category"
           >
             <img class="img-fluid" src="https://sgp1.digitaloceanspaces.com/skytech-space/skytech/media/Banner/Tablet@2x.png">
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
           <div
-            class="align-items-center card-group category"
             @click="selectCategory({category: 'Printer', id:'24'})"
+            class="align-items-center card-group category"
           >
             <img class="img-fluid" src="https://sgp1.digitaloceanspaces.com/skytech-space/skytech/media/Banner/Printer@2x.png">
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
           <div
-            class="align-items-center card-group category"
             @click="selectCategory({category: 'Gaming Accesories', id:'25'})"
+            class="align-items-center card-group category"
           >
             <img class="img-fluid" src="https://sgp1.digitaloceanspaces.com/skytech-space/skytech/media/Banner/Gaming%20Accesories@2x.png">
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
           <div
-            class="align-items-center card-group category"
             @click="selectCategory({category: 'Gaming Notebook', id:'26'})"
+            class="align-items-center card-group category"
           >
             <img class="img-fluid" src="https://sgp1.digitaloceanspaces.com/skytech-space/skytech/media/Banner/Gaming%20Notebook@2x.png">
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
           <div
-            class="align-items-center card-group category"
             @click="selectCategory({category: 'Camera', id:'27'})"
+            class="align-items-center card-group category"
           >
             <img class="img-fluid" src="https://sgp1.digitaloceanspaces.com/skytech-space/skytech/media/Banner/Camera@2x.png">
           </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 pl-0">
           <div
-            class="align-items-center card-group category"
             @click="selectCategory({category: 'In Ear Headphone', id:'39'})"
+            class="align-items-center card-group category"
           >
             <img class="img-fluid" src="https://sgp1.digitaloceanspaces.com/skytech-space/skytech/media/Banner/In%20Ear%20Headphone@2x.png">
           </div>
@@ -158,7 +158,7 @@
       </div>
       <div v-if="$store.state.modules.product.product_hasMorePages" v-show="!isLoading" class="row py-4 justify-content-center">
         <div class="col-8 col-sm-6 col-md-4 col-lg-3 ">
-          <a href="javascript:void(0);" class="btn btn-outline-primary btn-block mb-5" @click="nextPageProduct()">
+          <a @click="nextPageProduct()" href="javascript:void(0);" class="btn btn-outline-primary btn-block mb-5">
             Muat Lebih Banyak
           </a>
         </div>

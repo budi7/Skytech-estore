@@ -1,5 +1,5 @@
 <template>
-  <form class="pt-3" @submit.prevent="saveProfile()">
+  <form @submit.prevent="saveProfile()" class="pt-3">
     <b-alert :show="errors.msg" variant="danger" fade>
       {{ errors.msg }}
     </b-alert>

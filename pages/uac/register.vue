@@ -54,13 +54,13 @@
       </div>
 
       <div class="form-group">
-        <button class="btn btn-outline-primary btn-block" type="button" @click="$router.push({ path: './login' })">
+        <button @click="$router.push({ path: './login' })" class="btn btn-outline-primary btn-block" type="button">
           Login
         </button>
       </div>
 
       <div class="form-group py-4 text-center">
-        <a href="javascript:void(0);" class="text-primary" @click="$router.push({ path: '/' })">Kembali ke Halaman Awal <i class="fa fa-angle-right" /></a>
+        <a @click="$router.push({ path: '/' })" href="javascript:void(0);" class="text-primary">Kembali ke Halaman Awal <i class="fa fa-angle-right" /></a>
       </div>
     </form>
   </div>

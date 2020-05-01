@@ -29,7 +29,8 @@
             </div>
           </div>
           <div class="col-6 col-sm-5 col-md-4 col-lg-3 pl-2">
-            <div :class="shipping_method === 'pickup_product' ? 'card hover px-3 py-4 active' : 'card hover px-3 py-4'" @click="selectShipment('pickup_product')">
+            <!-- <div :class="shipping_method === 'pickup_product' ? 'card hover px-3 py-4 active' : 'card hover px-3 py-4'" @click="selectShipment('pickup_product')"> -->
+            <div class="card card-disabled px-3 py-4 active">
               <p class="mb-0">
                 Ambil di Toko <i :class="shipping_method === 'pickup_product' ? 'fa fa-lg fa-check-circle pull-right' : 'fa fa-lg fa-circle text-gray pull-right'" />
               </p>
@@ -49,7 +50,7 @@
                 {{ shipping_address.receiver_address.province }}, {{ shipping_address.receiver_address.country }}, {{ shipping_address.receiver_address.zip_code }}
               </span>
             </p>
-            <a href="javascript:void(0);" class="text-primary" @click="openAddressModal()">
+            <a @click="openAddressModal()" href="javascript:void(0);" class="text-primary">
               {{ shipping_address.length === 0 ? 'Tambahkan Alamat' : 'Ubah Alamat' }} <i :class="shipping_address.length === 0 ? 'fa fa-plus' : 'fa fa-exchange'" />
             </a>
           </div>
@@ -65,7 +66,7 @@
                 {{ shipping_store.province }}, {{ shipping_store.country }}, {{ shipping_store.zip_code }}
               </span>
             </p>
-            <a :class="shipping_address.length === 0 ? 'disabled' : 'text-primary'" href="javascript:void(0);" @click="selectShippingStore()">
+            <a :class="shipping_address.length === 0 ? 'disabled' : 'text-primary'" @click="selectShippingStore()" href="javascript:void(0);">
               {{ shipping_store.length === 0 ? 'Pilih Toko' : 'Ubah Toko' }} <i :class="shipping_store.length === 0 ? 'fa fa-plus' : 'fa fa-exchange'" />
             </a>
             <p v-show="shipping_address.length === 0" class="small text-gray">
@@ -121,7 +122,7 @@
                 {{ pickup_store.province }}, {{ pickup_store.country }}, {{ pickup_store.zip_code }}
               </span>
             </p>
-            <a href="javascript:void(0);" class="text-primary" @click="selectPickupStore">
+            <a @click="selectPickupStore" href="javascript:void(0);" class="text-primary">
               {{ pickup_store.length === 0 ? 'Pilih Toko' : 'Ubah Toko' }} <i :class="pickup_store.length === 0 ? 'fa fa-plus' : 'fa fa-exchange'" />
             </a>
           </div>
@@ -146,11 +147,11 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <a href="javascript:void(0);" class="text-primary" @click="selectAllItem()">
+            <a @click="selectAllItem()" href="javascript:void(0);" class="text-primary">
               <i class="fa fa-lg fa-check-circle mr-3" />
               Pilih Semua Produk
             </a>
-            <a href="javascript:void(0);" class="text-primary pull-right" @click="fetchStock()">
+            <a @click="fetchStock()" href="javascript:void(0);" class="text-primary pull-right">
               <i class="fa fa-lg fa-refresh" />
               Refresh
             </a>
@@ -182,7 +183,7 @@
         <div class="row pb-5 mb-4">
           <div class="col-12 col-sm-6 col-md-7 col-xl-8" />
           <div class="col-12 col-sm-6 col-md-5 col-xl-4 text-right">
-            <button class="btn btn-primary btn-block" @click="checkout()">
+            <button @click="checkout()" class="btn btn-primary btn-block">
               Selesaikan Pembayaran
               <i class="fa fa-angle-right" />
             </button>
@@ -207,7 +208,7 @@
           <div class="row h-min">
             <div class="col-12">
               <div class="pt-3">
-                <div class="card hover text-center py-4" @click="openNewAddressModal()">
+                <div @click="openNewAddressModal()" class="card hover text-center py-4">
                   <p class="mb-0">
                     <i class="fa fa-plus" />
                     Alamat Baru
@@ -215,7 +216,7 @@
                 </div>
               </div>
 
-              <listAddress ref="list-address" class="mt-3" @selected="onAddressSelected()" />
+              <listAddress ref="list-address" @selected="onAddressSelected()" class="mt-3" />
             </div>
           </div>
         </b-modal>
@@ -241,8 +242,8 @@
         >
           <listStore
             ref="list-shipping-store"
-            class="h-min"
             @selected="onTokoSelected()"
+            class="h-min"
           />
         </b-modal>
 
@@ -256,8 +257,8 @@
         >
           <listStore
             ref="list-pickup-store"
-            class="h-min"
             @selected="onPickUpTokoSelected()"
+            class="h-min"
           />
         </b-modal>
 
@@ -300,7 +301,7 @@
                 </div>
                 <div class="row px-2">
                   <div class="col-12 pr-2">
-                    <div class="card hover px-3 py-2" @click="selectCourier()">
+                    <div @click="selectCourier()" class="card hover px-3 py-2">
                       <p class="mb-0 small text-center">
                         {{ shipping_courier.length === 0 ? 'Pilih Kurir' : 'Ubah Kurir' }}<i class="fa fa-lg fa-angle-right" />
                       </p>
@@ -396,7 +397,8 @@
                   </div>
                 </div>
                 <div class="col-6 pr-2">
-                  <div :class="payment_method === 'offline' ? 'card hover px-3 py-4 active' : 'card hover px-3 py-4'" @click="selectPayment('offline')">
+                  <div class="card px-3 py-4 card-disabled">
+                    <!-- <div :class="payment_method === 'offline' ? 'card hover px-3 py-4 active' : 'card hover px-3 py-4'" @click="selectPayment('offline')"> -->
                     <p class="mb-0 small">
                       Bayar di Kasir Skytech<i :class="payment_method === 'offline' ? 'fa fa-lg fa-check-circle pull-right' : 'fa fa-lg text-gray fa-circle pull-right'" />
                     </p>
@@ -406,9 +408,10 @@
                   </div>
                 </div>
                 <div class="col-6 pl-2 small">
-                  <!-- <div :class="payment_method === 'online' ? 'card hover px-3 py-4 active' : 'card hover px-3 py-4'" @click="selectPayment('online')"> -->
-                  <div class="card px-3 py-4 card-disabled">
+                  <div :class="payment_method === 'online' ? 'card hover px-3 py-4 active' : 'card hover px-3 py-4'" @click="selectPayment('online')">
+                    <!-- <div class="card px-3 py-4 card-disabled"> -->
                     <p class="mb-0">
+                      {{ payment_method }}
                       Bayar Online <i :class="payment_method === 'online' ? 'fa fa-lg fa-check-circle pull-right' : 'fa fa-lg fa-circle text-gray pull-right'" />
                     </p>
                     <p class="mb-0" style="font-size:.5rem;">
@@ -423,10 +426,10 @@
             <div class="col-12">
               <b-button
                 :disabled="isAllowedSubmit || is_loading"
+                @click="createSO"
                 variant="primary"
                 block
                 type="button"
-                @click="createSO"
               >
                 <span v-show="!is_loading">
                   Bayar
@@ -447,8 +450,8 @@
         >
           <listCourier
             ref="list-courier"
-            class="h-min"
             @selected="onCourierSelected"
+            class="h-min"
           />
         </b-modal>
       </no-ssr>
@@ -483,7 +486,7 @@ export default {
   data() {
     return {
       products: [],
-      shipping_method: null,
+      shipping_method: 'deliver_product', // kalau sudah normal di null-kan
       shipping_address: [],
       shipping_courier: [],
       shipping_store: [],
@@ -491,7 +494,7 @@ export default {
       idx_shipping_store: null,
       idx_pickup_store: null,
       shippingCost: 0,
-      payment_method: null,
+      payment_method: 'online', // kalau sudah normal di null-kan
       is_loading: false
     }
   },
@@ -524,6 +527,11 @@ export default {
     }
   },
   watch: {
+    payment_method(newval) {
+      if (newval === null) {
+        this.payment_method = 'online'
+      }
+    }
     // totalPrice(newval) {
     //   // check shipping method
     //   if (this.shipping_method !== 'deliver_product') {

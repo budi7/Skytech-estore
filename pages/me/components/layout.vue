@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="d-block d-sm-none pb-3 col-12 pb-4">
-        <div class="card hover p-3" @click="openMenu()">
+        <div @click="openMenu()" class="card hover p-3">
           <div class="row">
             <div class="col-10">
               <p class="mb-0 text-capitalize">
@@ -76,10 +76,10 @@
         </div>
         <div class="row">
           <div class="col-12 pt-4 pb-3 text-center">
-            <a href="javascript:void(0);" class="btn btn-block btn-primary mb-3" @click="logout()">
+            <a @click="logout()" href="javascript:void(0);" class="btn btn-block btn-primary mb-3">
               Logout Akun Saya
             </a>
-            <a href="javascript:void(0);" class="btn btn-block btn-outline-primary" @click="$bvModal.hide('bv-modal-logout')">
+            <a @click="$bvModal.hide('bv-modal-logout')" href="javascript:void(0);" class="btn btn-block btn-outline-primary">
               Batal
             </a>
           </div>

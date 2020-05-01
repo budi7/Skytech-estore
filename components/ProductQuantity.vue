@@ -1,13 +1,13 @@
 <template>
   <div class="input-group mb-3 prod-qty">
     <div class="input-group-prepend">
-      <button class="btn btn-sm btn-outline-primary" type="button" @click.stop="minus()">
+      <button @click.stop="minus()" class="btn btn-sm btn-outline-primary" type="button">
         <i class="fa fa-minus fa-lg" />
       </button>
     </div>
-    <input v-model="ctr" type="text" class="form-control form-control-sm text-center" aria-describedby="basic-addon1" @click.stop>
+    <input v-model="ctr" @click.stop type="text" class="form-control form-control-sm text-center" aria-describedby="basic-addon1">
     <div class="input-group-append">
-      <button class="btn btn-sm btn-outline-primary" type="button" @click.stop="add()">
+      <button @click.stop="add()" class="btn btn-sm btn-outline-primary" type="button">
         <i class="fa fa-plus fa-lg" />
       </button>
     </div>

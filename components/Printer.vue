@@ -13,10 +13,10 @@
             Sedang Mencetak
           </h6>
           <img src="https://media1.tenor.com/images/45b0f1cfc8b1e53d9b3246766efbcec7/tenor.gif?itemid=3527022" class="img-fluid mb-5">
-          <b-button class="mt-3 btn-sm" variant="outline-primary" block @click="print">
+          <b-button @click="print" class="mt-3 btn-sm" variant="outline-primary" block>
             Cetak Lagi
           </b-button>
-          <b-button class="mt-3 btn-sm" variant="primary" block @click="donePrint">
+          <b-button @click="donePrint" class="mt-3 btn-sm" variant="primary" block>
             Selesai
           </b-button>
         </div>

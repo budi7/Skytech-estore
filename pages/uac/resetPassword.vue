@@ -16,7 +16,7 @@
 
       <div class="form-group pb-0">
         <label for="input-kode">Kode</label>
-        <a href="javascript:void(0);" class="text-primary float-right" @click="resendCode()">
+        <a @click="resendCode()" href="javascript:void(0);" class="text-primary float-right">
           Kirim Ulang Kode
         </a>
         <b-input
@@ -49,7 +49,7 @@
       </div>
 
       <div class="form-group py-4 text-center">
-        <a href="javascript:void(0);" class="text-primary" @click="$router.push({ path: '/uac/login' })">Kembali<i class="fa fa-angle-right" /></a>
+        <a @click="$router.push({ path: '/uac/login' })" href="javascript:void(0);" class="text-primary">Kembali<i class="fa fa-angle-right" /></a>
       </div>
     </form>
   </div>
